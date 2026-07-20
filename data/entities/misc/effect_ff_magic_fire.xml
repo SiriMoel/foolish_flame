@@ -4,9 +4,14 @@
 		_enabled="1"
     ></InheritTransformComponent>
     
-    <GameEffectComponent 
+    <!--<GameEffectComponent 
     	effect="CUSTOM"
         custom_effect_id="FF_MAGIC_FIRE"
+    	frames="300"
+    ></GameEffectComponent>-->
+
+    <GameEffectComponent 
+    	effect="FF_MAGIC_FIRE"
     	frames="300"
     ></GameEffectComponent>
 

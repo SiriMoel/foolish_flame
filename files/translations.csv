@@ -1,1 +1,5 @@
 ,,,,,,,,,,,,,,,,,,,,,,,
+action_ff_flare,"Wizard Flare",,,,,,,,,,,,,,,,,,,,,,
+actiondesc_ff_flare,"Launch a flare that inflicts magic fire. Always crits enemies afflicted by magic fire.",,,,,,,,,,,,,,,,,,,,,,
+status_ff_magic_fire,"Magic Fire",,,,,,,,,,,,,,,,,,,,,,
+statusdesc_ff_magic_fire,"Fire... but magic...",,,,,,,,,,,,,,,,,,,,,,

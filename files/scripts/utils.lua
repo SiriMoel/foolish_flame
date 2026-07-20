@@ -12,6 +12,9 @@ function InflictMagicFire(target, temp, duration)
     if #c > 0 then
         effect = c[1]
     else
+        --effect = LoadGameEffectEntityTo(target, "mods/foolish_flame/files/entities/misc/status_magic_fire/effect.xml")
+        --effect = LoadGameEffectEntityTo(target, "data/entities/misc/effect_ff_magic_fire.xml")
+        --_, effect = GetGameEffectLoadTo(target, "FF_MAGIC_FIRE", true)
         effect = EntityLoad("mods/foolish_flame/files/entities/misc/status_magic_fire/effect.xml", x, y)
         EntityAddChild(target, effect)
     end

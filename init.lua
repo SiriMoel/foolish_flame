@@ -3,7 +3,7 @@ dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 -- appends
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/scripts/gun/actions.lua")
-ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/foolish_flame/files/scripts/status_list.lua" )
+ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/foolish_flame/files/scripts/status_list.lua")
 
 -- translations
 local translations = ModTextFileGetContent("data/translations/common.csv")

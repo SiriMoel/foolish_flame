@@ -2,18 +2,18 @@ dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 
 local new_actions = {
 	{
-		id = "WIZARD_FLARE",
-		name = "flare nyi",
-		description = "flare desc nyi",
+		id = "WIZARD_FLARE", -- "team fortress 2"
+		name = "$action_ff_flare",
+		description = "$actiondesc_ff_flare",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/flare.png",
-		related_projectiles	= {"data/entities/projectiles/deck/light_bullet.xml"},
+		related_projectiles	= {"data/entities/projectiles/deck/light_bullet.xml"}, -- placeholder!!!
 		type 		= ACTION_TYPE_PROJECTILE,
 		spawn_level                       = "",
 		spawn_probability                 = "",
 		price = 100,
 		mana = 20,
 		action = function()
-			add_projectile("data/entities/projectiles/deck/light_bullet.xml")
+			add_projectile("data/entities/projectiles/deck/light_bullet.xml") -- placeholder!!!
 
 			c.fire_rate_wait = c.fire_rate_wait + 3
 			c.screenshake = c.screenshake + 0.5

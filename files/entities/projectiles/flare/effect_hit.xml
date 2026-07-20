@@ -1,0 +1,34 @@
+<Entity>
+
+    <GameEffectComponent 
+        effect="CRITICAL_HIT_BOOST"
+        frames="40"
+        value="100"
+    ></GameEffectComponent>
+
+    <GameEffectComponent 
+    	effect="KNOCKBACK"
+    	frames="40"
+    ></GameEffectComponent>
+
+    <GameEffectComponent 
+    	effect="JARATE"
+    	frames="40"
+    ></GameEffectComponent>
+    
+    <GameEffectComponent 
+    	effect="NONE"
+    	frames="40"
+    	disable_movement="1"
+    ></GameEffectComponent>
+	
+	<InheritTransformComponent
+        _enabled="1"
+    ></InheritTransformComponent>
+
+    <LuaComponent
+        script_source_file="mods/foolish_flame/files/entities/projectiles/flare/effect_hit_update.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+</Entity>

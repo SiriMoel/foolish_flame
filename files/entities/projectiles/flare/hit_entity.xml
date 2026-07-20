@@ -6,7 +6,7 @@
 
     <LuaComponent
         script_source_file="mods/foolish_flame/files/entities/projectiles/flare/hit.lua"
-        execute_every_n_frame="2"
-    ><LuaComponent>
+        execute_every_n_frame="1"
+    ></LuaComponent>
 
 </Entity>
