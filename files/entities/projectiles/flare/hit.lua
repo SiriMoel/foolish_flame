@@ -10,7 +10,17 @@ if #e > 0 then
 
     LoadGameEffectEntityTo(root, "mods/foolish_flame/files/entities/projectiles/flare/effect_hit.xml")
 
-    EntityInflictDamage(root, 0.46, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 4, 4, EntityGetWithTag("player_unit")[1], nil, nil, 40)
+    local temp_dmg = 0
+
+    local comp_temp = EntityGetFirstComponentIncludingDisabled(e[1], "VariableStorageComponent", "fire_temp")
+    if comp_temp ~= nil then
+        local temp = ComponentGetValue2(comp_temp, "value_int")
+        temp_dmg = 0.04 * temp
+    else
+        GamePrint("FF - couldn't find temp component :(")
+    end
+
+    EntityInflictDamage(root, 0.4 + temp_dmg, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 4, 4, EntityGetWithTag("player_unit")[1], nil, nil, 40)
 
     GamePlaySound("data/audio/Desktop/projectiles.bank", "player_projectiles/critical_hit/create", x, y)
 

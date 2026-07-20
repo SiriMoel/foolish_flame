@@ -1,0 +1,99 @@
+<Entity tags="ff_magic_fire_effect">
+
+    <InheritTransformComponent 
+		_enabled="1"
+    ></InheritTransformComponent>
+    
+    <GameEffectComponent 
+    	effect="CUSTOM"
+        custom_effect_id="FF_MAGIC_FIRE"
+    	frames="300"
+    ></GameEffectComponent>
+
+
+    <!-- functionality? -->
+
+    <VariableStorageComponent
+        _tags="fire_temp"
+        name="fire_temp"
+        value_int="1"
+    ></VariableStorageComponent>
+
+    <LuaComponent
+        script_source_file="mods/foolish_flame/files/entities/misc/effect_magic_fire/damage.lua"
+        execute_every_n_frame="12"
+    ></LuaComponent>
+
+
+    <!-- vfx -->
+
+    <ParticleEmitterComponent
+        _tags="particles_1"
+        emitted_material_name="spark_yellow"
+        count_min="5"
+        count_max="8"
+        offset.x="-1"
+        offset.y="-5"
+        x_pos_offset_min="-4"
+        x_pos_offset_max="4"
+        y_pos_offset_min="-3"
+        y_pos_offset_max="3"
+        x_vel_min="-3"
+        x_vel_max="3"
+        y_vel_min="-15"
+        y_vel_max="0"
+        lifetime_min="0.1"
+        lifetime_max="0.3"
+        create_real_particles="0"
+        emit_cosmetic_particles="1"
+        emission_interval_min_frames="1"
+        emission_interval_max_frames="1"
+	    delay_frames="2"
+        is_emitting="1"
+        gravity.x="0"
+        gravity.y="-70"
+    ></ParticleEmitterComponent>
+
+    <ParticleEmitterComponent
+        _tags="particles_2"
+        emitted_material_name="spark_red"
+        count_min="6"
+        count_max="12"
+        offset.x="-1"
+        offset.y="-5"
+        x_pos_offset_min="-6"
+        x_pos_offset_max="6"
+        y_pos_offset_min="-5"
+        y_pos_offset_max="5"
+        x_vel_min="-4"
+        x_vel_max="4"
+        y_vel_min="-30"
+        y_vel_max="0"
+        lifetime_min="0.2"
+        lifetime_max="0.6"
+        create_real_particles="0"
+        emit_cosmetic_particles="1"
+        emission_interval_min_frames="1"
+        emission_interval_max_frames="1"
+	    delay_frames="2"
+        is_emitting="1"
+        gravity.x="0"
+        gravity.y="-120"
+    ></ParticleEmitterComponent>
+
+
+    <!-- audio -->
+
+    <AudioComponent
+        file="data/audio/Desktop/misc.bank"
+        event_root="game_effect/on_fire"
+        set_latest_event_position="1" >
+    </AudioComponent>
+
+    <AudioLoopComponent
+        file="data/audio/Desktop/misc.bank"
+        event_name="game_effect/on_fire/burning" 
+        auto_play="1" >
+    </AudioLoopComponent>
+
+</Entity>
