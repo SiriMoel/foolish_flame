@@ -8,7 +8,15 @@ if comp_temp ~= nil then
     local temp = ComponentGetValue2(comp_temp, "value_int")
 
     if temp > 0 then
-        EntityInflictDamage(root, 0.066 * (temp - 1), "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 2, 2, EntityGetWithTag("player_unit")[1], nil, nil, 20)
+        EntityInflictDamage(root, 0.03 * (temp - 1), "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 2, 2, EntityGetWithTag("player_unit")[1], nil, nil, 20)
+
+        local x, y = EntityGetTransform(this)
+
+        local p = EntityGetInRadiusWithTag(x, y, 80, "player_unit") or {}
+        if #p > 0 then
+            AddHeat(4 + temp / 2, p[1])
+        end
+
     end
     
 else

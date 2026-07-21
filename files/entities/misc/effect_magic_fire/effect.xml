@@ -16,12 +16,12 @@
     <VariableStorageComponent
         _tags="fire_temp"
         name="fire_temp"
-        value_int="1"
+        value_int="0"
     ></VariableStorageComponent>
 
     <LuaComponent
         script_source_file="mods/foolish_flame/files/entities/misc/effect_magic_fire/damage.lua"
-        execute_every_n_frame="12"
+        execute_every_n_frame="30"
     ></LuaComponent>
 
 

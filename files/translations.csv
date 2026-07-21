@@ -1,5 +1,7 @@
 ,,,,,,,,,,,,,,,,,,,,,,,
 action_ff_flare,"Wizard Flare",,,,,,,,,,,,,,,,,,,,,,
-actiondesc_ff_flare,"Launch a flare that inflicts magic fire. Deal bonus damage to enemies afflicted by magic fire.",,,,,,,,,,,,,,,,,,,,,,
+actiondesc_ff_flare,"Launch a flare that inflicts magic fire. Deal bonus damage to enemies afflicted with magic fire.",,,,,,,,,,,,,,,,,,,,,,
+action_ff_flamethrower,"Magic Flamethrower",,,,,,,,,,,,,,,,,,,,,,
+actiondesc_ff_flamethrower,"Uses Heat.",,,,,,,,,,,,,,,,,,,,,,
 status_ff_magic_fire,"Magic Fire",,,,,,,,,,,,,,,,,,,,,,
 statusdesc_ff_magic_fire,"Fire... but magic...",,,,,,,,,,,,,,,,,,,,,,

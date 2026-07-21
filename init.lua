@@ -42,12 +42,12 @@ local scenes = {
 add_scene(scenes)
 
 function OnModPreInit()
-	local steps = 32
-	local template, w, h = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/fire_display/full.png", 28, 48)
+	local steps = 20
+	local template, w, h = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/fire_display/full.png", 20, 34)
 	for i=0,steps do
-		local image = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/fire_display/generated/" .. i ..".png", 28, 48)
+		local image = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/fire_display/generated/" .. i ..".png", 20, 34)
 		for x=0,w-1 do
-			for y = 10 + steps - i, 42 do
+			for y = 10 + steps - i, 30 do
 				ModImageSetPixel(image, x, y,  ModImageGetPixel(template, x, y))
 			end
 		end
