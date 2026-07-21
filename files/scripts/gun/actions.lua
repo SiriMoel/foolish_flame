@@ -9,20 +9,36 @@ local new_actions = {
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "2,3,4,5,6",
-		spawn_probability = "0.8,0.8,0.8,0.8,0.8",
+		spawn_probability = "0.8,0.8,1.0,1.0,0.8",
 		price = 100,
-		mana = 16,
+		mana = 20,
 		ai_never_uses = true, -- souls precaution
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/flare/projectile.xml")
-
 			c.fire_rate_wait = c.fire_rate_wait + 3
 			c.screenshake = c.screenshake + 0.5
 			c.spread_degrees = c.spread_degrees - 1.0
-
-			--AddHeat(50) -- testing!
-
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/flare/hitfx.xml,"
+		end,
+	},
+	{
+		id = "HEAT_FLARE",
+		name = "$action_ff_heat_flare",
+		description = "$actiondesc_ff_heat_flare",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/heat_flare.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/heat_flare/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "4,5,6",
+		spawn_probability = "0.7,0.8,0.8",
+		price = 100,
+		mana = 20,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			add_projectile("mods/foolish_flame/files/entities/projectiles/heat_flare/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 2
+			c.screenshake = c.screenshake + 0.5
+			c.spread_degrees = c.spread_degrees + 1.0
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/heat_flare/hitfx.xml,"
 		end,
 	},
 	--[[{
@@ -81,8 +97,8 @@ local new_actions = {
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "5,6,10",
 		spawn_probability = "0.1,0.2,0.3",
-		price = 100,
-		mana = 43,
+		price = 240,
+		mana = 63,
 		ai_never_uses = true, -- souls precaution
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/axtinguisher/projectile.xml")

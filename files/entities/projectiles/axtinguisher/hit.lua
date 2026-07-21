@@ -5,7 +5,7 @@ local root = EntityGetRootEntity(this)
 
 local e = EntityGetAllChildren(root, "ff_magic_fire_effect") or {}
 
-if #e > 0 then
+if #e > 0 and not EntityHasTag(root, "player_unit") then
 
     local x, y = EntityGetTransform(root)
 

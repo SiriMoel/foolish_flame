@@ -24,9 +24,10 @@ function RemoveHeat(amt, player)
     ComponentSetValue2(comp, "value_float", math.max(ComponentGetValue2(comp, "value_float") - amt, 0))
 end
 
-function InflictMagicFire(target, temp, duration)
+function InflictMagicFire(target, temp, duration, tmax)
     temp = temp or 1
     duration = duration or 360
+    tmax = tmax or 5
 
     if not EntityGetIsAlive(target) then return end
 
@@ -57,10 +58,9 @@ function InflictMagicFire(target, temp, duration)
     if comp_temp ~= nil then
         local temp_before = ComponentGetValue2(comp_temp, "value_int")
 
-        local temp_now = temp_before --math.max(temp_before, temp)
-        --if temp >= temp_before then
-            temp_now = math.min(temp_now + 1, 10)
-        --end
+        local temp_now = temp_before
+
+        temp_now = math.min(temp_now + temp, math.max(tmax, temp_now))
 
         if temp_now ~= temp_before then
 
