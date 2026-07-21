@@ -20,8 +20,10 @@ local new_actions = {
 			c.spread_degrees = c.spread_degrees - 1.0
 			--c.damage_critical_chance = c.damage_critical_chance + 2
 
+			--AddHeat(4)
+
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/flare/hitfx.xml,"
-			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/misc/effect_magic_fire/hitfx.xml,"
+			--c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/misc/effect_magic_fire/hitfx.xml,"
 		end,
 	},
 }

@@ -1,3 +1,29 @@
+dofile_once("data/scripts/lib/utilities.lua")
+
+function GetHeat(player)
+    player = player or EntityGetWithTag("player_unit")[1]
+    if player == nil then return 0 end
+    local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_heat")
+    if comp == nil then return 0 end
+    return ComponentGetValue2(comp, "value_float")
+end
+
+function AddHeat(amt, player)
+    player = player or EntityGetWithTag("player_unit")[1]
+    if player == nil then return end
+    local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_heat")
+    if comp == nil then return end
+    ComponentSetValue2(comp, "value_float", ComponentGetValue2(comp, "value_float") + amt)
+end
+
+function RemoveHeat(amt, player)
+    player = player or EntityGetWithTag("player_unit")[1]
+    if player == nil then return end
+    local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_heat")
+    if comp == nil then return end
+    ComponentSetValue2(comp, "value_float", math.max(ComponentGetValue2(comp, "value_float") - amt, 0))
+end
+
 function InflictMagicFire(target, temp, duration)
     temp = temp or 1
     duration = duration or 360

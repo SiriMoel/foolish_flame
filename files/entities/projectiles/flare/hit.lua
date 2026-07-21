@@ -1,3 +1,5 @@
+dofile_once("mods/foolish_flame/files/scripts/utils.lua")
+
 local this = GetUpdatedEntityID()
 local root = EntityGetRootEntity(this)
 
@@ -35,5 +37,7 @@ if #e > 0 then
     end]]
     
 end
+
+InflictMagicFire(root, 1, nil)
 
 EntityKill(this)

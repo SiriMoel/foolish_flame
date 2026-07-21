@@ -41,13 +41,42 @@ local scenes = {
 }
 add_scene(scenes)
 
--- player
-function OnPlayerSpawned(player_entity)
-	local x, y = EntityGetTransform(player_entity)
+function OnModPreInit()
+	local steps = 32
+	local template, w, h = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/fire_display/full.png", 28, 48)
+	for i=0,steps do
+		local image = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/fire_display/generated/" .. i ..".png", 28, 48)
+		for x=0,w-1 do
+			for y = 10 + steps - i, 42 do
+				ModImageSetPixel(image, x, y,  ModImageGetPixel(template, x, y))
+			end
+		end
+	end
+end
 
-	
+-- player
+function OnPlayerSpawned(player)
+
+	local x, y = EntityGetTransform(player)
+
 	if GameHasFlagRun("ff_init") then return end
 	GameAddFlagRun("ff_init")
+
+	EntityAddComponent(player, "VariableStorageComponent", {
+		_tags="ff_heat",
+		name="ff_heat",
+		value_float=0.0
+	})
+
+	EntityAddComponent(player, "LuaComponent", {
+		script_source_file="mods/foolish_flame/files/scripts/heat_loss.lua",
+		execute_every_n_frame=30
+	}) -- heat loss
+
+	EntityAddComponent(player, "LuaComponent", {
+		script_source_file="mods/foolish_flame/files/scripts/fire_display.lua",
+		execute_every_n_frame=1
+	}) -- fire display
 
 end
 
