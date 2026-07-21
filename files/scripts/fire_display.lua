@@ -10,7 +10,12 @@ if heat > 0 then
 
     local frames = 1
 
-    GameCreateSpriteForXFrames("mods/foolish_flame/files/ui_gfx/fire_display/flame.png", draw_x, draw_y, true, 0, 0, frames, 0)
+    if heat >= 400 then
+        GameCreateSpriteForXFrames("mods/foolish_flame/files/ui_gfx/fire_display/flame_hot.png", draw_x, draw_y, true, 0, 0, frames, 0)
+        -- some achievement/secret thing?
+    else
+        GameCreateSpriteForXFrames("mods/foolish_flame/files/ui_gfx/fire_display/flame.png", draw_x, draw_y, true, 0, 0, frames, 0)
+    end
         
     --heat = GameGetFrameNum()/10 --testing
 

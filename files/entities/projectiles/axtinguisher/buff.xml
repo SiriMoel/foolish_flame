@@ -1,0 +1,15 @@
+<Entity>
+	<InheritTransformComponent>
+    </InheritTransformComponent>	
+    
+    <GameEffectComponent 
+    	effect="MOVEMENT_FASTER"
+    	frames="150"
+    ></GameEffectComponent>
+
+    <!--<GameEffectComponent 
+    	effect="PROTECTION_MELEE"
+    	frames="120"
+    ></GameEffectComponent>-->
+	
+</Entity>

@@ -5,7 +5,7 @@ local player = GetUpdatedEntityID()
 local heat = GetHeat(player)
 
 if heat > 0 then
-    local amt = 4
+    local amt = 2
 
     if heat > 100 then
         amt = amt + 2
@@ -16,11 +16,11 @@ if heat > 0 then
     end
     
     if heat > 200 then
-        amt = amt + 3 + math.ceil((heat - 200) / 5)
+        amt = amt + 1 + math.ceil((heat - 200) / 5)
     end
 
     if heat > 300 then
-        amt = amt * 2
+        amt = amt * 1.4
     end
 
     RemoveHeat(amt, player)

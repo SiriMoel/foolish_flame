@@ -20,7 +20,7 @@ if #e > 0 then
         local temp = ComponentGetValue2(comp_temp, "value_int")
         temp_dmg = 0.04 * temp + 0.002 * GetHeat()
 
-        AddHeat(5 + temp / 2)
+        AddHeat(6 + temp / 2)
     else
         GamePrint("FF - couldn't find temp component :(")
     end
