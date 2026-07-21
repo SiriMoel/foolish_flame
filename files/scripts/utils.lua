@@ -64,7 +64,8 @@ function InflictMagicFire(target, temp, duration, tmax)
 
         if temp_now ~= temp_before then
 
-            local mats = {"spark_red", "spark", "spark", "spark_yellow", "spark", "spark_electric", "spark_white", "spark_blue", "spark_white_bright", "spark_player"}
+            -- 11
+            local mats = {"spark_red", "spark", "spark", "spark_yellow", "spark", "spark_electric", "spark_white", "spark_blue", "spark_white_bright", "spark_player", "spark_purple_bright"}
             local mat_1 = mats[math.min(math.floor(#mats / 10 * temp_now) + 1, 10)]
             local mat_2 = mats[math.min(math.floor(#mats / 10 * temp_now), 10)]
 
@@ -88,5 +89,5 @@ function InflictMagicFire(target, temp, duration, tmax)
     else
         GamePrint("FF - couldn't find temp component :(")
     end
-    
+
 end

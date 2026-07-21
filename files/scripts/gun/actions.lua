@@ -41,30 +41,6 @@ local new_actions = {
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/heat_flare/hitfx.xml,"
 		end,
 	},
-	--[[{
-		id = "FLAMETHROWER",
-		name = "$action_ff_flamethrower",
-		description = "$actiondesc_ff_flamethrower",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/flamethrower.png",
-		related_projectiles	= {"data/entities/projectiles/deck/light_bullet.xml"}, -- placeholder!!!
-		type 		= ACTION_TYPE_PROJECTILE,
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 100,
-		mana = 4,
-		ai_never_uses = true, -- souls precaution
-		action = function()
-			--if reflecting then return end
-			local heat = GetHeat()
-			if heat > 0.6 then
-				RemoveHeat(0.6)
-				c.fire_rate_wait = c.fire_rate_wait - 8
-				c.spread_degrees = c.spread_degrees + 3.0
-				c.damage_critical_chance = c.damage_critical_chance + 4
-				add_projectile("data/entities/projectiles/deck/light_bullet.xml") -- placeholder!!!
-			end
-		end,
-	},]]
 	{
 		id = "HOT_IRON",
 		name = "$action_ff_hot_iron",
@@ -86,6 +62,31 @@ local new_actions = {
 				RemoveHeat(0.6)
 			end
 			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "BUNSEN",
+		name = "$action_ff_bunsen",
+		description = "$actiondesc_ff_bunsen",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/bunsen.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "4,5,6",
+		spawn_probability = "0.6,0.7,0.8",
+		price = 100,
+		mana = 11,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait - 4
+			c.spread_degrees = c.spread_degrees - 4.0
+			local heat = GetHeat()
+			if heat > 0 then
+				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
+				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
+				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
+				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/bunsen/hitfx.xml,"
+				RemoveHeat(0.6)
+			end
 		end,
 	},
 	{
