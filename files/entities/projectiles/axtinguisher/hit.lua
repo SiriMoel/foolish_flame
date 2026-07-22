@@ -22,7 +22,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
             temp_dmg = temp_dmg * 1.5
         end
 
-        AddHeat(10 + temp * 1.5)
+        AddHeat(10 + temp * 2)
 
     else
         GamePrint("FF - couldn't find temp component :(")

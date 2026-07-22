@@ -1,8 +1,11 @@
 dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 
+local nxml = dofile_once("mods/foolish_flame/lib/nxml.lua")
+
 -- appends
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/scripts/gun/actions.lua")
-ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/foolish_flame/files/scripts/status_list.lua")
+--ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/foolish_flame/files/scripts/status_list.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/foolish_flame/files/scripts/perk_list.lua")
 
 -- translations
 local translations = ModTextFileGetContent("data/translations/common.csv")
@@ -42,19 +45,52 @@ local scenes = {
 add_scene(scenes)
 
 function OnModPreInit()
-	local steps = 20
+	local steps = 40
 	local template, w, h = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/fire_display/full.png", 20, 34)
 	for i=0,steps do
 		local image = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/fire_display/generated/" .. i ..".png", 20, 34)
-		for x=0,w-1 do
-			for y = 10 + steps - i, 30 do
+		local first_y = 10 + math.floor((steps - i) / 2)
+		for y = first_y, 30 do
+			local ww = w - 1
+			if y == first_y then
+				if i % 2 == 1 then
+					ww = w/2 - 1
+				end
+			end
+			for x=0,ww do
 				ModImageSetPixel(image, x, y,  ModImageGetPixel(template, x, y))
 			end
-		end
+		end		
 	end
 end
 
--- player
+function OnModPostInit()
+	local projectiles_to_modify = {
+		"data/entities/projectiles/deck/grenade_large.xml",
+		"data/entities/projectiles/deck/lance_holy.xml",		
+	}
+
+	if ModIsEnabled("grahamsperks") then
+		table.insert(projectiles_to_modify, "mods/grahamsperks/files/spells/willowisp.xml") -- ignis fatuus
+	end
+
+	if ModIsEnabled("copis_things") then
+		table.insert(projectiles_to_modify, "mods/copis_things/files/entities/projectiles/infernal_streak.xml")
+		table.insert(projectiles_to_modify, "mods/copis_things/files/entities/projectiles/firesphere.xml")
+	end
+
+	for i,v in ipairs(projectiles_to_modify) do
+		local xml = nxml.parse(ModTextFileGetContent(v))
+		xml:add_child(nxml.parse(([[
+    		<HitEffectComponent 
+        		effect_hit="LOAD_CHILD_ENTITY"
+        		value_string="mods/foolish_flame/files/entities/misc/effect_magic_fire/init.xml">
+			</HitEffectComponent>
+		]])))
+		ModTextFileSetContent(v, tostring(xml))
+	end
+end
+
 function OnPlayerSpawned(player)
 
 	local x, y = EntityGetTransform(player)

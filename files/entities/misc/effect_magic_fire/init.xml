@@ -2,12 +2,7 @@
 
 	<LuaComponent
 		script_source_file="mods/foolish_flame/files/entities/misc/effect_magic_fire/init.lua"
-		execute_every_n_frame="2"
-		execute_on_added="0"
+		execute_every_n_frame="1"
 	></LuaComponent>
-
-	<!--<LifetimeComponent
-		lifetime="10"
-	></LifetimeComponent>-->
 
 </Entity>

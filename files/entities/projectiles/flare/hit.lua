@@ -18,7 +18,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
         local temp = ComponentGetValue2(comp_temp, "value_int")
         temp_dmg = 0.04 * temp + 0.002 * GetHeat()
 
-        AddHeat(6 + temp / 2)
+        AddHeat(4 + temp * 0.5)
     else
         GamePrint("FF - couldn't find temp component :(")
     end

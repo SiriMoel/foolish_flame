@@ -15,7 +15,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
     if comp_temp ~= nil then
         local temp = ComponentGetValue2(comp_temp, "value_int")
 
-        AddHeat(12 + temp / 2)
+        AddHeat(5 + temp * 0.65)
     else
         GamePrint("FF - couldn't find temp component :(")
     end    

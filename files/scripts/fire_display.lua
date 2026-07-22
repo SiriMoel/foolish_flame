@@ -19,7 +19,7 @@ if heat > 0 then
         
     --heat = GameGetFrameNum()/10 --testing
 
-    local step = math.min(math.floor((heat / 300) * 20), 20)
+    local step = math.min(math.floor((heat / 300) * 40), 40)
 
     GameCreateSpriteForXFrames("mods/foolish_flame/files/ui_gfx/fire_display/generated/" .. step .. ".png", draw_x, draw_y, true, 0, 0, frames, 0)
 end

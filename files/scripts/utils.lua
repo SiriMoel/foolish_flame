@@ -1,5 +1,14 @@
 dofile_once("data/scripts/lib/utilities.lua")
 
+function table.contains(table, element)
+    for _, value in pairs(table) do
+        if value == element then
+        return true
+    end
+end
+    return false
+end
+
 function GetHeat(player)
     player = player or EntityGetWithTag("player_unit")[1]
     if player == nil then return 0 end
@@ -45,6 +54,9 @@ function InflictMagicFire(target, temp, duration, tmax)
     
     if effect == nil then return end -- this shouldn't happen?
 
+    local player = EntityGetWithTag("player_unit")[1]
+    if player == nil then return end -- probably shouldn't happen?
+
     local comp_eff = EntityGetFirstComponent(effect, "GameEffectComponent")
     if comp_eff ~= nil then
         local frames = ComponentGetValue2(comp_eff, "frames")
@@ -60,14 +72,18 @@ function InflictMagicFire(target, temp, duration, tmax)
 
         local temp_now = temp_before
 
+        if EntityHasTag(player, "ff_hotter_fire") then
+            tmax = math.min(tmax + 1, 11)
+        end
+
         temp_now = math.min(temp_now + temp, math.max(tmax, temp_now))
 
         if temp_now ~= temp_before then
 
-            -- 11
-            local mats = {"spark_red", "spark", "spark", "spark_yellow", "spark", "spark_electric", "spark_white", "spark_blue", "spark_white_bright", "spark_player", "spark_purple_bright"}
-            local mat_1 = mats[math.min(math.floor(#mats / 10 * temp_now) + 1, 10)]
-            local mat_2 = mats[math.min(math.floor(#mats / 10 * temp_now), 10)]
+            -- 12
+            local mats = {"spark_red", "spark", "spark", "spark_yellow", "spark", "spark_electric", "spark_white", "spark_blue", "spark_white_bright", "spark_player", "spark_player", "spark_purple_bright"}
+            local mat_1 = mats[math.min(temp_now + 1, #mats)]
+            local mat_2 = mats[math.min(temp_now, #mats)]
 
             local comp_1 = EntityGetFirstComponentIncludingDisabled(effect, "ParticleEmitterComponent", "particles_1")
             if comp_1 ~= nil then
