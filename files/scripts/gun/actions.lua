@@ -9,7 +9,7 @@ local new_actions = {
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "2,3,4,5,6",
-		spawn_probability = "0.8,0.8,1.0,1.0,0.8",
+		spawn_probability = "0.8,1.0,1.0,1.0,0.8",
 		price = 100,
 		mana = 20,
 		ai_never_uses = true, -- souls precaution
@@ -39,6 +39,25 @@ local new_actions = {
 			c.screenshake = c.screenshake + 0.5
 			c.spread_degrees = c.spread_degrees + 1.0
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/heat_flare/hitfx.xml,"
+		end,
+	},
+	{
+		id = "BULLET_FLARE",
+		name = "$action_ff_bullet_flare",
+		description = "$actiondesc_ff_bullet_flare",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/bullet_flare.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/bullet_flare/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "4,5,6",
+		spawn_probability = "0.6,0.7,0.7",
+		price = 120,
+		mana = 30,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			add_projectile("mods/foolish_flame/files/entities/projectiles/bullet_flare/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 6
+			c.spread_degrees = c.spread_degrees - 3.0
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/bullet_flare/hitfx.xml,"
 		end,
 	},
 	{
