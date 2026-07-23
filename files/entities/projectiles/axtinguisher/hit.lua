@@ -40,8 +40,8 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
             GamePrint("Pow!")
         end
     end]]
-    local effect = EntityLoad("mods/foolish_flame/files/entities/projectiles/axtinguisher/buff.xml", x, y)
-	EntityAddChild(player, effect)
+    --local effect = EntityLoad("mods/foolish_flame/files/entities/projectiles/axtinguisher/buff.xml", x, y)
+	--EntityAddChild(player, effect)
 
     EntityInflictDamage(root, temp_dmg, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 4, 4, player, nil, nil, 40)
 
