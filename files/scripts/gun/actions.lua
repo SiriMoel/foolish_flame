@@ -28,8 +28,8 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/heat_flare.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/heat_flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "4,5,6",
-		spawn_probability = "0.7,0.8,0.8",
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.7,0.7,0.8,0.8",
 		price = 100,
 		mana = 20,
 		ai_never_uses = true, -- souls precaution
@@ -85,7 +85,7 @@ local new_actions = {
 		name = "$action_ff_hot_iron",
 		description = "$actiondesc_ff_hot_iron",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/hot_iron.png",
-		type 		= ACTION_TYPE_MODIFIER,
+		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "2,3,4,5,6",
 		spawn_probability = "0.6,0.8,0.8,0.9,0.8",
 		price = 100,
@@ -94,11 +94,31 @@ local new_actions = {
 		action = function()
 			local heat = GetHeat()
 			if heat > 0 or reflecting then
-				c.damage_projectile_add = c.damage_projectile_add + 0.1 + heat / 140
+				c.damage_projectile_add = c.damage_projectile_add + 0.1 + heat / 130
 				c.fire_rate_wait = c.fire_rate_wait + 2
 				c.extra_entities = c.extra_entities .. "data/entities/particles/tinyspark_yellow.xml,"
 				--shot_effects.recoil_knockback = shot_effects.recoil_knockback + 10.0
-				RemoveHeat(0.7)
+				RemoveHeat(0.5)
+			end
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "HEAT_SPEED",
+		name = "$action_ff_heat_speed",
+		description = "$actiondesc_ff_heat_speed",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/heat_speed.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.6,0.8,0.8,0.9,0.8",
+		price = 100,
+		mana = 8,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			local heat = GetHeat()
+			if heat > 0 or reflecting then
+				c.speed_multiplier = c.speed_multiplier * (1.5 + heat / 60)
+				RemoveHeat(0.4)
 			end
 			draw_actions(1, true)
 		end,
