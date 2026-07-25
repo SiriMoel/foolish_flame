@@ -92,13 +92,12 @@ local new_actions = {
 		mana = 10,
 		ai_never_uses = true, -- souls precaution
 		action = function()
-			local heat = GetHeat()
-			if heat > 0 or reflecting then
-				c.damage_projectile_add = c.damage_projectile_add + 0.1 + heat / 130
+			local a, h = RemoveHeat2(0.5)
+			if a or reflecting then
+				c.damage_projectile_add = c.damage_projectile_add + 0.1 + h / 130
 				c.fire_rate_wait = c.fire_rate_wait + 2
 				c.extra_entities = c.extra_entities .. "data/entities/particles/tinyspark_yellow.xml,"
-				--shot_effects.recoil_knockback = shot_effects.recoil_knockback + 10.0
-				RemoveHeat(0.5)
+
 			end
 			draw_actions(1, true)
 		end,
@@ -115,10 +114,51 @@ local new_actions = {
 		mana = 8,
 		ai_never_uses = true, -- souls precaution
 		action = function()
+			local a, h = RemoveHeat2(0.4)
+			if a or reflecting then
+				c.speed_multiplier = c.speed_multiplier * (1.5 + h / 60)
+			end
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "HOT_HAND",
+		name = "$action_ff_hot_hand",
+		description = "$actiondesc_ff_hot_hand",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/hot_hand.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "1,2,3,4,5",
+		spawn_probability = "0.5,0.8,0.9,0.9,0.8",
+		price = 110,
+		mana = 4,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			if GetHeat() > 0 or reflecting then
+				c.damage_projectile_add = c.damage_projectile_add + 0.4
+			end
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "MELTDOWN",
+		name = "$action_ff_meltdown",
+		description = "$actiondesc_ff_meltdown",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/meltdown.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.4,0.5,0.2",
+		price = 100,
+		mana = 100,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 30
 			local heat = GetHeat()
-			if heat > 0 or reflecting then
-				c.speed_multiplier = c.speed_multiplier * (1.5 + heat / 60)
-				RemoveHeat(0.4)
+			if heat > 0 then
+				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/meltdown/hitfx.xml,"
+				c.damage_projectile_add = c.damage_projectile_add + heat * 0.01
+				c.trail_material = c.trail_material .. "flame,"
+				c.trail_material_amount = c.trail_material_amount + math.min(heat / 120, 30)
+				RemoveHeat(heat)
 			end
 			draw_actions(1, true)
 		end,
@@ -138,13 +178,11 @@ local new_actions = {
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait - 4
 			c.spread_degrees = c.spread_degrees - 4.0
-			local heat = GetHeat()
-			if heat > 0 or reflecting then
+			if RemoveHeat2(0.9) or reflecting then
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/bunsen/hitfx.xml,"
-				RemoveHeat(0.9)
 			end
 		end,
 	},
@@ -183,7 +221,7 @@ local new_actions = {
 			c.fire_rate_wait = c.fire_rate_wait + 40
 			current_reload_time = current_reload_time + 3
 			if reflecting then add_projectile("mods/foolish_flame/files/entities/projectiles/laser/projectile.xml") return end -- is this needed?
-			if not (GetHeat() > 0) then FF_Revs = 0 return end
+			if GetHeat() <= 0 then FF_Revs = 0 return end
 			add_projectile("mods/foolish_flame/files/entities/projectiles/laser/projectile.xml")
 			-- i think this Revs thing is from copith originally
 			local caster = GetUpdatedEntityID()
@@ -205,8 +243,7 @@ local new_actions = {
 					current_reload_time = current_reload_time - math.min(3 * FF_Revs, 60)
 					c.spread_degrees = c.spread_degrees - math.min(0.5 * FF_Revs, 60)
 					c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/laser/hitfx.xml,"
-					RemoveHeat(0.2 + 0.05 * (math.min(FF_Revs, 200)))
-					if GetHeat() == 0 then
+					if not RemoveHeat2(0.2 + 0.05 * (math.min(FF_Revs, 200))) then
 						current_reload_time = current_reload_time + math.min(3 * FF_Revs, 60) + 5
 						FF_Revs = 0
 					end

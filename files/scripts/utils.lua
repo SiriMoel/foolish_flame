@@ -33,12 +33,26 @@ function RemoveHeat(amt, player)
     ComponentSetValue2(comp, "value_float", math.max(ComponentGetValue2(comp, "value_float") - amt, 0))
 end
 
+function RemoveHeat2(amt, player) -- you have alerted the cat
+    player = player or EntityGetWithTag("player_unit")[1]
+    if player == nil then return false, 0 end
+    local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_heat")
+    if comp == nil then return false, 0 end
+    local heat = ComponentGetValue2(comp, "value_float") - amt
+    if heat >= 0 then
+        ComponentSetValue2(comp, "value_float", heat)
+        return true, heat + amt
+    else
+        return false, 0
+    end
+end
+
 function InflictMagicFire(target, temp, duration, tmax)
     temp = temp or 1
     duration = duration or 360
     tmax = tmax or 5
 
-    if not EntityGetIsAlive(target) then return end
+    if not EntityGetIsAlive(target) or EntityHasTag(target, "player_unit") then return end
 
     local x, y = EntityGetTransform(target)
 
