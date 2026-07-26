@@ -1,0 +1,89 @@
+<Entity>
+	
+	<Base file="data/entities/base_custom_card.xml" > 
+		<SpriteComponent 
+			image_file="mods/foolish_flame/files/ui_gfx/gun_actions/willow_wisp.png"
+			>
+		</SpriteComponent>
+		
+		<ItemActionComponent 
+			_tags="enabled_in_world"
+			action_id="FF_WILLOW_WISP" >
+		</ItemActionComponent>
+	</Base>
+
+	<InheritTransformComponent
+		_tags="enabled_in_world,enabled_in_hand" >
+	</InheritTransformComponent>
+
+    <Entity tags="willow_wisp">
+
+        <LuaComponent
+            _tags="ff_wisp"
+            script_source_file="mods/foolish_flame/files/entities/misc/willow_wisp/warm.lua"
+            execute_every_n_frame="30"
+        ></LuaComponent>
+
+        <ParticleEmitterComponent
+            _tags="ff_wisp"
+            emitted_material_name="spark"
+            count_min="1"
+            count_max="2"
+            offset.x="0"
+            offset.y="0"
+            x_pos_offset_min="-1"
+            x_pos_offset_max="1"
+            y_pos_offset_min="-1"
+            y_pos_offset_max="1"
+            x_vel_min="-3"
+            x_vel_max="3"
+            y_vel_min="-25"
+            y_vel_max="0"
+            lifetime_min="0.1"
+            lifetime_max="0.2"
+            create_real_particles="0"
+            emit_cosmetic_particles="1"
+            emission_interval_min_frames="1"
+            emission_interval_max_frames="1"
+	        delay_frames="2"
+            is_emitting="1"
+            gravity.x="0"
+            gravity.y="-100"
+        ></ParticleEmitterComponent>
+
+        <ParticleEmitterComponent
+            _tags="ff_wisp"
+            emitted_material_name="flame"
+            count_min="1"
+            count_max="3"
+            offset.x="0"
+            offset.y="0"
+            x_pos_offset_min="-2"
+            x_pos_offset_max="2"
+            y_pos_offset_min="-2"
+            y_pos_offset_max="2"
+            x_vel_min="-4"
+            x_vel_max="4"
+            y_vel_min="-30"
+            y_vel_max="0"
+            lifetime_min="0.1"
+            lifetime_max="0.3"
+            create_real_particles="0"
+            emit_cosmetic_particles="1"
+            emission_interval_min_frames="1"
+            emission_interval_max_frames="1"
+	        delay_frames="2"
+            is_emitting="1"
+            gravity.x="0"
+            gravity.y="-100"
+        ></ParticleEmitterComponent>
+
+    </Entity>
+
+    <LuaComponent
+        _tags="enabled_in_world,enabled_in_inventory,enabled_in_hand"
+        script_source_file="mods/foolish_flame/files/entities/misc/willow_wisp/card.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+</Entity>

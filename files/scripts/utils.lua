@@ -39,8 +39,8 @@ function RemoveHeat2(amt, player) -- you have alerted the cat
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_heat")
     if comp == nil then return false, 0 end
     local heat = ComponentGetValue2(comp, "value_float") - amt
+    ComponentSetValue2(comp, "value_float", math.max(heat, 0))
     if heat >= 0 then
-        ComponentSetValue2(comp, "value_float", heat)
         return true, heat + amt
     else
         return false, 0

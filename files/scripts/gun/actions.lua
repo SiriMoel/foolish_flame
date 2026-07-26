@@ -9,7 +9,7 @@ local new_actions = {
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "2,3,4,5,6",
-		spawn_probability = "0.8,1.0,1.0,1.0,0.8",
+		spawn_probability = "0.8,0.9,1.0,1.0,0.8",
 		price = 100,
 		mana = 20,
 		ai_never_uses = true, -- souls precaution
@@ -48,8 +48,8 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/aoe_flare.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/aoe_flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "4,5,6",
-		spawn_probability = "0.6,0.7,0.7",
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.3,0.6,0.7,0.7",
 		price = 110,
 		mana = 30,
 		ai_never_uses = true, -- souls precaution
@@ -68,8 +68,8 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/bullet_flare.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/bullet_flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "4,5,6",
-		spawn_probability = "0.6,0.7,0.7",
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.3,0.6,0.7,0.7",
 		price = 120,
 		mana = 30,
 		ai_never_uses = true, -- souls precaution
@@ -178,7 +178,7 @@ local new_actions = {
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait - 4
 			c.spread_degrees = c.spread_degrees - 4.0
-			if RemoveHeat2(0.9) or reflecting then
+			if RemoveHeat2(0.8) or reflecting then
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
@@ -193,8 +193,8 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/axtinguisher.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/axtinguisher/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "5,6,10",
-		spawn_probability = "0.5,0.6,0.3",
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.4,0.5,0.6,0.3",
 		price = 240,
 		mana = 63,
 		ai_never_uses = true, -- souls precaution
@@ -212,12 +212,15 @@ local new_actions = {
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/laser/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "10",
-		spawn_probability = "0.1",
+		spawn_probability = "0.2",
 		price = 260,
 		mana = 20,
 		ai_never_uses = true, -- souls precaution
 		custom_xml_file="mods/foolish_flame/files/entities/misc/card_laser.xml",
 		action = function()
+			--[[
+				why does add trigger break this?
+			]]
 			c.fire_rate_wait = c.fire_rate_wait + 40
 			current_reload_time = current_reload_time + 3
 			if reflecting then add_projectile("mods/foolish_flame/files/entities/projectiles/laser/projectile.xml") return end -- is this needed?
@@ -239,17 +242,35 @@ local new_actions = {
 					else
 						FF_Revs = FF_Revs + 1
 					end
-					c.fire_rate_wait = c.fire_rate_wait - math.min(3 * FF_Revs, 100)
-					current_reload_time = current_reload_time - math.min(3 * FF_Revs, 60)
-					c.spread_degrees = c.spread_degrees - math.min(0.5 * FF_Revs, 60)
-					c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/laser/hitfx.xml,"
-					if not RemoveHeat2(0.2 + 0.05 * (math.min(FF_Revs, 200))) then
-						current_reload_time = current_reload_time + math.min(3 * FF_Revs, 60) + 5
+					if RemoveHeat2(0.2 + 0.1 * (math.min(FF_Revs, 60))) then
+						c.fire_rate_wait = c.fire_rate_wait - math.min(4 * FF_Revs, 120)
+						current_reload_time = current_reload_time - math.min(3 * FF_Revs, 60)
+						c.spread_degrees = c.spread_degrees - math.min(0.5 * FF_Revs, 60)
+						c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/laser/hitfx.xml,"
+					else
+						current_reload_time = current_reload_time + math.min(3 * FF_Revs, 100) + 6
 						FF_Revs = 0
 					end
 				end
 				LastShootingStart = shooting_start
 			end
+		end,
+	},
+	{
+		id = "WILLOW_WISP", -- "will-o'-the-wisp" / "will of the torch" / "ignis fatuus" / "foolish flame"
+		name = "$action_ff_willow_wisp",
+		description = "$actiondesc_ff_willow_wisp",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/willow_wisp.png",
+		type = ACTION_TYPE_PASSIVE,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.3,0.1",
+		price = 300,
+		mana = 10,
+		ai_never_uses = true, -- souls precaution
+		custom_xml_file="mods/foolish_flame/files/entities/misc/willow_wisp/card.xml",
+		action = function()
+			current_reload_time = current_reload_time + 1
+			draw_actions(1, true)
 		end,
 	},
 }
