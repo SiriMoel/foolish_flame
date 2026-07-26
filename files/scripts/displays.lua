@@ -23,14 +23,14 @@ heat_displays = {
         sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert_hot.png",
         func_unlocked = function() return true end,
     },
-    --[[{
+    {
         id = "triangle",
         name = "$ff_display_triangle",
         name_t = "Gate",
-        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/flame.png",
-        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/flame_hot.png",
+        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/triangle.png",
+        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/triangle_hot.png",
         func_unlocked = function() return true end,
-    },]]
+    },
     --[[{
         id = "ukko",
         name = "$ff_display_ukko",
