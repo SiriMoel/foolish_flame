@@ -81,6 +81,23 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "THERMODYNAMICS",
+		name = "$action_ff_thermodynamics",
+		description = "$actiondesc_ff_thermodynamics",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/thermodynamics.png",
+		type = ACTION_TYPE_PASSIVE,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.4,0.6,0.5,0.5",
+		price = 120,
+		mana = 0,
+		ai_never_uses = true, -- souls precaution
+		custom_xml_file="mods/foolish_flame/files/entities/misc/card_thermodynamics/card.xml",
+		action = function()
+			current_reload_time = current_reload_time + 2
+			draw_actions(1, true)
+		end,
+	},
+	{
 		id = "HOT_IRON",
 		name = "$action_ff_hot_iron",
 		description = "$actiondesc_ff_hot_iron",
