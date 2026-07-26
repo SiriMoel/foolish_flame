@@ -30,5 +30,9 @@ if heat > 0 then
         end
     end
 
+    if EntityHasTag(player, "ff_slow_heat_loss") then
+        amt = amt * 0.5
+    end
+
     RemoveHeat(amt, player)
 end

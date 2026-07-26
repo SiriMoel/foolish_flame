@@ -88,6 +88,7 @@ function InflictMagicFire(target, temp, duration, tmax)
 
         if EntityHasTag(player, "ff_hotter_fire") then
             tmax = math.min(tmax + 1, 11)
+            temp = temp + 1
         end
 
         temp_now = math.min(temp_now + temp, math.max(tmax, temp_now))
