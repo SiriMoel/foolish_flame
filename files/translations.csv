@@ -1,5 +1,7 @@
 ,,,,,,,,,,,,,,,,,,,,,,,
 item_ff_flare_wand,"Wand of Magic Fire",,,,,,,,,,,,,,,,,,,,,,
+item_ff_gurbert,"Gurbert",,,,,,,,,,,,,,,,,,,,,,
+itemdesc_ff_gurbert,"A friend.",,,,,,,,,,,,,,,,,,,,,,
 action_ff_flare,"Wizard Flare",,,,,,,,,,,,,,,,,,,,,,
 actiondesc_ff_flare,"A projectile that inflicts magic fire and deals bonus damage to afflicted enemies",,,,,,,,,,,,,,,,,,,,,,
 action_ff_flamethrower,"Magic Flamethrower",,,,,,,,,,,,,,,,,,,,,,

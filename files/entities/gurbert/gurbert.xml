@@ -1,0 +1,98 @@
+<Entity tags="gurbert" name="$item_ff_gurbert">
+
+	<!-- item behaviour -->
+
+	<UIInfoComponent
+		name="$item_ff_gurbert"
+	></UIInfoComponent>
+
+	<ItemComponent
+		_tags="enabled_in_world"
+		max_child_items="0"
+		play_spinning_animation="0"
+		is_pickable="1"
+		is_equipable_forced="1"
+		ui_sprite="mods/foolish_flame/files/entities/gurbert/sprites/sprite_ui.png"
+		preferred_inventory="QUICK"
+		item_name="$item_ff_gurbert"
+		ui_description="$itemdesc_ff_gurbert"
+	></ItemComponent> <!-- custom_pickup_string="Press $0 to gurbert $1" -->
+
+	<AbilityComponent
+		ui_name="$item_ff_gurbert"
+		throw_as_item="1"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand"
+		_enabled="0"
+		offset_x="3"
+		offset_y="8"
+		image_file="mods/foolish_flame/files/entities/gurbert/sprites/sprite_inhand.png"
+	></SpriteComponent>
+
+
+	<!-- in world behaviour -->
+
+	<GenomeDataComponent
+		_tags="enabled_in_world"
+    	herd_id="player"
+    	food_chain_rank="20"
+    	is_predator="0"
+    	berserk_dont_attack_friends="1"
+  	></GenomeDataComponent>
+
+	<LuaComponent
+		_tags="enabled_in_world"
+		script_source_file="mods/foolish_flame/files/entities/gurbert/behaviour.lua"
+		execute_every_n_frame="3"
+	></LuaComponent>
+
+	<_Transform 
+		rotation="0" 
+		scale.x="1" 
+		scale.y="1" >
+	</_Transform>
+
+	<SimplePhysicsComponent
+		_tags="enabled_in_world"
+	></SimplePhysicsComponent>
+
+	<SpriteAnimatorComponent
+		_tags="enabled_in_world"
+	></SpriteAnimatorComponent>
+
+	<SpriteComponent 
+        _tags="character,frog_big,enabled_in_world"
+		image_file="mods/foolish_flame/files/entities/gurbert/sprites/frog_big.xml"
+		rect_animation="stand"
+		offset_x="0"
+		offset_y="0"
+		z_index="1.2"
+		>
+	</SpriteComponent>
+
+	<VelocityComponent
+		_tags="enabled_in_world"
+		updates_velocity="1" 
+		gravity_y="400"
+		mass="0.05"
+		air_friction="0.55"
+		>
+	</VelocityComponent>
+
+	<HitboxComponent 
+		_tags="enabled_in_world"
+		aabb_min_x="-5.0" 
+		aabb_max_x="5.0" 
+		aabb_min_y="-4.0" 
+		aabb_max_y="3" 
+		is_enemy="0" 
+		is_item="0" 
+		is_player="0" >
+	</HitboxComponent>
+
+</Entity>

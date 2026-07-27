@@ -81,6 +81,23 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "WILLOW_WISP", -- "will-o'-the-wisp" / "will of the torch" / "ignis fatuus" / "foolish flame"
+		name = "$action_ff_willow_wisp",
+		description = "$actiondesc_ff_willow_wisp",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/willow_wisp.png",
+		type = ACTION_TYPE_PASSIVE,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.3,0.1",
+		price = 300,
+		mana = 10,
+		ai_never_uses = true, -- souls precaution
+		custom_xml_file="mods/foolish_flame/files/entities/misc/willow_wisp/card.xml",
+		action = function()
+			current_reload_time = current_reload_time + 1
+			draw_actions(1, true)
+		end,
+	},
+	{
 		id = "THERMODYNAMICS",
 		name = "$action_ff_thermodynamics",
 		description = "$actiondesc_ff_thermodynamics",
@@ -184,9 +201,9 @@ local new_actions = {
 		id = "MAGIC_FIRE", -- only found on wand of magic fire as an always cast
 		name = "$action_ff_magic_fire",
 		description = "$actiondesc_ff_magic_fire",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/magic_fire.png", -- currently same sprite as WILLOW_WISP
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/magic_fire.png",
 		type = ACTION_TYPE_MODIFIER,
-		spawn_level = "6",
+		spawn_level = "10",
 		spawn_probability = "0.0",
 		price = 100,
 		mana = 0,
@@ -287,23 +304,6 @@ local new_actions = {
 				end
 				LastShootingStart = shooting_start
 			end
-		end,
-	},
-	{
-		id = "WILLOW_WISP", -- "will-o'-the-wisp" / "will of the torch" / "ignis fatuus" / "foolish flame"
-		name = "$action_ff_willow_wisp",
-		description = "$actiondesc_ff_willow_wisp",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/willow_wisp.png",
-		type = ACTION_TYPE_PASSIVE,
-		spawn_level = "4,5,6,10",
-		spawn_probability = "0.2,0.3,0.3,0.1",
-		price = 300,
-		mana = 10,
-		ai_never_uses = true, -- souls precaution
-		custom_xml_file="mods/foolish_flame/files/entities/misc/willow_wisp/card.xml",
-		action = function()
-			current_reload_time = current_reload_time + 1
-			draw_actions(1, true)
 		end,
 	},
 }

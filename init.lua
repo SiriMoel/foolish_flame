@@ -51,6 +51,15 @@ function OnModPostInit()
 	]])))
 	ModTextFileSetContent(wand_good_2_path, tostring(xml))
 
+	local boss_pit_path = "data/entities/animals/boss_pit/boss_pit.xml"
+	local xml = nxml.parse(ModTextFileGetContent(boss_pit_path))
+	xml:add_child(nxml.parse(([[
+    	<LuaComponent 
+			script_death="mods/foolish_flame/files/scripts/boss_pit_death.lua">
+		</LuaComponent>
+	]])))
+	ModTextFileSetContent(boss_pit_path, tostring(xml))
+
 	local projectiles_to_modify = {
 		"data/entities/projectiles/deck/grenade_large.xml",
 		"data/entities/projectiles/deck/lance_holy.xml",		
@@ -111,6 +120,8 @@ function OnModPostInit()
 		]])))
 		ModTextFileSetContent(v, tostring(xml))
 	end
+
+	
 
 end
 
