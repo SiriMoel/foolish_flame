@@ -51,7 +51,7 @@ local new_actions = {
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.3,0.6,0.7,0.7",
 		price = 110,
-		mana = 30,
+		mana = 60,
 		ai_never_uses = true, -- souls precaution
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/aoe_flare/projectile.xml")
@@ -181,21 +181,37 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "MAGIC_FIRE", -- only found on wand of magic fire as an always cast
+		name = "$action_ff_magic_fire",
+		description = "$actiondesc_ff_magic_fire",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/magic_fire.png", -- currently same sprite as WILLOW_WISP
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "6",
+		spawn_probability = "0.0",
+		price = 100,
+		mana = 0,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/magic_fire/hitfx.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
 		id = "BUNSEN",
 		name = "$action_ff_bunsen",
 		description = "$actiondesc_ff_bunsen",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/bunsen.png",
-		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml"},
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml",3},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "4,5,6",
-		spawn_probability = "0.6,0.7,0.8",
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.6,0.6,0.7,0.7,0.7",
 		price = 100,
 		mana = 11,
 		ai_never_uses = true, -- souls precaution
 		action = function()
-			c.fire_rate_wait = c.fire_rate_wait - 4
-			c.spread_degrees = c.spread_degrees - 4.0
 			if RemoveHeat2(0.8) or reflecting then
+				c.fire_rate_wait = c.fire_rate_wait - 4
+				c.spread_degrees = c.spread_degrees - 4.0
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
@@ -210,8 +226,8 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/axtinguisher.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/axtinguisher/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "4,5,6,10",
-		spawn_probability = "0.4,0.5,0.6,0.3",
+		spawn_level = "3,4,5,6,10",
+		spawn_probability = "0.2,0.4,0.5,0.6,0.3",
 		price = 240,
 		mana = 63,
 		ai_never_uses = true, -- souls precaution

@@ -77,7 +77,7 @@ function InflictMagicFire(target, temp, duration, tmax)
 
         ComponentSetValue2(comp_eff, "frames", math.max(frames, duration))
     else
-        GamePrint("FF - couldn't find GameEffectComponent :(")
+        --GamePrint("FF - couldn't find GameEffectComponent :(")
     end
 
     local comp_temp = EntityGetFirstComponentIncludingDisabled(effect, "VariableStorageComponent", "fire_temp")
@@ -118,7 +118,7 @@ function InflictMagicFire(target, temp, duration, tmax)
         ComponentSetValue2(comp_temp, "value_int", temp_now)
 
     else
-        GamePrint("FF - couldn't find temp component :(")
+        --GamePrint("FF - couldn't find temp component :(")
     end
 
 end

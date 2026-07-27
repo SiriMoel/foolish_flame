@@ -16,14 +16,6 @@ heat_displays = {
         func_unlocked = function() return true end,
     },
     {
-        id = "gurbert",
-        name = "$ff_display_gurbert",
-        name_t = "Gurbert",
-        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert.png",
-        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert_hot.png",
-        func_unlocked = function() return true end,
-    },
-    {
         id = "triangle",
         name = "$ff_display_triangle",
         name_t = "Gate",
@@ -47,6 +39,14 @@ heat_displays = {
         sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/flame_hot.png",
         func_unlocked = function() return false end,
     },]]
+    {
+        id = "gurbert",
+        name = "$ff_display_gurbert",
+        name_t = "Gurbert",
+        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert.png",
+        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert_hot.png",
+        func_unlocked = function() return true end,
+    },
     {
         id = "copi",
         name = "$ff_display_copi",

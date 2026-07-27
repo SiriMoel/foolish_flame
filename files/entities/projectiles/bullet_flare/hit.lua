@@ -17,7 +17,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
 
         AddHeat(5 + temp * 0.4)
     else
-        GamePrint("FF - couldn't find temp component :(")
+        --GamePrint("FF - couldn't find temp component :(")
     end    
 end
 

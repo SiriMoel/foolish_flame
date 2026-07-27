@@ -20,5 +20,5 @@ if comp_temp ~= nil then
     end
     
 else
-    GamePrint("FF - couldn't find temp component :(")
+   --GamePrint("FF - couldn't find temp component :(")
 end

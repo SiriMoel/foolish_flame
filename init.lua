@@ -38,6 +38,19 @@ function OnModPreInit()
 end
 
 function OnModPostInit()
+
+	local wand_good_2_path = "data/entities/items/wands/wand_good/wand_good_2.xml"
+	local xml = nxml.parse(ModTextFileGetContent(wand_good_2_path))
+	xml:add_child(nxml.parse(([[
+    	<LuaComponent
+			_enabled="1" 
+        	execute_on_added="1"
+        	remove_after_executed="1"
+        	script_source_file="mods/foolish_flame/files/scripts/spawn_flare_wand.lua" 
+		></LuaComponent>
+	]])))
+	ModTextFileSetContent(wand_good_2_path, tostring(xml))
+
 	local projectiles_to_modify = {
 		"data/entities/projectiles/deck/grenade_large.xml",
 		"data/entities/projectiles/deck/lance_holy.xml",		
@@ -52,6 +65,10 @@ function OnModPostInit()
 		table.insert(projectiles_to_modify, "mods/copis_things/files/entities/projectiles/firesphere.xml")
 	end
 
+	if ModIsEnabled("Apotheosis") then -- why is it capitalised...
+		table.insert(projectiles_to_modify, "mods/Apotheosis/files/entities/projectiles/deck/wall_of_fire.xml")
+	end
+
 	for i,v in ipairs(projectiles_to_modify) do
 		local xml = nxml.parse(ModTextFileGetContent(v))
 		xml:add_child(nxml.parse(([[
@@ -62,6 +79,39 @@ function OnModPostInit()
 		]])))
 		ModTextFileSetContent(v, tostring(xml))
 	end
+
+	local modify_add_small_magic_fire_radius = {
+		"data/entities/misc/custom_cards/torch.xml", -- this applies to apotheosis fire charge spell because they use the same card entity?
+	}
+
+	for i,v in ipairs(modify_add_small_magic_fire_radius) do
+		local xml = nxml.parse(ModTextFileGetContent(v))
+		xml:add_child(nxml.parse(([[
+    		<LuaComponent
+				_tags="enabled_in_hand,item_identified"
+				script_source_file="mods/foolish_flame/files/scripts/inflict_fire_radius_small.lua"
+				execute_every_n_frame="20"
+			></LuaComponent>
+		]])))
+		ModTextFileSetContent(v, tostring(xml))
+	end
+
+	local modify_add_heat_in_inventory = {
+		"data/entities/items/pickup/brimstone.xml",
+	}
+
+	for i,v in ipairs(modify_add_heat_in_inventory) do
+		local xml = nxml.parse(ModTextFileGetContent(v))
+		xml:add_child(nxml.parse(([[
+    		<LuaComponent
+				_tags="enabled_in_hand,enabled_in_inventory"
+				script_source_file="mods/foolish_flame/files/scripts/heat_in_inventory.lua"
+				execute_every_n_frame="30"
+			></LuaComponent>
+		]])))
+		ModTextFileSetContent(v, tostring(xml))
+	end
+
 end
 
 function OnPlayerSpawned(player)
