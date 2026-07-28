@@ -4,6 +4,7 @@ local nxml = dofile_once("mods/foolish_flame/lib/nxml.lua")
 
 -- appends
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/scripts/gun/actions.lua")
+ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/foolish_flame/files/scripts/gun/gun_append.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/foolish_flame/files/scripts/perk_list.lua")
 
 -- translations
@@ -121,8 +122,6 @@ function OnModPostInit()
 		ModTextFileSetContent(v, tostring(xml))
 	end
 
-	
-
 end
 
 function OnPlayerSpawned(player)
@@ -147,6 +146,11 @@ function OnPlayerSpawned(player)
 	EntityAddComponent(player, "LuaComponent", {
 		script_source_file="mods/foolish_flame/files/scripts/heat_display.lua",
 		execute_every_n_frame=1
+	})
+
+	EntityAddComponent(player, "LuaComponent", {
+		script_shot="mods/foolish_flame/files/scripts/shot.lua",
+		execute_every_n_frame=-1
 	})
 end
 

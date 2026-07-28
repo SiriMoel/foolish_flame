@@ -306,6 +306,115 @@ local new_actions = {
 			end
 		end,
 	},
+	{
+		id = "REMEMBER",
+		name = "$action_gurbert_remember",
+		description = "$actiondesc_gurbert_remember",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/remember.png",
+		spawn_requires_flag = "ff_gurbert_spells_unlocked",
+		type = ACTION_TYPE_OTHER,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.2,0.7",
+		price = 200,
+		mana = 10,
+		action = function()
+			local data = {}
+			local how_many = 1
+			if #deck > 0 then
+				data = deck[1]
+			else
+				data = nil
+			end
+			if data ~= nil then
+				gurbertbrain = {}
+				while (#deck >= how_many) and ((data.type == ACTION_TYPE_PROJECTILE) or (data.type == ACTION_TYPE_MODIFIER) or (data.type == ACTION_TYPE_STATIC_PROJECTILE) --[[or (data.type == ACTION_TYPE_DRAW_MANY)]] or (data.type == ACTION_TYPE_OTHER)) do
+					table.insert(gurbertbrain, data)
+					how_many = how_many + 1
+					data = deck[how_many]
+				end
+				for i=1,how_many do
+					data = deck[1]
+					table.insert(discarded, data)
+					table.remove(deck, 1)
+				end
+			end
+		end,
+	},
+	{
+		id = "RECALL",
+		name = "$action_gurbert_recall",
+		description = "$actiondesc_gurbert_recall",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/recall.png",
+		spawn_requires_flag = "ff_gurbert_spells_unlocked",
+		type = ACTION_TYPE_OTHER,
+		recursive = true,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.2,0.7",
+		price = 200,
+		mana = 70,
+		action = function(recursion_level, iteration)
+			local data = {}
+			local how_many = 1
+			if #gurbertbrain > 0 then
+				data = gurbertbrain[1]
+			else
+				data = nil
+			end
+			if data ~= nil then
+				while (#gurbertbrain >= how_many) do
+					local rec = check_recursion(data, recursion_level)
+					if rec > -1 then
+						data.action(rec)
+					end
+					how_many = how_many + 1
+					data = gurbertbrain[how_many]		
+				end
+			else
+				GamePrint("No thoughts.")
+			end
+
+		end,
+	},
+	{
+		id = "REMEMBER_ONE",
+		name = "$action_gurbert_remember_one",
+		description = "$actiondesc_gurbert_remember_one",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/remember_one.png",
+		spawn_requires_flag = "ff_gurbert_spells_unlocked",
+		type = ACTION_TYPE_OTHER,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.2,0.7",
+		price = 200,
+		mana = 10,
+		action = function()
+			local data = {}			
+			if #deck > 0 then
+				data = deck[1]
+			else
+				data = nil
+			end
+			if data ~= nil then
+				table.insert(gurbertbrain, data)
+				table.insert(discarded, data)
+				table.remove(deck, 1)
+			end
+		end,
+	},
+	{
+		id = "FROGET",
+		name = "$action_gurbert_forget",
+		description = "$actiondesc_gurbert_forget",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/forget.png",
+		spawn_requires_flag = "ff_gurbert_spells_unlocked",
+		type = ACTION_TYPE_OTHER,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.2,0.7",
+		price = 200,
+		mana = -20,
+		action = function()
+			gurbertbrain = {}
+		end,
+	},
 }
 
 for i,action in ipairs(new_actions) do
