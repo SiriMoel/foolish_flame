@@ -5,7 +5,7 @@ heat_displays = {
         name_t = "Flame",
         sprite = "mods/foolish_flame/files/ui_gfx/heat_display/flame.png",
         sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/flame_hot.png",
-        func_unlocked = function() return true end,
+        func_unlocked = function() return true end, -- always unlocked
     },
     {
         id = "blank",
@@ -13,7 +13,7 @@ heat_displays = {
         name_t = "Minimalist",
         sprite = "mods/foolish_flame/files/ui_gfx/heat_display/blank.png",
         sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/blank_hot.png",
-        func_unlocked = function() return true end,
+        func_unlocked = function() return true end, -- always unlocked
     },
     {
         id = "triangle",
@@ -21,23 +21,23 @@ heat_displays = {
         name_t = "Gate",
         sprite = "mods/foolish_flame/files/ui_gfx/heat_display/triangle.png",
         sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/triangle_hot.png",
-        func_unlocked = function() return true end,
+        func_unlocked = function() return true end, -- always unlocked
     },
-    --[[{
+    {
         id = "ukko",
         name = "$ff_display_ukko",
         name_t = "Ukko",
-        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/flame.png",
-        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/flame_hot.png",
-        func_unlocked = function() return true end,
-    },]]
+        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/ukko.png",
+        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/ukko_hot.png",
+        func_unlocked = function() return true end, -- always unlocked
+    },
     --[[{
         id = "special",
         name = "$ff_display_special",
         name_t = "Canto VII",
         sprite = "mods/foolish_flame/files/ui_gfx/heat_display/flame.png",
         sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/flame_hot.png",
-        func_unlocked = function() return false end,
+        func_unlocked = function() return false end, -- NOT always unlocked
     },]]
     {
         id = "gurbert",
@@ -45,7 +45,12 @@ heat_displays = {
         name_t = "Gurbert",
         sprite = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert.png",
         sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert_hot.png",
-        func_unlocked = function() return true end,
+        func_unlocked = function() 
+            if HasFlagPersistent("ff_gurbert_spells_unlocked") then
+                return true
+            end
+            return false
+        end,
     },
     {
         id = "copi",
