@@ -3,6 +3,8 @@ dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 local this = GetUpdatedEntityID()
 local root = EntityGetRootEntity(this)
 
+local heat_amt = 3
+
 local e = EntityGetAllChildren(root, "ff_magic_fire_effect") or {}
 
 if #e > 0 and not EntityHasTag(root, "player_unit") then
@@ -15,11 +17,13 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
     if comp_temp ~= nil then
         local temp = ComponentGetValue2(comp_temp, "value_int")
 
-        AddHeat(5 + temp * 0.4)
+        heat_amt = heat_amt + 3 + temp * 0.4
     else
         --GamePrint("FF - couldn't find temp component :(")
     end    
 end
+
+AddHeat(heat_amt)
 
 InflictMagicFire(root, 3, 600, 9)
 

@@ -12,13 +12,11 @@ if comp_temp ~= nil then
 
         local x, y = EntityGetTransform(this)
 
-        local p = EntityGetInRadiusWithTag(x, y, 80, "player_unit") or {}
+        local p = EntityGetInRadiusWithTag(x, y, 120, "player_unit") or {}
         if #p > 0 then
             AddHeat(1 + temp * 0.6, p[1])
         end
-
     end
-    
 else
    --GamePrint("FF - couldn't find temp component :(")
 end

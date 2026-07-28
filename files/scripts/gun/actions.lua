@@ -8,8 +8,8 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/flare.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "2,3,4,5,6",
-		spawn_probability = "0.8,0.9,1.0,1.0,0.8",
+		spawn_level = "1,2,3,4,5,6",
+		spawn_probability = "0.4,0.8,0.9,1.0,1.0,0.8",
 		price = 100,
 		mana = 20,
 		ai_never_uses = true, -- souls precaution
@@ -81,40 +81,6 @@ local new_actions = {
 		end,
 	},
 	{
-		id = "WILLOW_WISP", -- "will-o'-the-wisp" / "will of the torch" / "ignis fatuus" / "foolish flame"
-		name = "$action_ff_willow_wisp",
-		description = "$actiondesc_ff_willow_wisp",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/willow_wisp.png",
-		type = ACTION_TYPE_PASSIVE,
-		spawn_level = "4,5,6,10",
-		spawn_probability = "0.2,0.3,0.3,0.1",
-		price = 300,
-		mana = 10,
-		ai_never_uses = true, -- souls precaution
-		custom_xml_file="mods/foolish_flame/files/entities/misc/willow_wisp/card.xml",
-		action = function()
-			current_reload_time = current_reload_time + 1
-			draw_actions(1, true)
-		end,
-	},
-	{
-		id = "THERMODYNAMICS",
-		name = "$action_ff_thermodynamics",
-		description = "$actiondesc_ff_thermodynamics",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/thermodynamics.png",
-		type = ACTION_TYPE_PASSIVE,
-		spawn_level = "3,4,5,6",
-		spawn_probability = "0.4,0.6,0.5,0.5",
-		price = 120,
-		mana = 0,
-		ai_never_uses = true, -- souls precaution
-		custom_xml_file="mods/foolish_flame/files/entities/misc/card_thermodynamics/card.xml",
-		action = function()
-			current_reload_time = current_reload_time + 2
-			draw_actions(1, true)
-		end,
-	},
-	{
 		id = "HOT_IRON",
 		name = "$action_ff_hot_iron",
 		description = "$actiondesc_ff_hot_iron",
@@ -131,7 +97,6 @@ local new_actions = {
 				c.damage_projectile_add = c.damage_projectile_add + 0.1 + h / 130
 				c.fire_rate_wait = c.fire_rate_wait + 2
 				c.extra_entities = c.extra_entities .. "data/entities/particles/tinyspark_yellow.xml,"
-
 			end
 			draw_actions(1, true)
 		end,
@@ -210,6 +175,40 @@ local new_actions = {
 		ai_never_uses = true, -- souls precaution
 		action = function()
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/magic_fire/hitfx.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "WILLOW_WISP", -- "will-o'-the-wisp" / "will of the torch" / "ignis fatuus" / "foolish flame"
+		name = "$action_ff_willow_wisp",
+		description = "$actiondesc_ff_willow_wisp",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/willow_wisp.png",
+		type = ACTION_TYPE_PASSIVE,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.3,0.2",
+		price = 300,
+		mana = 10,
+		ai_never_uses = true, -- souls precaution
+		custom_xml_file="mods/foolish_flame/files/entities/misc/willow_wisp/card.xml",
+		action = function()
+			current_reload_time = current_reload_time + 1
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "THERMODYNAMICS",
+		name = "$action_ff_thermodynamics",
+		description = "$actiondesc_ff_thermodynamics",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/thermodynamics.png",
+		type = ACTION_TYPE_PASSIVE,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.4,0.6,0.5,0.5",
+		price = 120,
+		mana = 0,
+		ai_never_uses = true, -- souls precaution
+		custom_xml_file="mods/foolish_flame/files/entities/misc/card_thermodynamics/card.xml",
+		action = function()
+			current_reload_time = current_reload_time + 2
 			draw_actions(1, true)
 		end,
 	},
