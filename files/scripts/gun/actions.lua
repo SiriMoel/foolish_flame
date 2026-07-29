@@ -139,6 +139,26 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "ENGINE",
+		name = "$action_ff_engine",
+		description = "$actiondesc_ff_engine",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/engine.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.6,0.7,0.7,0.7",
+		price = 250,
+		mana = 0,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			if RemoveHeat2(1.2) or reflecting then
+				mana = mana + 60
+				c.fire_rate_wait = c.fire_rate_wait - 18
+				current_reload_time = current_reload_time - 28
+			end
+			draw_actions(1, true)
+		end,
+	},
+	{
 		id = "MELTDOWN",
 		name = "$action_ff_meltdown",
 		description = "$actiondesc_ff_meltdown",
@@ -204,12 +224,33 @@ local new_actions = {
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.4,0.6,0.5,0.5",
 		price = 120,
-		mana = 0,
+		mana = 12,
 		ai_never_uses = true, -- souls precaution
 		custom_xml_file="mods/foolish_flame/files/entities/misc/card_thermodynamics/card.xml",
 		action = function()
 			current_reload_time = current_reload_time + 2
 			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "RADIATOR",
+		name = "$action_ff_radiator",
+		description = "$actiondesc_ff_radiator",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/radiator.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "4,5,6",
+		spawn_probability = "0.5,0.5,0.5",
+		price = 200,
+		mana = 500,
+		max_uses = 40,
+		--never_unlimited = true,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			current_reload_time = current_reload_time + 20
+			if not reflecting then
+				AddHeat(20)
+			end
 		end,
 	},
 	{
@@ -222,7 +263,7 @@ local new_actions = {
 		spawn_level = "2,3,4,5,6",
 		spawn_probability = "0.6,0.6,0.7,0.7,0.7",
 		price = 100,
-		mana = 11,
+		mana = 16,
 		ai_never_uses = true, -- souls precaution
 		action = function()
 			if RemoveHeat2(0.8) or reflecting then
