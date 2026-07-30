@@ -2,7 +2,6 @@ dofile("data/scripts/lib/mod_settings.lua")
 dofile_once("mods/foolish_flame/files/scripts/displays.lua")
 
 function mod_setting_image_ff( mod_id, gui, in_main_menu, im_id, setting )
-
 	if setting.id == "heat_display_image" then
 		local display = heat_displays[tonumber(ModSettingGetNextValue("foolish_flame.heat_display"))]
 
@@ -22,7 +21,6 @@ function mod_setting_image_ff( mod_id, gui, in_main_menu, im_id, setting )
 	if is_visible_string(setting.ui_description) then
 		GuiTooltip(gui, setting.ui_description, "")
 	end
-
 end
 
 function mod_setting_change_callback( mod_id, gui, in_main_menu, setting, old_value, new_value  )

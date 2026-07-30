@@ -24,8 +24,10 @@ if heat > 0 then
     end
 
     GameCreateSpriteForXFrames(sprite, draw_x, draw_y, true, 0, 0, frames, 0)
-        
-    local step = math.min(math.floor((heat / 300) * 40), 40)
+    
+    local step_count = 8 * 20
+
+    local step = math.min(math.floor((heat / 300) * step_count), step_count)
 
     GameCreateSpriteForXFrames("mods/foolish_flame/files/ui_gfx/heat_display/generated/" .. step .. ".png", draw_x, draw_y, true, 0, 0, frames, 0)
 end

@@ -7,6 +7,7 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/s
 ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/foolish_flame/files/scripts/gun/gun_append.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/foolish_flame/files/scripts/perk_list.lua")
 
+-- in grahamth we trust (i didn't know how to do this)
 local content = ModTextFileGetContent("data/scripts/gun/procedural/starting_wand.lua")
 content = content:gsub("\"SPITTER\"", "\"SPITTER\",\"FF_SPARKLE\"")
 ModTextFileSetContent("data/scripts/gun/procedural/starting_wand.lua", content)
@@ -22,23 +23,25 @@ if translations ~= nil then
     ModTextFileSetContent("data/translations/common.csv", translations)
 end
 
-function OnModPreInit()
-	local steps = 40
-	local template, w, h = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/heat_display/full.png", 20, 34)
-	for i=0,steps do
-		local image = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/heat_display/generated/" .. i ..".png", 20, 34)
-		local first_y = 10 + math.floor((steps - i) / 2)
-		for y = first_y, 30 do
-			local ww = w - 1
-			if y == first_y then
-				if i % 2 == 1 then
-					ww = w/2 - 1
-				end
+-- create heat display sprites
+local steps_x = 8 -- 1, 2, 4, 8
+local steps_y = 20
+local template, w, h = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/heat_display/full.png", 20, 34)
+local step_upto = 0
+for step_y=1,steps_y do
+	for step_x=1,steps_x do
+		local image =  ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/heat_display/generated/" .. step_upto ..".png", 20, 34)
+		local final_y = h - 5 - (step_y - 1)
+		for y=h,final_y,-1 do
+			local final_x = w - 1
+			if y == final_y then
+				final_x = w - 8 - 8 + step_x * (8 / steps_x)
 			end
-			for x=0,ww do
-				ModImageSetPixel(image, x, y,  ModImageGetPixel(template, x, y))
+			for x=0,final_x do
+				ModImageSetPixel(image, x, y, ModImageGetPixel(template, x, y))
 			end
-		end		
+		end
+		step_upto = step_upto + 1
 	end
 end
 
@@ -144,7 +147,7 @@ function OnPlayerSpawned(player)
 
 	EntityAddComponent(player, "LuaComponent", {
 		script_source_file="mods/foolish_flame/files/scripts/heat_loss.lua",
-		execute_every_n_frame=30
+		execute_every_n_frame=15
 	})
 
 	EntityAddComponent(player, "LuaComponent", {
