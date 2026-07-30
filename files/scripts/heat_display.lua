@@ -11,13 +11,19 @@ if heat > 0 then
 
     local frames = 1
 
-    local display_num = tonumber(GlobalsGetValue("ff_heat_display", "1"))
+    local display = heat_displays[tonumber(GlobalsGetValue("ff_heat_display", "1"))] or heat_displays[1]
 
-    if heat >= 400 then
-        GameCreateSpriteForXFrames(heat_displays[display_num].sprite_hot, draw_x, draw_y, true, 0, 0, frames, 0)
+    local sprite = display.sprite
+
+    if display.custom_logic ~= nil then
+        sprite = display.custom_logic()
     else
-        GameCreateSpriteForXFrames(heat_displays[display_num].sprite, draw_x, draw_y, true, 0, 0, frames, 0)
+        if heat >= 400 and display.sprite_hot ~= nil then
+            sprite = display.sprite_hot
+        end
     end
+
+    GameCreateSpriteForXFrames(sprite, draw_x, draw_y, true, 0, 0, frames, 0)
         
     local step = math.min(math.floor((heat / 300) * 40), 40)
 

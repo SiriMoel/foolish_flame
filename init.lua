@@ -7,6 +7,10 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/s
 ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/foolish_flame/files/scripts/gun/gun_append.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/foolish_flame/files/scripts/perk_list.lua")
 
+local content = ModTextFileGetContent("data/scripts/gun/procedural/starting_wand.lua")
+content = content:gsub("\"SPITTER\"", "\"SPITTER\",\"FF_SPARKLE\"")
+ModTextFileSetContent("data/scripts/gun/procedural/starting_wand.lua", content)
+
 -- translations
 local translations = ModTextFileGetContent("data/translations/common.csv")
 if translations ~= nil then

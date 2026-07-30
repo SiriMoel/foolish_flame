@@ -2,6 +2,25 @@ dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 
 local new_actions = {
 	{
+		id = "SPARKLE",
+		name = "$action_ff_sparkle",
+		description = "$actiondesc_ff_sparkle",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/sparkle.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/sparkle/projectile.xml",3},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "0,1,2,3",
+		spawn_probability = "0.7,0.8,0.7,0.7",
+		price = 100,
+		mana = 14,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.spread_degrees = c.spread_degrees + 4.0
+			c.fire_rate_wait = c.fire_rate_wait + 2
+			add_projectile("mods/foolish_flame/files/entities/projectiles/sparkle/projectile.xml")
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/sparkle/hitfx.xml,"
+		end,
+	},
+	{
 		id = "WIZARD_FLARE", -- "team fortress 2"
 		name = "$action_ff_flare",
 		description = "$actiondesc_ff_flare",
@@ -277,7 +296,7 @@ local new_actions = {
 			end
 		end,
 	},
-	{ -- WIP
+	{
 		id = "NEEDLE",
 		name = "$action_ff_needle",
 		description = "$actiondesc_ff_needle",
