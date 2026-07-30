@@ -21,7 +21,7 @@
 
     <LuaComponent
         script_source_file="mods/foolish_flame/files/entities/misc/effect_magic_fire/damage.lua"
-        execute_every_n_frame="30"
+        execute_every_n_frame="15"
     ></LuaComponent>
 
 
@@ -30,8 +30,8 @@
     <ParticleEmitterComponent
         _tags="particles_1"
         emitted_material_name="spark_yellow"
-        count_min="5"
-        count_max="8"
+        count_min="3"
+        count_max="6"
         offset.x="-1"
         offset.y="-5"
         x_pos_offset_min="-4"
@@ -57,8 +57,8 @@
     <ParticleEmitterComponent
         _tags="particles_2"
         emitted_material_name="spark_red"
-        count_min="6"
-        count_max="12"
+        count_min="4"
+        count_max="9"
         offset.x="-1"
         offset.y="-5"
         x_pos_offset_min="-6"

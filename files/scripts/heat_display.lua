@@ -25,7 +25,7 @@ if heat > 0 then
 
     GameCreateSpriteForXFrames(sprite, draw_x, draw_y, true, 0, 0, frames, 0)
     
-    local step_count = 8 * 20
+    local step_count = 8 * 20 - 1
 
     local step = math.min(math.floor((heat / 300) * step_count), step_count)
 

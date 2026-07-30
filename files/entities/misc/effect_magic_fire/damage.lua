@@ -14,7 +14,7 @@ if comp_temp ~= nil then
 
         local p = EntityGetInRadiusWithTag(x, y, 140, "player_unit") or {}
         if #p > 0 then
-            AddHeat(1 + temp * 0.5, p[1])
+            AddHeat(0.5 + temp * 0.25, p[1])
         end
     end
 end

@@ -21,7 +21,7 @@
         <LuaComponent
             _tags="ff_wisp"
             script_source_file="mods/foolish_flame/files/entities/misc/willow_wisp/warm.lua"
-            execute_every_n_frame="30"
+            execute_every_n_frame="15"
         ></LuaComponent>
 
         <ParticleEmitterComponent
