@@ -38,6 +38,7 @@
     >
     <damage_by_type
       fire="0.06"
+      holy="0.03"
     ></damage_by_type>
   </ProjectileComponent>
   

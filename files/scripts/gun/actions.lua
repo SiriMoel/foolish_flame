@@ -262,17 +262,41 @@ local new_actions = {
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "2,3,4,5,6",
 		spawn_probability = "0.6,0.6,0.7,0.7,0.7",
-		price = 100,
+		price = 130,
 		mana = 16,
 		ai_never_uses = true, -- souls precaution
 		action = function()
 			if RemoveHeat2(0.8) or reflecting then
-				c.fire_rate_wait = c.fire_rate_wait - 4
+				c.fire_rate_wait = c.fire_rate_wait - 8
 				c.spread_degrees = c.spread_degrees - 4.0
+				c.damage_critical_chance = c.damage_critical_chance + 10
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/bunsen/hitfx.xml,"
+			end
+		end,
+	},
+	{ -- WIP
+		id = "NEEDLE",
+		name = "$action_ff_needle",
+		description = "$actiondesc_ff_needle",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/needle.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/needle/projectile.xml",3},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.6,0.6,0.7,0.7,0.7",
+		price = 110,
+		mana = 20,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.spread_degrees = c.spread_degrees + 3.0
+			if RemoveHeat2(0.8) or reflecting then
+				c.fire_rate_wait = c.fire_rate_wait - 16
+				current_reload_time = current_reload_time - 12
+				c.damage_critical_chance = c.damage_critical_chance + 5
+				add_projectile("mods/foolish_flame/files/entities/projectiles/needle/projectile.xml")
+				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/needle/hitfx.xml,"
 			end
 		end,
 	},
@@ -348,8 +372,8 @@ local new_actions = {
 	},
 	{
 		id = "REMEMBER",
-		name = "$action_gurbert_remember",
-		description = "$actiondesc_gurbert_remember",
+		name = "$action_ff_remember",
+		description = "$actiondesc_ff_remember",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/remember.png",
 		spawn_requires_flag = "ff_gurbert_spells_unlocked",
 		type = ACTION_TYPE_OTHER,
@@ -382,8 +406,8 @@ local new_actions = {
 	},
 	{
 		id = "RECALL",
-		name = "$action_gurbert_recall",
-		description = "$actiondesc_gurbert_recall",
+		name = "$action_ff_recall",
+		description = "$actiondesc_ff_recall",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/recall.png",
 		spawn_requires_flag = "ff_gurbert_spells_unlocked",
 		type = ACTION_TYPE_OTHER,
@@ -417,8 +441,8 @@ local new_actions = {
 	},
 	{
 		id = "REMEMBER_ONE",
-		name = "$action_gurbert_remember_one",
-		description = "$actiondesc_gurbert_remember_one",
+		name = "$action_ff_remember_one",
+		description = "$actiondesc_ff_remember_one",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/remember_one.png",
 		spawn_requires_flag = "ff_gurbert_spells_unlocked",
 		type = ACTION_TYPE_OTHER,
@@ -442,15 +466,15 @@ local new_actions = {
 	},
 	{
 		id = "FROGET",
-		name = "$action_gurbert_forget",
-		description = "$actiondesc_gurbert_forget",
+		name = "$action_ff_forget",
+		description = "$actiondesc_ff_forget",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/forget.png",
 		spawn_requires_flag = "ff_gurbert_spells_unlocked",
 		type = ACTION_TYPE_OTHER,
 		spawn_level = "4,5,6,10",
 		spawn_probability = "0.2,0.3,0.2,0.7",
 		price = 200,
-		mana = -20,
+		mana = -30,
 		action = function()
 			gurbertbrain = {}
 		end,
