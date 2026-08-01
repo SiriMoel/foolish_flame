@@ -2,28 +2,7 @@ dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 
 local nxml = dofile_once("mods/foolish_flame/lib/nxml.lua")
 
--- appends
-ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/scripts/gun/actions.lua")
-ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/foolish_flame/files/scripts/gun/gun_append.lua")
-ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/foolish_flame/files/scripts/perk_list.lua")
-
--- in grahamth we trust (i didn't know how to do this)
-local content = ModTextFileGetContent("data/scripts/gun/procedural/starting_wand.lua")
-content = content:gsub("\"SPITTER\"", "\"SPITTER\",\"FF_SPARKLE\"")
-ModTextFileSetContent("data/scripts/gun/procedural/starting_wand.lua", content)
-
--- translations
-local translations = ModTextFileGetContent("data/translations/common.csv")
-if translations ~= nil then
-    while translations:find("\r\n\r\n") do
-        translations = translations:gsub("\r\n\r\n","\r\n")
-    end
-    local new_translations = ModTextFileGetContent(table.concat({"mods/foolish_flame/files/translations.csv"}))
-    translations = translations .. new_translations
-    ModTextFileSetContent("data/translations/common.csv", translations)
-end
-
--- create heat display sprites
+-- create heat display sprites ... if changing steps, remember to update heat_display.lua
 local steps_x = 8 -- 1, 2, 4, 8
 local steps_y = 20
 local template, w, h = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/heat_display/full.png", 20, 34)
@@ -45,8 +24,28 @@ for step_y=1,steps_y do
 	end
 end
 
-function OnModPostInit()
+-- appends
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/scripts/gun/actions.lua")
+ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/foolish_flame/files/scripts/gun/gun_append.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/foolish_flame/files/scripts/perk_list.lua")
 
+-- in grahamth we trust (i didn't know how to do this)
+local content = ModTextFileGetContent("data/scripts/gun/procedural/starting_wand.lua")
+content = content:gsub("\"SPITTER\"", "\"SPITTER\",\"FF_SPARKLE\"")
+ModTextFileSetContent("data/scripts/gun/procedural/starting_wand.lua", content)
+
+-- translations
+local translations = ModTextFileGetContent("data/translations/common.csv")
+if translations ~= nil then
+    while translations:find("\r\n\r\n") do
+        translations = translations:gsub("\r\n\r\n","\r\n")
+    end
+    local new_translations = ModTextFileGetContent(table.concat({"mods/foolish_flame/files/translations.csv"}))
+    translations = translations .. new_translations
+    ModTextFileSetContent("data/translations/common.csv", translations)
+end
+
+function OnModPostInit()
 	local wand_good_2_path = "data/entities/items/wands/wand_good/wand_good_2.xml"
 	local xml = nxml.parse(ModTextFileGetContent(wand_good_2_path))
 	xml:add_child(nxml.parse(([[
@@ -128,7 +127,6 @@ function OnModPostInit()
 		]])))
 		ModTextFileSetContent(v, tostring(xml))
 	end
-
 end
 
 function OnPlayerSpawned(player)

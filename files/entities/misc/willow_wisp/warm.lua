@@ -7,5 +7,5 @@ local x, y = EntityGetTransform(this)
 local t = EntityGetInRadiusWithTag(x, y, 40, "player_unit")
 
 if #t > 0 then
-    AddHeat(1.35, t[1])
+    AddHeat(1.6, t[1])
 end

@@ -273,6 +273,30 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "PHOENIX_FIELD",
+		name = "$action_ff_phoenix_field",
+		description = "$actiondesc_ff_phoenix_field",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/phoenix_field.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/phoenix_field/proj.xml"},
+		type = ACTION_TYPE_STATIC_PROJECTILE,
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.3,0.3,0.4,0.3,0.4",
+		price = 250,
+		mana = 80,
+		max_uses = 3,
+		never_unlimited = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			local heat = GetHeat()
+			if heat > 20 or reflecting then
+				local amt = 20 + (heat - 20) * 0.16
+				c.damage_healing_add = c.damage_healing_add - amt * 0.02
+				RemoveHeat(amt)
+				add_projectile("mods/foolish_flame/files/entities/projectiles/phoenix_field/proj.xml")
+			end
+		end,
+	},
+	{
 		id = "BUNSEN",
 		name = "$action_ff_bunsen",
 		description = "$actiondesc_ff_bunsen",
@@ -346,8 +370,8 @@ local new_actions = {
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "10",
 		spawn_probability = "0.2",
-		price = 260,
-		mana = 20,
+		price = 300,
+		mana = 30,
 		ai_never_uses = true, -- souls precaution
 		custom_xml_file="mods/foolish_flame/files/entities/misc/card_laser.xml",
 		action = function()
@@ -375,7 +399,7 @@ local new_actions = {
 					else
 						FF_Revs = FF_Revs + 1
 					end
-					if RemoveHeat2(0.2 + 0.1 * (math.min(FF_Revs, 60))) then
+					if RemoveHeat2(0.1 + 0.1 * (math.min(FF_Revs * 0.5, 30))) then
 						c.fire_rate_wait = c.fire_rate_wait - math.min(4 * FF_Revs, 120)
 						current_reload_time = current_reload_time - math.min(3 * FF_Revs, 60)
 						c.spread_degrees = c.spread_degrees - math.min(0.5 * FF_Revs, 60)
