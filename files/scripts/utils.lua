@@ -94,7 +94,7 @@ function InflictMagicFire(target, temp, duration, tmax)
         if temp_now ~= temp_before then
 
             -- 12
-            local mats = {"spark_red", "spark", "spark", "spark_yellow", "spark", "spark_electric", "spark_white", "spark_blue", "spark_white_bright", "spark_player", "spark_player", "spark_purple_bright"}
+            local mats = {"spark_red", "spark", "spark", "spark_yellow", "spark", "spark_electric", "spark_white", "spark_blue", "spark_white_bright", "spark_player", "spark_player", "plasma_fading_pink"}
             local mat_1 = mats[math.min(temp_now + 1, #mats)]
             local mat_2 = mats[math.min(temp_now, #mats)]
 

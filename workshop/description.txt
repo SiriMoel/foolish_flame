@@ -4,6 +4,8 @@ mod!!!
 
 lalala heat mechanic lalala
 
+use [ and ] to cycle heat displays
+
 [HEAT DISPLAY GIF]
 
 content... how many spells & perks & items

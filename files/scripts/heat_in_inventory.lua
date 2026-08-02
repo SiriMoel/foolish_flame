@@ -5,5 +5,5 @@ local this = GetUpdatedEntityID()
 local root = EntityGetRootEntity(this)
 
 if EntityHasTag(root, "player_unit") and (GetHeat(root) <= 40) then
-    AddHeat(2, root)
+    AddHeat(1, root)
 end

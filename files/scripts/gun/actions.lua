@@ -47,8 +47,8 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/heat_flare.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/heat_flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "3,4,5,6",
-		spawn_probability = "0.7,0.7,0.8,0.8",
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.5,0.7,0.7,0.8,0.8",
 		price = 100,
 		mana = 20,
 		ai_never_uses = true, -- souls precaution
@@ -97,6 +97,26 @@ local new_actions = {
 			c.fire_rate_wait = c.fire_rate_wait + 6
 			c.spread_degrees = c.spread_degrees - 3.0
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/bullet_flare/hitfx.xml,"
+		end,
+	},
+	{
+		id = "GOOD_FLARE",
+		name = "$action_ff_good_flare",
+		description = "$actiondesc_ff_good_flare",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/good_flare.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/good_flare/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "5,6",
+		spawn_probability = "0.3,0.4",
+		price = 160,
+		mana = 31,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			add_projectile("mods/foolish_flame/files/entities/projectiles/good_flare/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 6
+			c.spread_degrees = c.spread_degrees - 3.0
+			c.damage_projectile_add = c.damage_projectile_add - 0.15
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/good_flare/hitfx.xml,"
 		end,
 	},
 	{
@@ -164,7 +184,7 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/engine.png",
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "3,4,5,6",
-		spawn_probability = "0.6,0.7,0.7,0.7",
+		spawn_probability = "0.5,0.6,0.7,0.7",
 		price = 250,
 		mana = 0,
 		ai_never_uses = true, -- souls precaution
@@ -183,8 +203,8 @@ local new_actions = {
 		description = "$actiondesc_ff_meltdown",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/meltdown.png",
 		type = ACTION_TYPE_MODIFIER,
-		spawn_level = "4,5,6,10",
-		spawn_probability = "0.2,0.4,0.5,0.2",
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.2,0.3,0.4,0.5",
 		price = 100,
 		mana = 100,
 		ai_never_uses = true, -- souls precaution
@@ -350,10 +370,10 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/axtinguisher.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/axtinguisher/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "3,4,5,6,10",
-		spawn_probability = "0.2,0.4,0.5,0.6,0.3",
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.2,0.4,0.5,0.6",
 		price = 240,
-		mana = 63,
+		mana = 53,
 		ai_never_uses = true, -- souls precaution
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/axtinguisher/projectile.xml")
@@ -421,9 +441,9 @@ local new_actions = {
 		spawn_requires_flag = "ff_gurbert_spells_unlocked",
 		type = ACTION_TYPE_OTHER,
 		spawn_level = "4,5,6,10",
-		spawn_probability = "0.2,0.3,0.2,0.7",
+		spawn_probability = "0.2,0.3,0.3,0.5",
 		price = 200,
-		mana = 10,
+		mana = 22,
 		action = function()
 			local data = {}
 			local how_many = 1
@@ -456,7 +476,7 @@ local new_actions = {
 		type = ACTION_TYPE_OTHER,
 		recursive = true,
 		spawn_level = "4,5,6,10",
-		spawn_probability = "0.2,0.3,0.2,0.7",
+		spawn_probability = "0.2,0.3,0.3,0.5",
 		price = 200,
 		mana = 70,
 		action = function(recursion_level, iteration)
@@ -474,7 +494,7 @@ local new_actions = {
 						data.action(rec)
 					end
 					how_many = how_many + 1
-					data = gurbertbrain[how_many]		
+					data = gurbertbrain[how_many]
 				end
 			else
 				GamePrint("No thoughts.")
@@ -490,7 +510,7 @@ local new_actions = {
 		spawn_requires_flag = "ff_gurbert_spells_unlocked",
 		type = ACTION_TYPE_OTHER,
 		spawn_level = "4,5,6,10",
-		spawn_probability = "0.2,0.3,0.2,0.7",
+		spawn_probability = "0.2,0.3,0.3,0.5",
 		price = 200,
 		mana = 10,
 		action = function()
@@ -515,7 +535,7 @@ local new_actions = {
 		spawn_requires_flag = "ff_gurbert_spells_unlocked",
 		type = ACTION_TYPE_OTHER,
 		spawn_level = "4,5,6,10",
-		spawn_probability = "0.2,0.3,0.2,0.7",
+		spawn_probability = "0.2,0.3,0.3,0.5",
 		price = 200,
 		mana = -30,
 		action = function()

@@ -1,5 +1,5 @@
 dofile("data/scripts/lib/mod_settings.lua")
-dofile_once("mods/foolish_flame/files/scripts/displays.lua")
+dofile("mods/foolish_flame/files/scripts/displays.lua")
 
 function mod_setting_image_ff( mod_id, gui, in_main_menu, im_id, setting )
 	if setting.id == "heat_display_image" then
@@ -32,7 +32,7 @@ end
 local mod_id = "foolish_flame"
 mod_settings_version = 1
 mod_settings = {
-    {
+    --[[{
         id = "heat_display_image",
 		image_filename = "mods/foolish_flame/files/ui_gfx/heat_display/flame.png",
         ui_fn = mod_setting_image_ff,
@@ -45,7 +45,7 @@ mod_settings = {
 		values = GetDisplays() or {},
 		scope = MOD_SETTING_SCOPE_RUNTIME,
 		change_fn = mod_setting_change_callback,
-	},
+	},]]
 }
 
 function ModSettingsUpdate( init_scope )

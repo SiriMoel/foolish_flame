@@ -8,6 +8,27 @@ heat_displays = {
         func_unlocked = function() return true end, -- always unlocked
     },
     {
+        id = "flame_animated",
+        name = "$ff_display_flame_animated",
+        name_t = "Flame (animated)",
+        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/flame_animated/1.png",
+        func_unlocked = function() return true end, -- always unlocked
+        custom_logic = function()
+            local frame = GameGetFrameNum()
+            local frames_per = 6
+            local sprites = {
+                "mods/foolish_flame/files/ui_gfx/heat_display/flame_animated/1.png",
+                "mods/foolish_flame/files/ui_gfx/heat_display/flame_animated/2.png",
+                "mods/foolish_flame/files/ui_gfx/heat_display/flame_animated/3.png",
+                "mods/foolish_flame/files/ui_gfx/heat_display/flame_animated/4.png",
+                "mods/foolish_flame/files/ui_gfx/heat_display/flame_animated/5.png",
+                "mods/foolish_flame/files/ui_gfx/heat_display/flame_animated/6.png",
+                "mods/foolish_flame/files/ui_gfx/heat_display/flame_animated/7.png",
+            }
+            return sprites[math.floor((frame / frames_per) % #sprites) + 1]
+        end,
+    },
+    {
         id = "blank",
         name = "$ff_display_blank",
         name_t = "Minimalist",
@@ -69,11 +90,13 @@ heat_displays = {
 
 function GetDisplays()
     local t = {}
+    local tr = {}
     for i=1,#heat_displays do
         local d = heat_displays[i]
         if d.func_unlocked() then
             table.insert(t, {tostring(i), d.name_t--[[GameTextGetTranslatedOrNot(d.name)]]})
+            table.insert(tr, d)
         end
     end
-    return t
+    return t, tr
 end
