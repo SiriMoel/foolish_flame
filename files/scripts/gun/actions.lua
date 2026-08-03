@@ -168,7 +168,7 @@ local new_actions = {
 		spawn_level = "1,2,3,4,5",
 		spawn_probability = "0.5,0.8,0.9,0.9,0.8",
 		price = 110,
-		mana = 4,
+		mana = 5,
 		ai_never_uses = true, -- souls precaution
 		action = function()
 			if GetHeat() > 0 or reflecting then
@@ -218,6 +218,42 @@ local new_actions = {
 				c.trail_material_amount = c.trail_material_amount + math.min(heat / 120, 30)
 				RemoveHeat(heat)
 			end
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "HOTTER_FLARES",
+		name = "$action_ff_hotter_flares",
+		description = "$actiondesc_ff_hotter_flares",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/hotter_flares.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "5,6",
+		spawn_probability = "0.2,0.2",
+		price = 140,
+		mana = 80,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			current_reload_time = current_reload_time + 10
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/hotter_flares/hitfx.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "FIRE_DURATION",
+		name = "$action_ff_fire_duration",
+		description = "$actiondesc_ff_fire_duration",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/fire_duration.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "5,6",
+		spawn_probability = "0.2,0.2",
+		price = 140,
+		mana = 80,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			current_reload_time = current_reload_time + 10
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/fire_duration/hitfx.xml,"
 			draw_actions(1, true)
 		end,
 	},
@@ -389,7 +425,7 @@ local new_actions = {
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/laser/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "10",
-		spawn_probability = "0.2",
+		spawn_probability = "0.1",
 		price = 300,
 		mana = 30,
 		ai_never_uses = true, -- souls precaution

@@ -75,6 +75,11 @@ function InflictMagicFire(target, temp, duration, tmax)
     if comp_eff ~= nil then
         local frames = ComponentGetValue2(comp_eff, "frames")
 
+        local duration_mods = EntityGetAllChildren(target, "ff_fire_duration") or {}
+        if duration ~= -1 then
+            duration = duration + 120 * #duration_mods
+        end
+
         ComponentSetValue2(comp_eff, "frames", ((duration == -1 --[[or frames == -1]]) and -1) or math.max(frames, duration))
     end
 
@@ -83,6 +88,10 @@ function InflictMagicFire(target, temp, duration, tmax)
         local temp_before = ComponentGetValue2(comp_temp, "value_int")
 
         local temp_now = temp_before
+
+        local hotter_fire_mods = EntityGetAllChildren(target, "ff_hotter_flares") or {}
+        temp = temp + #hotter_fire_mods
+        tmax = math.min(tmax + #hotter_fire_mods, 10)
 
         if EntityHasTag(player, "ff_hotter_fire") then
             tmax = math.min(tmax + 1, 11)

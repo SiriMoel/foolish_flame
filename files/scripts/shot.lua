@@ -3,7 +3,7 @@ dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 function shot(proj)
     local heat = GetHeat()
     if heat > 0 then
-        local mult = 1 + heat * 0.005 -- 3x damage with 400 heat, 2x with 200
+        local mult = 1 + heat * 0.0035 -- 2.4x damage with 400 heat, 1.7x with 200
         --local amt = heat * 0.003
         local comps = EntityGetComponent(proj, "ProjectileComponent")
 	    if comps ~= nil then

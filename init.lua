@@ -137,6 +137,34 @@ function OnModPostInit()
 		]])))
 		ModTextFileSetContent(v, tostring(xml))
 	end
+
+	local modify_bounty_enemies = {
+		"data/entities/animals/the_end/gazer.xml",
+		"data/entities/animals/the_end/spitmonster.xml",
+		--"data/entities/animals/the_end/bloodcrystal_physics.xml",
+		"data/entities/animals/the_end/worm_end.xml",
+		"data/entities/animals/wraith.xml",
+		"data/entities/animals/wraith_glowing.xml",
+		"data/entities/animals/thunderskull.xml",
+	}
+	if ModIsEnabled("Apotheosis") then
+		table.insert(modify_bounty_enemies, "data/entities/animals/the_end/wizard_firemage_greater.xml")
+		table.insert(modify_bounty_enemies, "data/entities/animals/the_end/gazer_greater.xml")
+	end
+	if ModIsEnabled("souls") then -- if i must
+		table.insert(modify_bounty_enemies, "data/entities/animals/the_end/moldos_soul_angry.xml")
+	end
+	for i,v in ipairs(modify_bounty_enemies) do
+		local xml = nxml.parse(ModTextFileGetContent(v))
+		xml:add_child(nxml.parse(([[
+    		<LuaComponent
+				script_source_file="mods/foolish_flame/files/entities/misc/bounty/entity_init.lua"
+				execute_every_n_frame="1"
+				remove_after_executed="1"
+			></LuaComponent>
+		]])))
+		ModTextFileSetContent(v, tostring(xml))
+	end
 end
 
 function OnPlayerSpawned(player)
@@ -147,23 +175,23 @@ function OnPlayerSpawned(player)
 
 	--GlobalsSetValue("ff_heat_display", tostring(ModSettingGet("foolish_flame.heat_display")))
 
-	EntityAddComponent(player, "VariableStorageComponent", {
+	EntityAddComponent2(player, "VariableStorageComponent", {
 		_tags="ff_heat",
 		name="ff_heat",
 		value_float=0.0
 	})
 
-	EntityAddComponent(player, "LuaComponent", {
+	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file="mods/foolish_flame/files/scripts/heat_loss.lua",
 		execute_every_n_frame=15
 	})
 
-	EntityAddComponent(player, "LuaComponent", {
+	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file="mods/foolish_flame/files/scripts/heat_display.lua",
 		execute_every_n_frame=1
 	})
 
-	EntityAddComponent(player, "LuaComponent", {
+	EntityAddComponent2(player, "LuaComponent", {
 		script_shot="mods/foolish_flame/files/scripts/shot.lua",
 		execute_every_n_frame=-1
 	})

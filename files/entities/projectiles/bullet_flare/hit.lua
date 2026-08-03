@@ -25,6 +25,6 @@ end
 
 AddHeat(heat_amt)
 
-InflictMagicFire(root, 3, 600, 9)
+InflictMagicFire(root, 2, 600, 8)
 
 EntityKill(this)

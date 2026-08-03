@@ -30,6 +30,6 @@ end
 
 AddHeat(heat_amt)
 
-InflictMagicFire(root, 1, nil)
+InflictMagicFire(root, 1, nil, 10)
 
 EntityKill(this)

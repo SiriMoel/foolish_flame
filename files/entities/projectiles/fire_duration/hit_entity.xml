@@ -1,0 +1,11 @@
+<Entity tags="ff_fire_duration">
+
+    <InheritTransformComponent
+		_enabled="1"
+    ></InheritTransformComponent>
+
+    <LifetimeComponent
+        lifetime="2"
+    ></LifetimeComponent>
+
+</Entity>
