@@ -56,6 +56,13 @@ function InflictMagicFire(target, temp, duration, tmax)
 
     local x, y = EntityGetTransform(target)
 
+    local is_bounty = EntityHasTag(target, "ff_bounty_enemy")
+
+    local nearby_bounty_enemies = EntityGetInRadiusWithTag(x, y, 160, "ff_bounty_enemy") or {}
+    if (not is_bounty) and (#nearby_bounty_enemies > 0) then
+        return
+    end
+
     local effect
 
     local c = EntityGetAllChildren(target, "ff_magic_fire_effect") or {}
@@ -70,6 +77,20 @@ function InflictMagicFire(target, temp, duration, tmax)
 
     local player = EntityGetWithTag("player_unit")[1]
     if player == nil then return end -- probably shouldn't happen?
+
+    if is_bounty then
+        local comp_last_heated = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "ff_bounty_frame_heated_last")
+        if comp_last_heated ~= nil then
+            local frame_heated_last = ComponentGetValue2(comp_last_heated, "value_int")
+            local frame_now = GameGetFrameNum()
+            if not (frame_now >= frame_heated_last + 90) then
+                temp = 0
+            else
+                temp = math.min(temp, 1)
+                ComponentSetValue2(comp_last_heated, "value_int", frame_now)
+            end
+        end
+    end
 
     local comp_eff = EntityGetFirstComponent(effect, "GameEffectComponent")
     if comp_eff ~= nil then

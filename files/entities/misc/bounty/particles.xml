@@ -1,0 +1,35 @@
+<Entity>
+
+    <InheritTransformComponent
+        _enabled="1"
+    ></InheritTransformComponent>
+
+    <ParticleEmitterComponent 
+		emitted_material_name="flame"
+		gravity.y="0.0"
+		lifetime_min="0.5"
+		lifetime_max="0.7"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="8"
+		count_max="16"
+		render_on_grid="1"
+		fade_based_on_lifetime="0"
+		area_circle_radius.min="160"
+		area_circle_radius.max="160"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="11"
+		render_back="1"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+
+</Entity>

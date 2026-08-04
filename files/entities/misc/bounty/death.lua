@@ -1,8 +1,9 @@
-dofile_once("data/scripts/lib/utilities.lua")
+dofile_once("mods/foolish_flame/files/scripts/utils.lua")
+dofile_once("mods/foolish_flame/files/scripts/bounty_rewards.lua")
 
 function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
-	local entity_id = GetUpdatedEntityID()
-	local x, y = EntityGetTransform(entity_id)
+	local this = GetUpdatedEntityID()
+	local x, y = EntityGetTransform(this)
 
 	SetRandomSeed(x, y)
 
@@ -10,6 +11,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 		local action = GetRandomAction(x, y, 10, 0)
 		if Random(1, 100) <= 2 then
 			action = "FF_LASER"
+			AddFlagPersistent("ff_laser_unlocked")
 		end
 		CreateItemActionEntity(action, x, y - 6)
 	end

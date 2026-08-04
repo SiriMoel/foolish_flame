@@ -4,15 +4,17 @@ local x, y = EntityGetTransform(this)
 
 SetRandomSeed(x, y)
 
-local threshold = math.ceil(9 + (y - 23000)/1700)
+local threshold = math.min(math.ceil(8 + (y - 23000)/1700), 20)
 
 if (y > 20000) and (Random(1, 100) <= threshold) then
+    EntityAddTag(this, "ff_bounty_enemy")
     local comp = EntityGetFirstComponentIncludingDisabled(this, "DamageModelComponent")
     if comp ~= nil then
         local hp = ComponentGetValue2(comp, "hp")
         local max_hp = ComponentGetValue2(comp, "max_hp")
-        ComponentSetValue2(comp, "hp", hp * 2)
-        ComponentSetValue2(comp, "max_hp", max_hp * 2)
+        local hp_mult = math.min(1.6 + (y-20000)/30000, 4)
+        ComponentSetValue2(comp, "hp", hp * hp_mult)
+        ComponentSetValue2(comp, "max_hp", max_hp * hp_mult)
     end
     local shield_temp = math.min(math.floor(5 + (y - 20000)/3000), 9)
     EntityAddComponent2(this, "VariableStorageComponent", {
@@ -23,6 +25,11 @@ if (y > 20000) and (Random(1, 100) <= threshold) then
     EntityAddComponent2(this, "VariableStorageComponent", {
         _tags="ff_bounty_frame_damaged_last",
 		name="ff_bounty_frame_damaged_last",
+		value_int=0
+    })
+    EntityAddComponent2(this, "VariableStorageComponent", {
+        _tags="ff_bounty_frame_heated_last",
+		name="ff_bounty_frame_heated_last",
 		value_int=0
     })
     EntityAddComponent2(this, "LuaComponent", {
@@ -36,4 +43,5 @@ if (y > 20000) and (Random(1, 100) <= threshold) then
         script_source_file="mods/foolish_flame/files/entities/misc/bounty/display.lua",
         execute_every_n_frame=1
     })
+    EntityAddChild(this, EntityLoad("mods/foolish_flame/files/entities/misc/bounty/particles.xml", x, y))
 end

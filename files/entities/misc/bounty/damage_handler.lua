@@ -1,6 +1,11 @@
 dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 
 function damage_about_to_be_received(damage, x, y, entity_thats_responsible, critical_hit_chance)
+    if EntityHasTag(entity_thats_responsible, "player_unit") then
+        local amt = 0.4 + damage * 0.4
+        RemoveHeat(amt, entity_thats_responsible)
+    end
+
     if damage > 0 then
         local this = GetUpdatedEntityID()
 
@@ -8,10 +13,11 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
         if comp ~= nil then
             local frame_damaged_last = ComponentGetValue2(comp, "value_int")
             local frame_now = GameGetFrameNum()
-            if not (frame_now >= frame_damaged_last + 6) then
+            if not (frame_now >= frame_damaged_last + 12) then
                 return 0, 0
+            else
+                ComponentSetValue2(comp, "value_int", frame_now)
             end
-            ComponentSetValue2(comp, "value_int", frame_now)
         end
 
         local fire_temp = 0
@@ -27,14 +33,13 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
         local comp_shield_temp = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "ff_bounty_shield_temp")
         if comp_shield_temp ~= nil then
             local shield_temp = ComponentGetValue2(comp_shield_temp, "value_int")
-            if temp < shield_temp then
+            if fire_temp < shield_temp then
                 return 0, 0
-            elseif temp == shield_temp then
+            elseif fire_temp == shield_temp then
                 damage = damage * 0.5
                 critical_hit_chance = 0
             end
         end
-
     end
 
     return damage, critical_hit_chance

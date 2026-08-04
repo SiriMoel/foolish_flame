@@ -8,7 +8,7 @@ if comp_shield_temp ~= nil then
     local shield_temp = ComponentGetValue2(comp_shield_temp, "value_int")
     local fire_temp = 0
     local c = EntityGetAllChildren(this, "ff_magic_fire_effect") or {}
-    if c > 0 then
+    if #c > 0 then
         local comp_temp = EntityGetFirstComponentIncludingDisabled(c[1], "VariableStorageComponent", "fire_temp")
         if comp_temp ~= nil then
             fire_temp = ComponentGetValue2(comp_temp, "value_int")

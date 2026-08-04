@@ -423,6 +423,7 @@ local new_actions = {
 		description = "$actiondesc_ff_laser",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/laser.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/laser/projectile.xml"},
+		spawn_requires_flag = "ff_laser_unlocked",
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "10",
 		spawn_probability = "0.1",
