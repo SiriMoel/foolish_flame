@@ -57,6 +57,14 @@ bounty_attacks = {
 	        })
         end,
     },
+    {
+        id = "hypixelskyblockvoodoodoll",
+        shard_sprite = "mods/foolish_flame/files/entities/misc/bounty/shard_sprites/hypixelskyblockvoodoodoll.png",
+        func_init = function(entity, x, y)
+            local child = EntityLoad("mods/foolish_flame/files/entities/misc/bounty/hypixelskyblockvoodoodoll.xml", x, y)
+            EntityAddChild(entity, child)
+        end,
+    },
 }
 
 function BountyAttacks(entity, x, y, attack_count)

@@ -1,25 +1,40 @@
 [TITLE IMAGE]
 
-mod!!!
+A fire-themed content mod.
 
-lalala heat mechanic lalala
+Foolish Flame introduces a 'heat' mechanic, and content based around it.
+Heat is acquired from many sources (including by holding kiuaskivi), but mainly from the mod's spells & by being around enemies inflicted with Magic fire.
 
-use [ and ] to cycle heat displays
+What is Magic Fire? A new status effect that is inflicted by many of the mod's spells and has 10 temperature levels.
+The higher the temperature, the more heat is granted & the more powerful some of the mod's spells are against that enemy.
 
+Heat always grants a passive damage boost and is also used as a currency of sorts for many of the mod's spells.
+The more heat you have, the higher the damage boost & the more powerful your spells become!
+
+How much heat you have is shown by a meter that appears above the player when you have any:
 [HEAT DISPLAY GIF]
-
-content... how many spells & perks & items
+This heat display can take multiple appearances, which can be cycled using the [b][[/b] and [b]][/b] keys in-game.
 
 [FLARES IMAGE]
 
-what mods does this interact(what word?) with?
-    grahamth, copith, apoth
+So far, this mod adds:
+[b]27[/b] spells
+[b]2[/b] perks
+[b]1[/b] wand"s" "and" item"s"
+[b]1[/b] friend :)
+[b]0 soon to be 1[/b] (small) structure...
+
+Foolish Flame has cross-mod interactions with a few other mods to add integration with this mod's mechanics:
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3032128572]Apotheosis[/url][/b],
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2840072000]Graham's Things[/url][/b],
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3313573016]Souls[/url][/b],
+& [b][url=https://github.com/Copious-Modding-Industries/copis_things]Copi's Things[/url][/b].
 
 [FIRE IMAGE]
 
-Discord: https://discord.gg/FKaRA9HMUq
-Github: https://github.com/SiriMoel/foolish_flame
+I hope you enjoy <3
 
-maybe begging for positive rating or some comment?
+Discord: https://discord.gg/FKaRA9HMUq (for discussion & questions)
+Github: https://github.com/SiriMoel/foolish_flame (for... nothing...?)
 
 [GURBERT IMAGE]
