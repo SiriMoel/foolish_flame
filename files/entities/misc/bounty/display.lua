@@ -25,6 +25,8 @@ if comp_shield_temp ~= nil then
     end
 end
 
+-- the idea to use SpriteParticleEmitterComponents for this was from Copith Eviscerator
+-- i assume that using children instead would be suboptimal... but might fix the x scale issue?
 local shard_comps = EntityGetComponent(this, "SpriteParticleEmitterComponent", "ff_shard")
 if #shard_comps > 0 then
     local frame_now = GameGetFrameNum()

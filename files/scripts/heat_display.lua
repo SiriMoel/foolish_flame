@@ -51,7 +51,7 @@ if heat > 0 or (frame ~= nil and (frame < frame_last + 60)) then
     local sprite = display.sprite
 
     if display.custom_logic ~= nil then
-        sprite = display.custom_logic()
+        sprite = display.custom_logic(heat)
     else
         if heat >= 400 and display.sprite_hot ~= nil then
             sprite = display.sprite_hot
