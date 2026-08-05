@@ -13,7 +13,7 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
         if comp ~= nil then
             local frame_damaged_last = ComponentGetValue2(comp, "value_int")
             local frame_now = GameGetFrameNum()
-            if not (frame_now >= frame_damaged_last + 12) then
+            if not (frame_now >= frame_damaged_last + 24) then
                 return 0, 0
             else
                 ComponentSetValue2(comp, "value_int", frame_now)
@@ -39,6 +39,12 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
                 damage = damage * 0.5
                 critical_hit_chance = 0
             end
+        end
+
+        local comp_dmg = EntityGetFirstComponentIncludingDisabled(this, "DamageModelComponent")
+        if comp_dmg ~= nil then
+            local max_hp = ComponentGetValue2(comp_dmg, "max_hp")
+            damage = math.min(damage, max_hp * 0.09)
         end
     end
 

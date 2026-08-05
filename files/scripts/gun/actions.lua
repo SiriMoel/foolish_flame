@@ -27,8 +27,8 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/flare.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "1,2,3,4,5,6",
-		spawn_probability = "0.4,0.8,0.9,1.0,1.0,0.8",
+		spawn_level = "1,2,3,4,5",
+		spawn_probability = "0.4,0.8,0.9,1.0,1.0",
 		price = 100,
 		mana = 20,
 		ai_never_uses = true, -- souls precaution
@@ -41,14 +41,34 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "FLARE_TRIGGER",
+		name = "$action_ff_flare_trigger",
+		description = "$actiondesc_ff_flare_trigger",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/flare_trigger.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/flare/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "2,3,4,5",
+		spawn_probability = "0.5,0.5,0.6,0.6",
+		price = 100,
+		mana = 25,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 3
+			c.screenshake = c.screenshake + 0.5
+			c.spread_degrees = c.spread_degrees - 1.0
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/flare/hitfx.xml,"
+			add_projectile_trigger_hit_world("mods/foolish_flame/files/entities/projectiles/flare/projectile.xml", 1)
+		end,
+	},
+	{
 		id = "HEAT_FLARE",
 		name = "$action_ff_heat_flare",
 		description = "$actiondesc_ff_heat_flare",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/heat_flare.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/heat_flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "2,3,4,5,6",
-		spawn_probability = "0.5,0.7,0.7,0.8,0.8",
+		spawn_level = "2,3,4,5",
+		spawn_probability = "0.5,0.7,0.7,0.8",
 		price = 100,
 		mana = 20,
 		ai_never_uses = true, -- souls precaution
@@ -68,7 +88,7 @@ local new_actions = {
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/aoe_flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "3,4,5,6",
-		spawn_probability = "0.3,0.6,0.7,0.7",
+		spawn_probability = "0.3,0.6,0.7,0.6",
 		price = 110,
 		mana = 60,
 		ai_never_uses = true, -- souls precaution
@@ -88,7 +108,7 @@ local new_actions = {
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/bullet_flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "3,4,5,6",
-		spawn_probability = "0.3,0.6,0.7,0.7",
+		spawn_probability = "0.3,0.6,0.7,0.6",
 		price = 120,
 		mana = 30,
 		ai_never_uses = true, -- souls precaution
