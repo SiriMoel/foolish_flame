@@ -59,10 +59,32 @@ heat_displays = {
     --[[{
         id = "special",
         name = "$ff_display_special",
-        name_t = "Canto VII",
-        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/flame.png",
-        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/flame_hot.png",
-        func_unlocked = function() return false end, -- NOT always unlocked
+        name_t = "Gilded",
+        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/gilded/1.png",
+        func_unlocked = function() 
+            if HasFlagPersistent("ff_laser_unlocked") then
+                return true
+            end
+            return false
+        end,
+        custom_logic = function(heat)
+            local frame = GameGetFrameNum()
+            local frames_per = 6
+            local path = "mods/foolish_flame/files/ui_gfx/heat_display/gilded/"
+            if heat >= 400 then
+                path = path .. "hot/"
+            end
+            local sprites = {
+                path .. "1.png",
+                path .. "2.png",
+                path .. "3.png",
+                path .. "4.png",
+                path .. "5.png",
+                path .. "6.png",
+                path .. "7.png",
+            }
+            return sprites[math.floor((frame / frames_per) % #sprites) + 1]
+        end,
     },]]
     {
         id = "gurbert",

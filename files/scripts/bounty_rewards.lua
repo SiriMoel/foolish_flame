@@ -37,12 +37,20 @@ bounty_rewards = {
             AddFlagPersistent("ff_laser_unlocked")
         end,
     },
+    --[[{
+        chance = 0.7,
+        spawn_func = function(x, y)
+            SetRandomSeed(x, y)
+            perk_spawn_random(x, y) -- needs data/scripts/perk/perk.lua
+        end,
+    },]]
+    {
+        chance = 1.6,
+        spawn_func = function(x, y)
+            EntityLoad("mods/foolish_flame/files/entities/items/taq_pol/item.xml", x, y - 4)
+        end,
+    },
 }
-
---[[
-    this is NYI
-    need to make the function to pick based on chances
-]]
 
 function BountyReward(x, y)
     SetRandomSeed(x, y)

@@ -1,0 +1,76 @@
+<Entity tags="item_pickup">
+
+    <AbilityComponent 
+        sprite_file="mods/foolish_flame/files/entities/items/taq_pol/sprite.xml"
+        ui_name="$item_ff_taq_pol" 
+        throw_as_item="1"
+        ><gun_config
+			deck_capacity="0"
+		></gun_config>
+    </AbilityComponent>
+
+    <LuaComponent
+        _tags="enabled_in_world"
+        script_source_file="mods/foolish_flame/files/entities/items/taq_pol/magic.lua"
+        execute_every_n_frame="16"
+    ></LuaComponent>
+
+    <ParticleEmitterComponent
+        _tags="enabled_in_world,enabled_in_hand"
+		emitted_material_name="spark_white"
+		offset.x="0"
+		offset.y="0"
+		x_pos_offset_min="-1"
+		x_pos_offset_max="1"
+		y_pos_offset_min="-1"
+		y_pos_offset_max="1"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		gravity.y="0.0"
+		count_min="0"
+		count_max="3"
+		lifetime_min="0.2"
+		lifetime_max="0.5"
+		is_trail="1"
+		trail_gap="1.0"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		airflow_force="0.5"
+		airflow_time="0.001"
+		airflow_scale="0.0833"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		create_real_particles="0"
+		is_emitting="1"
+    >
+	</ParticleEmitterComponent>
+	
+	<Base file="data/entities/base_item.xml" >
+        <ItemComponent
+            item_name="$item_ff_taq_pol"
+            ui_description="$itemdesc_ff_taq_pol"
+			play_hover_animation="1"
+            play_spinning_animation="0"
+            always_use_item_name_in_ui="1"
+            preferred_inventory="QUICK"
+			>
+        </ItemComponent>
+		
+		<SpriteComponent 
+			_tags="item,enabled_in_world,enabled_in_hand" 
+			alpha="1" 
+			image_file="mods/foolish_flame/files/entities/items/taq_pol/sprite.xml"
+			next_rect_animation="default" 
+			rect_animation="default"
+			z_index="-1.5" >
+		</SpriteComponent>
+		
+		<SimplePhysicsComponent
+            _enabled="0">
+        </SimplePhysicsComponent>
+    </Base>
+
+</Entity>

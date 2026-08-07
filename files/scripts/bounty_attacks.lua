@@ -65,6 +65,14 @@ bounty_attacks = {
             EntityAddChild(entity, child)
         end,
     },
+    {
+        id = "homing_attack",
+        shard_sprite = "mods/foolish_flame/files/entities/misc/bounty/shard_sprites/homing_attack.png",
+        func_init = function(entity, x, y)
+            local child = EntityLoad("mods/foolish_flame/files/entities/misc/bounty/homing_attack.xml", x, y)
+            EntityAddChild(entity, child)
+        end,
+    },
 }
 
 function BountyAttacks(entity, x, y, attack_count)
