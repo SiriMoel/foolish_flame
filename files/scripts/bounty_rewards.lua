@@ -31,7 +31,7 @@ bounty_rewards = {
         end,
     },
     {
-        chance = 0.1,
+        chance = 0.2,
         spawn_func = function(x, y)
             CreateItemActionEntity("FF_LASER", x, y - 6)
             AddFlagPersistent("ff_laser_unlocked")
@@ -48,6 +48,12 @@ bounty_rewards = {
         chance = 1.6,
         spawn_func = function(x, y)
             EntityLoad("mods/foolish_flame/files/entities/items/taq_pol/item.xml", x, y - 4)
+        end,
+    },
+    {
+        chance = 0.2,
+        spawn_func = function(x, y)
+            EntityLoad("mods/foolish_flame/files/entities/items/willows_lighter/item.xml", x, y - 4)
         end,
     },
 }

@@ -46,6 +46,10 @@ if translations ~= nil then
 end
 
 function OnModPostInit()
+	if ModIsEnabled("cheatgui") then
+		ModLuaFileAppend("data/hax/special_spawnables.lua", "mods/foolish_flame/files/scripts/cheatgui_special_spawnables.lua")
+	end
+
 	local wand_good_2_path = "data/entities/items/wands/wand_good/wand_good_2.xml"
 	local xml = nxml.parse(ModTextFileGetContent(wand_good_2_path))
 	xml:add_child(nxml.parse(([[
@@ -173,6 +177,11 @@ function OnPlayerSpawned(player)
 	if GameHasFlagRun("ff_init") then return end
 	GameAddFlagRun("ff_init")
 
+	if HasFlagPersistent("ff_died_with_willows_lighter") then
+		EntityLoad("mods/foolish_flame/files/entities/items/willows_lighter/item.xml", x + 6, y)
+		RemoveFlagPersistent("ff_died_with_willows_lighter")
+	end
+
 	--GlobalsSetValue("ff_heat_display", tostring(ModSettingGet("foolish_flame.heat_display")))
 
 	EntityAddComponent2(player, "VariableStorageComponent", {
@@ -193,6 +202,11 @@ function OnPlayerSpawned(player)
 
 	EntityAddComponent2(player, "LuaComponent", {
 		script_shot="mods/foolish_flame/files/scripts/shot.lua",
+		execute_every_n_frame=-1
+	})
+
+	EntityAddComponent2(player, "LuaComponent", {
+		script_death="mods/foolish_flame/files/scripts/player_death.lua",
 		execute_every_n_frame=-1
 	})
 end

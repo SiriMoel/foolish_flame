@@ -20,7 +20,7 @@ This heat display can take multiple appearances, which can be cycled using the [
 So far, this mod adds:
 [b]27[/b] spells
 [b]2[/b] perks
-[b]1[/b] wand"s" "and" item"s"
+[b]3[/b] items
 [b]1[/b] friend :)
 [b]0 soon to be 1[/b] (small) structure...
 
