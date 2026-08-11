@@ -2,6 +2,17 @@ dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 
 bounty_attacks = {
     {
+        id = "two",
+        shard_sprite = "mods/foolish_flame/files/entities/misc/bounty/shard_sprites/two.png",
+        func_init = function(entity, x, y)
+            for i=1,2 do
+                SetRandomSeed(y + entity, x + i)
+                local num = Random(2, #bounty_attacks) -- can't add this
+                AddBountyAttack(entity, x, y, num) 
+            end
+        end,
+    },
+    {
         id = "heat_loss_field",
         shard_sprite = "mods/foolish_flame/files/entities/misc/bounty/shard_sprites/heat_loss_field.png",
         func_init = function(entity, x, y)
@@ -73,31 +84,51 @@ bounty_attacks = {
             EntityAddChild(entity, child)
         end,
     },
+    {
+        id = "slash",
+        shard_sprite = "mods/foolish_flame/files/entities/misc/bounty/shard_sprites/slash.png",
+        func_init = function(entity, x, y)
+            local child = EntityLoad("mods/foolish_flame/files/entities/misc/bounty/slash_attack.xml", x, y)
+            EntityAddChild(entity, child)
+        end,
+    },
 }
 
-function BountyAttacks(entity, x, y, attack_count)
-    --local attacks = {}
-    for i=1,attack_count do
-        SetRandomSeed(x, y + i)
-        local num = Random(1, #bounty_attacks)
-        bounty_attacks[num].func_init(entity, x, y)
-        --table.insert(attacks, bounty_attacks[num].id)
+function AddBountyAttack(entity, x, y, index)
+    local attack
+    if type(index) == "number" then
+        attack = bounty_attacks[index]
+    elseif type(index) == "string" then
+        for i=1,#bounty_attacks do
+            if bounty_attacks[i].id == index then
+                attack = bounty_attacks[i]
+                break
+            end
+        end
+    elseif type(index) == "table" then
+        for i=1,#index do
+            AddBountyAttack(entity, x, y, index[i])
+        end
+    end
+    if attack ~= nil then
+        attack.func_init(entity, x, y)
         EntityAddComponent2(entity, "SpriteParticleEmitterComponent", {
             _tags="ff_shard",
-            sprite_file=bounty_attacks[num].shard_sprite or "mods/foolish_flame/files/entities/misc/bounty/shard_sprites/flares.png",
+            sprite_file=attack.shard_sprite or "mods/foolish_flame/files/entities/misc/bounty/shard_sprites/flares.png",
             sprite_centered=true,
             count_min=1,
             count_max=1,
             emission_interval_min_frames=1,
-		    emission_interval_max_frames=1,
+	        emission_interval_max_frames=1,
         })
+        return attack.id
     end
-    --[[local str = ""
-    for i=1,#attacks do
-        str = str .. attacks[i]
-        if i < #attacks then
-            str = str .. ", "
-        end
+end
+
+function BountyAttacks(entity, x, y, attack_count)
+    for i=1,attack_count do
+        SetRandomSeed(x, y + i)
+        local num = Random(1, #bounty_attacks)
+        AddBountyAttack(entity, x, y, num)
     end
-    print("Added attacks " .. str .. " to FF bounty enemy")]]
 end

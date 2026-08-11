@@ -5,5 +5,10 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 	local this = GetUpdatedEntityID()
 	local x, y = EntityGetTransform(this)
 
-	BountyReward(x, y)
+	if EntityHasTag(entity_thats_responsible, "ff_extra_bounty_reward") then
+		BountyReward(x - 6, y)
+		BountyReward(x + 6, y)
+	else
+		BountyReward(x, y)
+	end
 end

@@ -1,12 +1,16 @@
+dofile_once("data/scripts/perks/perk.lua")
+
 bounty_rewards = {
     {
-        chance = 4.0,
+        id = "nothing",
+        chance = 3.0, -- should there even be a chance to get nothing?
         spawn_func = function(x, y)
             -- this is "air"? so... nothing...
         end,
     },
     {
-        chance = 3.0,
+        id = "gold",
+        chance = 4.0,
         spawn_func = function(x, y)
             SetRandomSeed(x, y)
             for i=1,Random(3, 6) do
@@ -15,7 +19,8 @@ bounty_rewards = {
         end,
     },
     {
-        chance = 4.0,
+            id = "t10_spell",
+        chance = 5.0,
         spawn_func = function(x, y)
             SetRandomSeed(x, y)
             local action = GetRandomAction(x, y, 10, 0)
@@ -23,7 +28,8 @@ bounty_rewards = {
         end,
     },
     {
-        chance = 1.2,
+        id = "twospells",
+        chance = 2.0,
         spawn_func = function(x, y)
             SetRandomSeed(x, y)
             CreateItemActionEntity(GetRandomAction(x, y, 6, 0), x - 10, y - 6)
@@ -31,29 +37,57 @@ bounty_rewards = {
         end,
     },
     {
-        chance = 0.2,
+        id = "laser",
+        chance = 0.5, -- ?
         spawn_func = function(x, y)
             CreateItemActionEntity("FF_LASER", x, y - 6)
             AddFlagPersistent("ff_laser_unlocked")
         end,
     },
-    --[[{
-        chance = 0.7,
-        spawn_func = function(x, y)
-            SetRandomSeed(x, y)
-            perk_spawn_random(x, y) -- needs data/scripts/perk/perk.lua
-        end,
-    },]]
     {
-        chance = 1.6,
+        id = "taq_pol",
+        chance = 1.8,
         spawn_func = function(x, y)
             EntityLoad("mods/foolish_flame/files/entities/items/taq_pol/item.xml", x, y - 4)
         end,
     },
     {
-        chance = 0.2,
+        id = "willowslighter",
+        chance = 0.1, -- is it possible?
         spawn_func = function(x, y)
             EntityLoad("mods/foolish_flame/files/entities/items/willows_lighter/item.xml", x, y - 4)
+        end,
+    },
+    {
+        id = "sword",
+        chance = 0.4,
+        spawn_func = function(x, y)
+            EntityLoad("mods/foolish_flame/files/entities/items/sword/item.xml", x, y - 4)
+        end,
+    },
+    {
+        id = "bountyperk",
+        chance = 0.6,
+        spawn_func = function(x, y)
+            local player = EntityGetWithTag("player_unit")[1]
+            if not EntityHasTag(player, "ff_extra_bounty_reward") then
+                perk_spawn(x, y - 6, "FF_EXTRA_BOUNTY_REWARD")
+            else
+                SetRandomSeed(x, y)
+                local action = GetRandomAction(x, y, 10, 0)
+                CreateItemActionEntity(action, x, y - 6)
+            end
+        end,
+    },
+    {
+        id = "flarewand",
+        chance = 0.5,
+        spawn_func = function(x, y)
+            local wand = EntityLoad("mods/foolish_flame/files/entities/items/flare_wand/wand.xml", x, y - 4)
+            local comp = EntityGetFirstComponentIncludingDisabled(wand, "LuaComponent", "towerwandpickupscript")
+            if comp ~= nil then
+                EntityRemoveComponent(wand, comp)
+            end
         end,
     },
 }
@@ -77,4 +111,28 @@ function BountyReward(x, y)
             break
         end
     end
+end
+
+function RewardsTest(amt)
+    local chance_total = 0.0
+    for i,v in ipairs(bounty_rewards) do
+        v.chance_min = chance_total
+        v.chance_max = chance_total + v.chance
+        chance_total = v.chance_max
+    end
+    local rewards = {}
+    for i=1,amt do
+        local num = Random(0, math.floor(chance_total)) + 0.1 * Random(0, (chance_total - math.floor(chance_total)) * 10)
+        for _,v in ipairs(bounty_rewards) do
+            if num >= v.chance_min and num < v.chance_max then
+                table.insert(rewards, v.id)
+                break
+            end
+        end
+    end
+    local str = "Picked " .. amt .. " bounty rewards:"
+    for i,v in ipairs(rewards) do
+        str = str .. " " .. v
+    end
+    print(str)
 end

@@ -1,0 +1,105 @@
+<Entity tags="item">
+
+    <AbilityComponent
+        ui_name="$item_ff_sword" 
+        throw_as_item="0"
+        ><gun_config
+			deck_capacity="0"
+		></gun_config>
+    </AbilityComponent>
+
+	<ItemComponent
+		_tags="enabled_in_world"
+    	is_pickable="1"
+		ui_sprite="mods/foolish_flame/files/entities/items/sword/sprite.png"
+        item_name="$item_ff_sword"
+        ui_description="$itemdesc_ff_sword"
+		play_hover_animation="1"
+        play_spinning_animation="0"
+        always_use_item_name_in_ui="1"
+        preferred_inventory="QUICK"
+		>
+    </ItemComponent>
+
+  	<VelocityComponent
+	    _tags="enabled_in_world"
+	  	gravity_y="400"
+	  	air_friction="0.55"
+	  	terminal_velocity="1000" >
+  	</VelocityComponent>
+	
+  	<SimplePhysicsComponent
+	    _tags="enabled_in_world"
+		_enabled="0"
+	></SimplePhysicsComponent>
+  
+  	<HitboxComponent 
+	    _tags="enabled_in_world"
+	    aabb_max_x="4" 
+	    aabb_max_y="4" 
+	    aabb_min_x="-4" 
+	    aabb_min_y="-4" 
+	    is_enemy="0" 
+	    is_item="1" 
+	    is_player="0" >
+  	</HitboxComponent>
+
+  	<LightComponent 
+	    _tags="enabled_in_world"
+	    radius="64" >
+  	</LightComponent>
+
+	<LuaComponent
+		_tags="enabled_in_hand"
+		script_source_file="mods/foolish_flame/files/entities/items/sword/sword.lua"
+		execute_every_n_frame="6"
+	></LuaComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand,sprite_hand"
+		_enabled="0"
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/foolish_flame/files/entities/items/sword/sprite_in_hand.png"
+	></SpriteComponent>
+
+	<SpriteComponent 
+		_tags="enabled_in_world,sprite_world" 
+		_enabled="1"
+		alpha="1" 
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/foolish_flame/files/entities/items/sword/sprite_in_hand.png"
+		z_index="-1.5" >
+	</SpriteComponent>
+
+	<ParticleEmitterComponent
+        _tags="enabled_in_hand"
+        emitted_material_name="spark"
+        count_min="38"
+        count_max="38"
+        offset.x="7"
+        offset.y="0"
+        x_pos_offset_min="-0"
+        x_pos_offset_max="0"
+        y_pos_offset_min="-1"
+        y_pos_offset_max="1"
+		velocity_always_away_from_center="1"
+        x_vel_min="430"
+        x_vel_max="430"
+        y_vel_min="-1"
+        y_vel_max="1"
+        lifetime_min="0.16"
+        lifetime_max="0.16"
+        create_real_particles="0"
+        emit_cosmetic_particles="1"
+        emission_interval_min_frames="1"
+        emission_interval_max_frames="1"
+	    delay_frames="1"
+        is_emitting="1"
+		draw_as_long="1"
+        gravity.x="0"
+        gravity.y="0"
+    ></ParticleEmitterComponent>
+
+</Entity>

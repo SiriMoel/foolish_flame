@@ -8,21 +8,21 @@ Heat is acquired from many sources (including by holding kiuaskivi), but mainly 
 What is Magic Fire? A new status effect that is inflicted by many of the mod's spells and has 10 temperature levels.
 The higher the temperature, the more heat is granted & the more powerful some of the mod's spells are against that enemy.
 
-Heat always grants a passive damage boost and is also used as a currency of sorts for many of the mod's spells.
+Heat grants a passive damage boost and is also used as a currency of sorts for many of the mod's spells.
 The more heat you have, the higher the damage boost & the more powerful your spells become!
 
 How much heat you have is shown by a meter that appears above the player when you have any:
 [HEAT DISPLAY GIF]
 This heat display can take multiple appearances, which can be cycled using the [b][[/b] and [b]][/b] keys in-game.
 
-[FLARES IMAGE]
+[FLARES IMAGE]?
 
 So far, this mod adds:
-[b]27[/b] spells
-[b]2[/b] perks
-[b]3[/b] items
+[b]28[/b] spells
+[b]3[/b] perks
+[b]5[/b] items
 [b]1[/b] friend :)
-[b]0 soon to be 1[/b] (small) structure...
+[b]1[/b] structure...
 
 Foolish Flame has cross-mod interactions with a few other mods to add integration with this mod's mechanics:
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3032128572]Apotheosis[/url][/b],
@@ -34,7 +34,7 @@ Foolish Flame has cross-mod interactions with a few other mods to add integratio
 
 I hope you enjoy <3
 
-Discord: https://discord.gg/FKaRA9HMUq (for discussion & questions)
-Github: https://github.com/SiriMoel/foolish_flame (for... nothing...?)
+Discord: https://discord.gg/FKaRA9HMUq
+Github: https://github.com/SiriMoel/foolish_flame
 
 [GURBERT IMAGE]

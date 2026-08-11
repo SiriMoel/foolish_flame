@@ -1,7 +1,7 @@
-<Entity tags="item,ff_willows_lighter">
+<Entity tags="item">
 
     <AbilityComponent
-        ui_name="$item_ff_willows_lighter" 
+        ui_name="$item_ff_lighter" 
         throw_as_item="0"
         ><gun_config
 			deck_capacity="0"
@@ -23,28 +23,34 @@
 	<LuaComponent
 		_tags="enabled_in_hand,enabled_in_inventory,enabled_in_world"
 		_enabled="1"
-		script_source_file="mods/foolish_flame/files/entities/items/willows_lighter/update.lua"
+		script_source_file="mods/foolish_flame/files/entities/items/lighter/update.lua"
 		execute_every_n_frame="1"
 	></LuaComponent>
 
 	<LuaComponent
 		_tags="enabled_in_hand"
-		script_source_file="mods/foolish_flame/files/entities/items/willows_lighter/open.lua"
+		script_source_file="mods/foolish_flame/files/entities/items/lighter/open.lua"
 		execute_every_n_frame="1"
 	></LuaComponent>
 
 	<LuaComponent
 		_tags="enabled_in_inventory"
-		script_source_file="mods/foolish_flame/files/entities/items/willows_lighter/in_inventory.lua"
+		script_source_file="mods/foolish_flame/files/entities/items/lighter/in_inventory.lua"
 		execute_every_n_frame="30"
+	></LuaComponent>
+
+	<LuaComponent
+		_enabled="1"
+		script_item_picked_up="mods/foolish_flame/files/entities/items/lighter/pickup.lua"
+		execute_every_n_frame="-1"
 	></LuaComponent>
 
 	<ItemComponent
 		_tags="enabled_in_world"
     	is_pickable="1"
-		ui_sprite="mods/foolish_flame/files/entities/items/willows_lighter/sprite.png"
-        item_name="$item_ff_willows_lighter"
-        ui_description="$itemdesc_ff_willows_lighter"
+		ui_sprite="mods/foolish_flame/files/entities/items/lighter/sprite.png"
+        item_name="$item_ff_lighter"
+        ui_description="$itemdesc_ff_lighter"
 		play_hover_animation="1"
         play_spinning_animation="0"
         always_use_item_name_in_ui="1"
@@ -85,7 +91,7 @@
 		_enabled="0"
 		offset_x="2"
 		offset_y="4"
-		image_file="mods/foolish_flame/files/entities/items/willows_lighter/sprite_in_hand.png"
+		image_file="mods/foolish_flame/files/entities/items/lighter/sprite_in_hand.png"
 	></SpriteComponent>
 
 	<SpriteComponent 
@@ -94,21 +100,21 @@
 		alpha="1" 
 		offset_x="2"
 		offset_y="4"
-		image_file="mods/foolish_flame/files/entities/items/willows_lighter/sprite_in_hand.png"
+		image_file="mods/foolish_flame/files/entities/items/lighter/sprite_in_hand.png"
 		z_index="-1.5" >
 	</SpriteComponent>
 
 	<LuaComponent
 		_tags="ff_lighter"
 		_enabled="0"
-		script_source_file="mods/foolish_flame/files/entities/items/willows_lighter/lighter.lua"
+		script_source_file="mods/foolish_flame/files/entities/items/lighter/lighter.lua"
 		execute_every_n_frame="15"
 	></LuaComponent>
 
 	<LuaComponent
 		_tags="ff_lighter"
 		_enabled="0"
-		script_shot="mods/foolish_flame/files/entities/items/willows_lighter/shot.lua"
+		script_shot="mods/foolish_flame/files/entities/items/lighter/shot.lua"
 		execute_every_n_frame="-1"
 	></LuaComponent>
 
@@ -127,7 +133,7 @@
 	<ParticleEmitterComponent
         _tags="ff_lighter"
 		_enabled="0"
-        emitted_material_name="spark_green_bright"
+        emitted_material_name="spark"
         count_min="0"
         count_max="2"
         offset.x="1.5"
@@ -155,7 +161,7 @@
     <ParticleEmitterComponent
         _tags="ff_lighter"
 		_enabled="0"
-        emitted_material_name="spark_teal"
+        emitted_material_name="flame"
         count_min="1"
         count_max="2"
         offset.x="1.5"

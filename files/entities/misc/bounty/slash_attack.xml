@@ -1,0 +1,12 @@
+<Entity tags="ff_bounty_attack">
+
+    <InheritTransformComponent
+        _enabled="1"
+    ></InheritTransformComponent>
+
+    <LuaComponent
+        script_source_file="mods/foolish_flame/files/entities/misc/bounty/slash_attack.lua"
+        execute_every_n_frame="80"
+    ></LuaComponent>
+
+</Entity>

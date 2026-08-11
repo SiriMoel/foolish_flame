@@ -14,6 +14,26 @@ local ff_to_add = {
         name = "Wand of Magic Fire",
         xml = "wand.xml",
     },
+    {
+        path = "mods/foolish_flame/files/entities/items/sword/item.xml",
+        name = "foolish flame sword",
+        xml = "item.xml",
+    },
+    {
+        path = "mods/foolish_flame/files/entities/items/lighter/item.xml",
+        name = "Lighter",
+        xml = "item.xml",
+    },
+    {
+        path = "mods/foolish_flame/files/entities/gurbert/gurbert.xml",
+        name = "Gurbert",
+        xml = "gurbert.xml",
+    },
+    {
+        path = "mods/foolish_flame/files/structures/bounty_bunker/spawner.xml",
+        name = "Bounty Bunker",
+        xml = "spawner.xml",
+    },
 }
 
 for i,v in ipairs(ff_to_add) do

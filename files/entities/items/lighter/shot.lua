@@ -6,7 +6,7 @@ function shot(proj)
         if state then
             EntityAddComponent2(proj, "HitEffectComponent", {
                 effect_hit="LOAD_UNIQUE_CHILD_ENTITY",
-                value_string="mods/foolish_flame/files/entities/items/willows_lighter/hit_entity.xml",
+                value_string="mods/foolish_flame/files/entities/items/lighter/hit_entity.xml",
             })
         end
     end 

@@ -202,7 +202,7 @@ local new_actions = {
 		name = "$action_ff_engine",
 		description = "$actiondesc_ff_engine",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/engine.png",
-		type = ACTION_TYPE_MODIFIER,
+		type = ACTION_TYPE_MODIFIER, -- should it be utility like blood magic?
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.5,0.6,0.7,0.7",
 		price = 250,
@@ -278,101 +278,6 @@ local new_actions = {
 		end,
 	},
 	{
-		id = "MAGIC_FIRE", -- only found on wand of magic fire as an always cast
-		name = "$action_ff_magic_fire",
-		description = "$actiondesc_ff_magic_fire",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/magic_fire.png",
-		type = ACTION_TYPE_MODIFIER,
-		spawn_level = "10",
-		spawn_probability = "0.0",
-		price = 100,
-		mana = 0,
-		ai_never_uses = true, -- souls precaution
-		action = function()
-			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/magic_fire/hitfx.xml,"
-			draw_actions(1, true)
-		end,
-	},
-	{
-		id = "WILLOW_WISP", -- "will-o'-the-wisp" / "will of the torch" / "ignis fatuus" / "foolish flame"
-		name = "$action_ff_willow_wisp",
-		description = "$actiondesc_ff_willow_wisp",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/willow_wisp.png",
-		type = ACTION_TYPE_PASSIVE,
-		spawn_level = "4,5,6,10",
-		spawn_probability = "0.2,0.3,0.3,0.2",
-		price = 300,
-		mana = 10,
-		ai_never_uses = true, -- souls precaution
-		custom_xml_file="mods/foolish_flame/files/entities/misc/willow_wisp/card.xml",
-		action = function()
-			current_reload_time = current_reload_time + 1
-			draw_actions(1, true)
-		end,
-	},
-	{
-		id = "THERMODYNAMICS",
-		name = "$action_ff_thermodynamics",
-		description = "$actiondesc_ff_thermodynamics",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/thermodynamics.png",
-		type = ACTION_TYPE_PASSIVE,
-		spawn_level = "3,4,5,6",
-		spawn_probability = "0.4,0.6,0.5,0.5",
-		price = 120,
-		mana = 12,
-		ai_never_uses = true, -- souls precaution
-		custom_xml_file="mods/foolish_flame/files/entities/misc/card_thermodynamics/card.xml",
-		action = function()
-			current_reload_time = current_reload_time + 2
-			draw_actions(1, true)
-		end,
-	},
-	{
-		id = "RADIATOR",
-		name = "$action_ff_radiator",
-		description = "$actiondesc_ff_radiator",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/radiator.png",
-		type = ACTION_TYPE_UTILITY,
-		spawn_level = "4,5,6",
-		spawn_probability = "0.5,0.5,0.5",
-		price = 200,
-		mana = 500,
-		max_uses = 40,
-		--never_unlimited = true,
-		ai_never_uses = true, -- souls precaution
-		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 30
-			current_reload_time = current_reload_time + 20
-			if not reflecting then
-				AddHeat(20)
-			end
-		end,
-	},
-	{
-		id = "PHOENIX_FIELD",
-		name = "$action_ff_phoenix_field",
-		description = "$actiondesc_ff_phoenix_field",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/phoenix_field.png",
-		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/phoenix_field/proj.xml"},
-		type = ACTION_TYPE_STATIC_PROJECTILE,
-		spawn_level = "2,3,4,5,6",
-		spawn_probability = "0.3,0.3,0.4,0.3,0.4",
-		price = 250,
-		mana = 80,
-		max_uses = 3,
-		never_unlimited = true,
-		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 20
-			local heat = GetHeat()
-			if heat > 20 or reflecting then
-				local amt = 20 + (heat - 20) * 0.16
-				c.damage_healing_add = c.damage_healing_add - amt * 0.02
-				RemoveHeat(amt)
-				add_projectile("mods/foolish_flame/files/entities/projectiles/phoenix_field/proj.xml")
-			end
-		end,
-	},
-	{
 		id = "BUNSEN",
 		name = "$action_ff_bunsen",
 		description = "$actiondesc_ff_bunsen",
@@ -438,6 +343,130 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "PHOENIX_FIELD",
+		name = "$action_ff_phoenix_field",
+		description = "$actiondesc_ff_phoenix_field",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/phoenix_field.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/phoenix_field/proj.xml"},
+		type = ACTION_TYPE_STATIC_PROJECTILE,
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.3,0.3,0.4,0.3,0.4",
+		price = 250,
+		mana = 80,
+		max_uses = 3,
+		never_unlimited = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			local heat = GetHeat()
+			if heat > 20 or reflecting then
+				local amt = 20 + (heat - 20) * 0.16
+				c.damage_healing_add = c.damage_healing_add - amt * 0.02
+				RemoveHeat(amt)
+				add_projectile("mods/foolish_flame/files/entities/projectiles/phoenix_field/proj.xml")
+			end
+		end,
+	},
+	{
+		id = "RADIATOR",
+		name = "$action_ff_radiator",
+		description = "$actiondesc_ff_radiator",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/radiator.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "4,5,6",
+		spawn_probability = "0.5,0.5,0.5",
+		price = 200,
+		mana = 500,
+		max_uses = 40,
+		--never_unlimited = true,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			current_reload_time = current_reload_time + 20
+			if not reflecting then
+				AddHeat(20)
+			end
+		end,
+	},
+	{
+		id = "BLEEDING_HEAT",
+		name = "$action_ff_bleeding_heat",
+		description = "$actiondesc_ff_bleeding_heat",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/bleeding_heat.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "5,6,10",
+		spawn_probability = "0.3,0.4,0.3",
+		price = 150,
+		mana = 7,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 18
+			current_reload_time = current_reload_time + 12
+			if reflecting then return end
+			local caster = GetUpdatedEntityID()
+			if EntityHasTag(caster, "player_unit") then
+				local comps = EntityGetComponent(caster, "DamageModelComponent") or {}
+				if #comps > 0 then
+					for _,comp in ipairs(comps) do
+						local hp = ComponentGetValue2(comp, "hp")
+						hp = math.max(hp - 0.28, 0.04)
+						ComponentSetValue2(comp, "hp", hp)
+					end
+				end
+				AddHeat(38, caster)
+			end
+		end,
+	},
+	{
+		id = "THERMODYNAMICS",
+		name = "$action_ff_thermodynamics",
+		description = "$actiondesc_ff_thermodynamics",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/thermodynamics.png",
+		type = ACTION_TYPE_PASSIVE,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.4,0.6,0.5,0.5",
+		price = 120,
+		mana = 12,
+		ai_never_uses = true, -- souls precaution
+		custom_xml_file="mods/foolish_flame/files/entities/misc/card_thermodynamics/card.xml",
+		action = function()
+			current_reload_time = current_reload_time + 2
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "WILLOW_WISP", -- "will-o'-the-wisp" / "will of the torch" / "ignis fatuus" / "foolish flame"
+		name = "$action_ff_willow_wisp",
+		description = "$actiondesc_ff_willow_wisp",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/willow_wisp.png",
+		type = ACTION_TYPE_PASSIVE,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.3,0.2",
+		price = 300,
+		mana = 10,
+		ai_never_uses = true, -- souls precaution
+		custom_xml_file="mods/foolish_flame/files/entities/misc/willow_wisp/card.xml",
+		action = function()
+			current_reload_time = current_reload_time + 1
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "MAGIC_FIRE", -- only found on wand of magic fire as an always cast
+		name = "$action_ff_magic_fire",
+		description = "$actiondesc_ff_magic_fire",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/magic_fire.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "10",
+		spawn_probability = "0.0",
+		price = 100,
+		mana = 0,
+		ai_never_uses = true, -- souls precaution
+		action = function()
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/magic_fire/hitfx.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
 		id = "LASER",
 		name = "$action_ff_laser",
 		description = "$actiondesc_ff_laser",
@@ -452,15 +481,14 @@ local new_actions = {
 		ai_never_uses = true, -- souls precaution
 		custom_xml_file="mods/foolish_flame/files/entities/misc/card_laser.xml",
 		action = function()
-			--[[
-				why does add trigger break this?
-			]]
+			-- why does add trigger break this?
 			c.fire_rate_wait = c.fire_rate_wait + 40
 			current_reload_time = current_reload_time + 3
 			if reflecting then add_projectile("mods/foolish_flame/files/entities/projectiles/laser/projectile.xml") return end -- is this needed?
 			if GetHeat() <= 0 then FF_Revs = 0 return end
 			add_projectile("mods/foolish_flame/files/entities/projectiles/laser/projectile.xml")
 			-- i think this Revs thing is from copith originally
+			-- what if instead of Revs it was RevisJames? :thinking:
 			local caster = GetUpdatedEntityID()
 			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent")
 			if controls_component ~= nil then

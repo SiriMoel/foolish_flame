@@ -7,21 +7,11 @@ local comp_state = EntityGetFirstComponentIncludingDisabled(this, "VariableStora
 if comp_state ~= nil then
     local state = ComponentGetValue2(comp_state, "value_bool")
 
-    local root = EntityGetRootEntity(this)
-    if this == root then
-        if state then
-            GamePlaySound("data/audio/Desktop/animals.bank", "animals/shotgun_cock", x, y)
-            GamePlaySound("data/audio/Desktop/materials.bank", "collision/lantern/joint_break", x, y)
-            state = false
-            ComponentSetValue2(comp_state, "value_bool", false)
-        end
-    end
-
-    local sprite = "mods/foolish_flame/files/entities/items/willows_lighter/sprite.png"
-    local sprite_in_hand = "mods/foolish_flame/files/entities/items/willows_lighter/sprite_in_hand.png"
+    local sprite = "mods/foolish_flame/files/entities/items/lighter/sprite.png"
+    local sprite_in_hand = "mods/foolish_flame/files/entities/items/lighter/sprite_in_hand.png"
     if state then
-        sprite = "mods/foolish_flame/files/entities/items/willows_lighter/sprite_open.png"
-        sprite_in_hand = "mods/foolish_flame/files/entities/items/willows_lighter/sprite_open_in_hand.png"
+        sprite = "mods/foolish_flame/files/entities/items/lighter/sprite_open.png"
+        sprite_in_hand = "mods/foolish_flame/files/entities/items/lighter/sprite_open_in_hand.png"
     end
     local comp_item = EntityGetFirstComponentIncludingDisabled(this, "ItemComponent")
     ComponentSetValue2(comp_item, "ui_sprite", sprite)

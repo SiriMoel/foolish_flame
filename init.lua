@@ -34,6 +34,31 @@ local content = ModTextFileGetContent("data/scripts/gun/procedural/starting_wand
 content = content:gsub("\"SPITTER\"", "\"SPITTER\",\"FF_SPARKLE\"")
 ModTextFileSetContent("data/scripts/gun/procedural/starting_wand.lua", content)
 
+-- in grahamth we trust (from souls, but from graham(th?) origininally) im 99% sure this is used with permission
+local function add_scene(table)
+	local biome_path = ModIsEnabled("noitavania") and "mods/noitavania/data/biome/_pixel_scenes.xml" or "data/biome/_pixel_scenes.xml"
+	local content = ModTextFileGetContent(biome_path)
+	local string = "<mBufferedPixelScenes>"
+	local worldsize = ModTextFileGetContent("data/compatibilitydata/worldsize.txt") or 35840
+	for i = 1, #table do
+		string = string .. [[<PixelScene pos_x="]] .. table[i][1] .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+		if table[i][4] then
+			-- make things show up in first 2 parallel worlds
+			-- hopefully this won't cause too much lag when starting a run
+			string = string .. [[<PixelScene pos_x="]] .. table[i][1] + worldsize .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+			string = string .. [[<PixelScene pos_x="]] .. table[i][1] - worldsize .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+			string = string .. [[<PixelScene pos_x="]] .. table[i][1] + worldsize * 2 .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+			string = string .. [[<PixelScene pos_x="]] .. table[i][1] - worldsize * 2 .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+		end
+	end
+	content = content:gsub("<mBufferedPixelScenes>", string)
+	ModTextFileSetContent(biome_path, content)
+end
+local scenes = {
+    --{0, 0, "mods/foolish_flame/files/structures/bounty_bunker/spawner.xml", false},
+}
+add_scene(scenes)
+
 -- translations
 local translations = ModTextFileGetContent("data/translations/common.csv")
 if translations ~= nil then
@@ -86,6 +111,10 @@ function OnModPostInit()
 	if ModIsEnabled("Apotheosis") then -- why is it capitalised...
 		table.insert(projectiles_to_modify, "mods/Apotheosis/files/entities/projectiles/deck/wall_of_fire.xml")
 	end
+	if ModIsEnabled("souls") then
+		table.insert(projectiles_to_modify, "mods/souls/files/entities/projectiles/tome_shot/proj.xml")
+		table.insert(projectiles_to_modify, "mods/souls/files/entities/projectiles/tome_seek/proj.xml")
+	end
 	for i,v in ipairs(projectiles_to_modify) do
 		local xml = nxml.parse(ModTextFileGetContent(v))
 		xml:add_child(nxml.parse(([[
@@ -100,6 +129,9 @@ function OnModPostInit()
 	local modify_add_small_magic_fire_radius = {
 		"data/entities/misc/custom_cards/torch.xml", -- this applies to apotheosis fire charge spell because they use the same card entity?
 	}
+	if ModIsEnabled("souls") then
+		table.insert(modify_add_small_magic_fire_radius, "mods/souls/files/entities/misc/card_soul_fire/card.xml")
+	end
 	for i,v in ipairs(modify_add_small_magic_fire_radius) do
 		local xml = nxml.parse(ModTextFileGetContent(v))
 		xml:add_child(nxml.parse(([[
@@ -145,7 +177,6 @@ function OnModPostInit()
 	local modify_bounty_enemies = {
 		"data/entities/animals/the_end/gazer.xml",
 		"data/entities/animals/the_end/spitmonster.xml",
-		--"data/entities/animals/the_end/bloodcrystal_physics.xml",
 		"data/entities/animals/the_end/worm_end.xml",
 		"data/entities/animals/wraith.xml",
 		"data/entities/animals/wraith_glowing.xml",
@@ -209,6 +240,8 @@ function OnPlayerSpawned(player)
 		script_death="mods/foolish_flame/files/scripts/player_death.lua",
 		execute_every_n_frame=-1
 	})
+
+	dofile_once("mods/foolish_flame/files/scripts/bounty_rewards.lua") RewardsTest(300)
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)

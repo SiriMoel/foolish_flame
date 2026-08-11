@@ -163,7 +163,7 @@ function MakeBountyEnemy(entity, attack_count)
         ComponentSetValue2(comp, "max_hp", max_hp * hp_mult)
     end
 
-    local shield_temp = math.min(math.max(math.floor(5 + (y - 20000)/3000), 1), 9)
+    local shield_temp = math.min(math.max(math.floor(5 + (y - 20000)/5000), 1), 9)
     EntityAddComponent2(entity, "VariableStorageComponent", {
         _tags="ff_bounty_shield_temp",
 		name="ff_bounty_shield_temp",
@@ -200,4 +200,15 @@ function MakeBountyEnemy(entity, attack_count)
     EntityAddChild(entity, EntityLoad("mods/foolish_flame/files/entities/misc/bounty/particles.xml", x, y))
 
     BountyAttacks(entity, x, y, attack_count or (2 + math.min(math.floor(y/20000), 3)))
+end
+
+function GetFireTemperature(entity)
+    local e = EntityGetAllChildren(entity, "ff_magic_fire_effect") or {}
+    if #e > 0 then
+        local comp_temp = EntityGetFirstComponentIncludingDisabled(e[1], "VariableStorageComponent", "fire_temp")
+        if comp_temp ~= nil then
+            return ComponentGetValue2(comp_temp, "value_int")
+        end
+    end
+    return 0
 end
