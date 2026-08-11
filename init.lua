@@ -241,7 +241,7 @@ function OnPlayerSpawned(player)
 		execute_every_n_frame=-1
 	})
 
-	dofile_once("mods/foolish_flame/files/scripts/bounty_rewards.lua") RewardsTest(300)
+	--dofile_once("mods/foolish_flame/files/scripts/bounty_rewards.lua") RewardsTest(300)
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)

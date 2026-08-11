@@ -29,6 +29,7 @@
 
 	<LuaComponent
 		_tags="enabled_in_hand"
+		_enabled="0"
 		script_source_file="mods/foolish_flame/files/entities/items/willows_lighter/open.lua"
 		execute_every_n_frame="1"
 	></LuaComponent>
