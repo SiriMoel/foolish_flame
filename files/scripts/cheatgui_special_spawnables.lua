@@ -34,6 +34,11 @@ local ff_to_add = {
         name = "Bounty Bunker",
         xml = "spawner.xml",
     },
+    {
+        path = "mods/foolish_flame/files/entities/items/heart_lighter/item.xml",
+        name = "Heart Lighter",
+        xml = "item.xml",
+    },
 }
 
 for i,v in ipairs(ff_to_add) do

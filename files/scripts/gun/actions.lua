@@ -1,27 +1,30 @@
 dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 
+SOULS_PRECAUTION = true
+-- gurbertbrain spells dont have 'ai_never_uses = SOULS_PRECAUTION' or 'ai_never_uses = true'
+
 local new_actions = {
 	{
 		id = "SPARKLE",
 		name = "$action_ff_sparkle",
 		description = "$actiondesc_ff_sparkle",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/sparkle.png",
-		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/sparkle/projectile.xml",3},
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/sparkle/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "0,1,2,3",
 		spawn_probability = "0.7,0.8,0.7,0.7",
 		price = 100,
 		mana = 14,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.spread_degrees = c.spread_degrees + 4.0
-			c.fire_rate_wait = c.fire_rate_wait + 2
+			c.fire_rate_wait = c.fire_rate_wait - 2 --?
 			add_projectile("mods/foolish_flame/files/entities/projectiles/sparkle/projectile.xml")
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/sparkle/hitfx.xml,"
 		end,
 	},
 	{
-		id = "WIZARD_FLARE", -- "team fortress 2"
+		id = "WIZARD_FLARE", -- piggy from team fortress 2: Calm down everybody, we have Moldos from Noita.
 		name = "$action_ff_flare",
 		description = "$actiondesc_ff_flare",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/flare.png",
@@ -31,7 +34,7 @@ local new_actions = {
 		spawn_probability = "0.4,0.8,0.9,1.0,1.0",
 		price = 100,
 		mana = 20,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/flare/projectile.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 3
@@ -51,7 +54,7 @@ local new_actions = {
 		spawn_probability = "0.5,0.5,0.6,0.6",
 		price = 100,
 		mana = 25,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 3
 			c.screenshake = c.screenshake + 0.5
@@ -71,7 +74,7 @@ local new_actions = {
 		spawn_probability = "0.5,0.7,0.7,0.8",
 		price = 100,
 		mana = 20,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/heat_flare/projectile.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 2
@@ -91,7 +94,7 @@ local new_actions = {
 		spawn_probability = "0.3,0.6,0.7,0.6",
 		price = 110,
 		mana = 60,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/aoe_flare/projectile.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 8
@@ -111,7 +114,7 @@ local new_actions = {
 		spawn_probability = "0.3,0.6,0.7,0.6",
 		price = 120,
 		mana = 30,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/bullet_flare/projectile.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 6
@@ -130,7 +133,7 @@ local new_actions = {
 		spawn_probability = "0.3,0.4",
 		price = 160,
 		mana = 31,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/good_flare/projectile.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 6
@@ -149,7 +152,7 @@ local new_actions = {
 		spawn_probability = "0.6,0.8,0.8,0.9,0.8",
 		price = 100,
 		mana = 10,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			local a, h = RemoveHeat2(0.5)
 			if a or reflecting then
@@ -170,7 +173,7 @@ local new_actions = {
 		spawn_probability = "0.6,0.8,0.8,0.9,0.8",
 		price = 100,
 		mana = 8,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			local a, h = RemoveHeat2(0.4)
 			if a or reflecting then
@@ -189,7 +192,7 @@ local new_actions = {
 		spawn_probability = "0.5,0.8,0.9,0.9,0.8",
 		price = 110,
 		mana = 5,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			if GetHeat() > 0 or reflecting then
 				c.damage_projectile_add = c.damage_projectile_add + 0.4
@@ -207,7 +210,7 @@ local new_actions = {
 		spawn_probability = "0.5,0.6,0.7,0.7",
 		price = 250,
 		mana = 0,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			if RemoveHeat2(1.2) or reflecting then
 				mana = mana + 60
@@ -227,7 +230,7 @@ local new_actions = {
 		spawn_probability = "0.2,0.3,0.4,0.5",
 		price = 100,
 		mana = 100,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 30
 			local heat = GetHeat()
@@ -251,7 +254,7 @@ local new_actions = {
 		spawn_probability = "0.2,0.2",
 		price = 140,
 		mana = 80,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 20
 			current_reload_time = current_reload_time + 10
@@ -269,7 +272,7 @@ local new_actions = {
 		spawn_probability = "0.2,0.2",
 		price = 140,
 		mana = 80,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 20
 			current_reload_time = current_reload_time + 10
@@ -288,7 +291,7 @@ local new_actions = {
 		spawn_probability = "0.6,0.6,0.7,0.7,0.7",
 		price = 130,
 		mana = 16,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			if RemoveHeat2(0.8) or reflecting then
 				c.fire_rate_wait = c.fire_rate_wait - 8
@@ -306,21 +309,21 @@ local new_actions = {
 		name = "$action_ff_needle",
 		description = "$actiondesc_ff_needle",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/needle.png",
-		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/needle/projectile.xml",3},
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/needle/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "2,3,4,5,6",
 		spawn_probability = "0.6,0.6,0.7,0.7,0.7",
 		price = 110,
-		mana = 20,
-		ai_never_uses = true, -- souls precaution
+		mana = 22,
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.spread_degrees = c.spread_degrees + 3.0
 			if RemoveHeat2(0.8) or reflecting then
-				c.fire_rate_wait = c.fire_rate_wait - 16
 				current_reload_time = current_reload_time - 12
 				c.damage_critical_chance = c.damage_critical_chance + 5
 				add_projectile("mods/foolish_flame/files/entities/projectiles/needle/projectile.xml")
 				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/needle/hitfx.xml,"
+				c.fire_rate_wait = -2
 			end
 		end,
 	},
@@ -335,7 +338,7 @@ local new_actions = {
 		spawn_probability = "0.2,0.4,0.5,0.6",
 		price = 240,
 		mana = 53,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/axtinguisher/projectile.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 20
@@ -355,6 +358,7 @@ local new_actions = {
 		mana = 80,
 		max_uses = 3,
 		never_unlimited = true,
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 20
 			local heat = GetHeat()
@@ -378,12 +382,13 @@ local new_actions = {
 		mana = 500,
 		max_uses = 40,
 		--never_unlimited = true,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 30
 			current_reload_time = current_reload_time + 20
 			if not reflecting then
 				AddHeat(20)
+				--LoadGameEffectEntityTo(GetUpdatedEntityID(), "mods/foolish_flame/files/entities/misc/effect_reduce_heat_gain.xml") --?
 			end
 		end,
 	},
@@ -397,7 +402,7 @@ local new_actions = {
 		spawn_probability = "0.3,0.4,0.3",
 		price = 150,
 		mana = 7,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 18
 			current_reload_time = current_reload_time + 12
@@ -426,7 +431,7 @@ local new_actions = {
 		spawn_probability = "0.4,0.6,0.5,0.5",
 		price = 120,
 		mana = 12,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		custom_xml_file="mods/foolish_flame/files/entities/misc/card_thermodynamics/card.xml",
 		action = function()
 			current_reload_time = current_reload_time + 2
@@ -443,7 +448,7 @@ local new_actions = {
 		spawn_probability = "0.2,0.3,0.3,0.2",
 		price = 300,
 		mana = 10,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		custom_xml_file="mods/foolish_flame/files/entities/misc/willow_wisp/card.xml",
 		action = function()
 			current_reload_time = current_reload_time + 1
@@ -460,7 +465,7 @@ local new_actions = {
 		spawn_probability = "0.0",
 		price = 100,
 		mana = 0,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/magic_fire/hitfx.xml,"
 			draw_actions(1, true)
@@ -478,7 +483,7 @@ local new_actions = {
 		spawn_probability = "0.1",
 		price = 300,
 		mana = 30,
-		ai_never_uses = true, -- souls precaution
+		ai_never_uses = SOULS_PRECAUTION,
 		custom_xml_file="mods/foolish_flame/files/entities/misc/card_laser.xml",
 		action = function()
 			-- why does add trigger break this?

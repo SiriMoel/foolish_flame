@@ -1,0 +1,23 @@
+<Entity tags="ff_effect_reduce_heat_gain">
+
+    <InheritTransformComponent>
+    </InheritTransformComponent>    
+    
+    <GameEffectComponent 
+        effect="CUSTOM"
+        custom_effect_id="FF_REDUCE_HEAT_GAIN"
+        frames="600"
+    >
+	</GameEffectComponent>
+	
+	<UIIconComponent
+		icon_sprite_file="mods/foolish_flame/files/ui_gfx/status_indicators/reduce_heat_gain.png"
+		name="$status_ff_reduce_heat_gain"
+		description="$statusdesc_ff_reduce_heat_gain"
+		display_above_head="0"
+		display_in_hud="1"
+		is_perk="0"
+		>
+	</UIIconComponent>
+
+</Entity>

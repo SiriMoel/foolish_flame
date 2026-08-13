@@ -1,0 +1,187 @@
+<Entity tags="item">
+
+    <AbilityComponent
+        ui_name="$item_ff_heart_lighter" 
+        throw_as_item="0"
+        ><gun_config
+			deck_capacity="0"
+		></gun_config>
+    </AbilityComponent>
+
+	<VariableStorageComponent
+		_tags="lighter_state"
+		name="lighter_state"
+		value_bool="0"
+	></VariableStorageComponent>
+
+	<VariableStorageComponent
+		_tags="state_frame"
+		name="state_frame"
+		value_int="0"
+	></VariableStorageComponent>
+
+	<LuaComponent
+		_tags="enabled_in_hand,enabled_in_inventory,enabled_in_world"
+		_enabled="1"
+		script_source_file="mods/foolish_flame/files/entities/items/heart_lighter/update.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+
+	<LuaComponent
+		_tags="enabled_in_hand"
+		_enabled="0"
+		script_source_file="mods/foolish_flame/files/entities/items/heart_lighter/open.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+
+	<LuaComponent
+		_tags="enabled_in_inventory"
+		script_source_file="mods/foolish_flame/files/entities/items/heart_lighter/in_inventory.lua"
+		execute_every_n_frame="30"
+	></LuaComponent>
+
+	<ItemComponent
+		_tags="enabled_in_world"
+    	is_pickable="1"
+		ui_sprite="mods/foolish_flame/files/entities/items/heart_lighter/sprite.png"
+        item_name="$item_ff_heart_lighter"
+        ui_description="$itemdesc_ff_heart_lighter"
+		play_hover_animation="1"
+        play_spinning_animation="0"
+        always_use_item_name_in_ui="1"
+        preferred_inventory="QUICK"
+		>
+    </ItemComponent>
+
+  	<VelocityComponent
+	    _tags="enabled_in_world"
+	  	gravity_y="400"
+	  	air_friction="0.55"
+	  	terminal_velocity="1000" >
+  	</VelocityComponent>
+	
+  	<SimplePhysicsComponent
+	    _tags="enabled_in_world"
+		_enabled="0"
+	></SimplePhysicsComponent>
+  
+  	<HitboxComponent 
+	    _tags="enabled_in_world"
+	    aabb_max_x="4" 
+	    aabb_max_y="4" 
+	    aabb_min_x="-4" 
+	    aabb_min_y="-4" 
+	    is_enemy="0" 
+	    is_item="1" 
+	    is_player="0" >
+  	</HitboxComponent>
+
+  	<LightComponent 
+	    _tags="enabled_in_world"
+	    radius="64" >
+  	</LightComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand,sprite_hand"
+		_enabled="0"
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/foolish_flame/files/entities/items/heart_lighter/sprite_in_hand.png"
+	></SpriteComponent>
+
+	<SpriteComponent 
+		_tags="enabled_in_world,sprite_world" 
+		_enabled="1"
+		alpha="1" 
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/foolish_flame/files/entities/items/heart_lighter/sprite_in_hand.png"
+		z_index="-1.5" >
+	</SpriteComponent>
+
+	<LuaComponent
+		_tags="ff_lighter"
+		_enabled="0"
+		script_source_file="mods/foolish_flame/files/entities/items/heart_lighter/lighter.lua"
+		execute_every_n_frame="15"
+	></LuaComponent>
+
+	<SpriteComponent 
+	    _tags="ff_lighter"
+		_enabled="0"
+        alpha="0.8"
+        image_file="data/particles/torch_fog_of_war_hole.xml"
+        smooth_filtering="1"
+        fog_of_war_hole="1"
+        has_special_scale="1"
+        special_scale_x="7"
+        special_scale_y="7" >
+    </SpriteComponent>
+
+	<ParticleEmitterComponent
+        _tags="ff_lighter"
+		_enabled="0"
+        emitted_material_name="spark_green_bright"
+        count_min="0"
+        count_max="2"
+        offset.x="1.5"
+        offset.y="-1"
+        x_pos_offset_min="-0.5"
+        x_pos_offset_max="0.5"
+        y_pos_offset_min="-0.5"
+        y_pos_offset_max="0"
+        x_vel_min="-3"
+        x_vel_max="3"
+        y_vel_min="-6"
+        y_vel_max="0"
+        lifetime_min="0.2"
+        lifetime_max="0.4"
+        create_real_particles="0"
+        emit_cosmetic_particles="1"
+        emission_interval_min_frames="1"
+        emission_interval_max_frames="1"
+	    delay_frames="2"
+        is_emitting="1"
+        gravity.x="0"
+        gravity.y="-30"
+    ></ParticleEmitterComponent>
+
+    <ParticleEmitterComponent
+        _tags="ff_lighter"
+		_enabled="0"
+        emitted_material_name="spark_red"
+        count_min="1"
+        count_max="2"
+        offset.x="1.5"
+        offset.y="-1"
+        x_pos_offset_min="-1"
+        x_pos_offset_max="1"
+        y_pos_offset_min="-1"
+        y_pos_offset_max="0"
+        x_vel_min="-4"
+        x_vel_max="4"
+        y_vel_min="-9"
+        y_vel_max="0"
+        lifetime_min="0.2"
+        lifetime_max="0.4"
+        create_real_particles="0"
+        emit_cosmetic_particles="1"
+        emission_interval_min_frames="1"
+        emission_interval_max_frames="1"
+	    delay_frames="2"
+        is_emitting="1"
+        gravity.x="0"
+        gravity.y="-50"
+    ></ParticleEmitterComponent>
+	
+	<LightComponent 
+		_tags="ff_lighter"
+		_enabled="0" 
+		radius="130"
+		fade_out_time="1.5" 
+		r="240"
+		g="180"
+		b="100" >
+	</LightComponent>
+
+</Entity>

@@ -1,8 +1,8 @@
 <Mod
 	name="Foolish Flame"
 	description=""
-	tags="gameplay,items,spells,perks,"
-	dont_upload_folders=""
+	tags="gameplay,items,spells,perks,creatures"
+	dont_upload_folders="workshop"
 	dont_upload_files=""
 >
 </Mod>

@@ -3,7 +3,7 @@ dofile_once("data/scripts/perks/perk.lua")
 bounty_rewards = {
     {
         id = "nothing",
-        chance = 3.0, -- should there even be a chance to get nothing?
+        chance = 2.2, -- should there even be a chance to get nothing?
         spawn_func = function(x, y)
             -- this is "air"? so... nothing...
         end,
@@ -19,8 +19,8 @@ bounty_rewards = {
         end,
     },
     {
-            id = "t10_spell",
-        chance = 5.0,
+        id = "t10_spell",
+        chance = 6.0,
         spawn_func = function(x, y)
             SetRandomSeed(x, y)
             local action = GetRandomAction(x, y, 10, 0)
@@ -29,7 +29,7 @@ bounty_rewards = {
     },
     {
         id = "twospells",
-        chance = 2.0,
+        chance = 3.0,
         spawn_func = function(x, y)
             SetRandomSeed(x, y)
             CreateItemActionEntity(GetRandomAction(x, y, 6, 0), x - 10, y - 6)
@@ -46,14 +46,14 @@ bounty_rewards = {
     },
     {
         id = "taq_pol",
-        chance = 1.8,
+        chance = 2.5,
         spawn_func = function(x, y)
             EntityLoad("mods/foolish_flame/files/entities/items/taq_pol/item.xml", x, y - 4)
         end,
     },
     {
         id = "willowslighter",
-        chance = 0.1, -- is it possible?
+        chance = 0.1,
         spawn_func = function(x, y)
             EntityLoad("mods/foolish_flame/files/entities/items/willows_lighter/item.xml", x, y - 4)
         end,
@@ -81,13 +81,20 @@ bounty_rewards = {
     },
     {
         id = "flarewand",
-        chance = 0.5,
+        chance = 0.6,
         spawn_func = function(x, y)
             local wand = EntityLoad("mods/foolish_flame/files/entities/items/flare_wand/wand.xml", x, y - 4)
             local comp = EntityGetFirstComponentIncludingDisabled(wand, "LuaComponent", "towerwandpickupscript")
             if comp ~= nil then
                 EntityRemoveComponent(wand, comp)
             end
+        end,
+    },
+    {
+        id = "heartlighter",
+        chance = 0.4,
+        spawn_func = function(x, y)
+            EntityLoad("mods/foolish_flame/files/entities/items/heart_lighter/item.xml", x, y - 4)
         end,
     },
 }
@@ -130,9 +137,22 @@ function RewardsTest(amt)
             end
         end
     end
-    local str = "Picked " .. amt .. " bounty rewards:"
+    --[[local str = "Picked " .. amt .. " bounty rewards:"
     for i,v in ipairs(rewards) do
         str = str .. " " .. v
     end
-    print(str)
+    print(str)]]
+    local counts = {}
+    for i,v in ipairs(rewards) do
+        if type(counts[tostring(v)]) == "number" then
+            counts[tostring(v)] = counts[tostring(v)] + 1
+        else
+            counts[tostring(v)] = 1
+        end
+    end
+    print("FF RewardsTest(" .. amt .. ") RESULTS...")
+    for k,v in pairs(counts) do
+        print(tostring(k) .. ": " .. v)
+    end
+    print("okay done :)")
 end

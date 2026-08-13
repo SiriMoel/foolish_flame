@@ -22,6 +22,10 @@ function AddHeat(amt, player)
     if player == nil then return end
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_heat")
     if comp == nil then return end
+    local effect_reduce_count = #EntityGetAllChildren(player, "ff_effect_reduce_heat_gain") or 0 --GameGetGameEffectCount(player, "FF_REDUCE_HEAT_GAIN")
+    if effect_reduce_count > 0 then
+        amt = amt * (1 - math.min(0.1 * effect_reduce_count, 0.9))
+    end
     ComponentSetValue2(comp, "value_float", ComponentGetValue2(comp, "value_float") + amt)
 end
 

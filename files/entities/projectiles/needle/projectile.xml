@@ -116,7 +116,7 @@
     >
 	</ParticleEmitterComponent>
 
-  <ParticleEmitterComponent 
+  	<ParticleEmitterComponent 
 		emitted_material_name="spark"
 		offset.x="0"
 		offset.y="0"
@@ -148,7 +148,7 @@
     >
 	</ParticleEmitterComponent>
 
-  <ParticleEmitterComponent 
+  	<ParticleEmitterComponent 
 		emitted_material_name="flame"
 		offset.x="0"
 		offset.y="0"
@@ -194,9 +194,9 @@
     >
   </LightComponent>
 
-  <LuaComponent
+  	<LuaComponent
 	    script_source_file="mods/foolish_flame/files/entities/projectiles/needle/arc.lua"
-		  execute_every_n_frame="2" >
+		execute_every_n_frame="2" >
 	</LuaComponent>
   
 	<VariableStorageComponent

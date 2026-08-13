@@ -12,6 +12,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
     local x, y = EntityGetTransform(root)
 
     GamePlaySound("data/audio/Desktop/projectiles.bank", "player_projectiles/critical_hit/create", x, y)
+    --GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_hit", x, y)
 
     local temp_dmg = 0
 

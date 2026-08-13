@@ -28,6 +28,7 @@ end
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/scripts/gun/actions.lua")
 ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/foolish_flame/files/scripts/gun/gun_append.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/foolish_flame/files/scripts/perk_list.lua")
+--ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/foolish_flame/files/scripts/status_list.lua")
 
 -- in grahamth we trust (i didn't know how to do this)
 local content = ModTextFileGetContent("data/scripts/gun/procedural/starting_wand.lua")
@@ -241,7 +242,7 @@ function OnPlayerSpawned(player)
 		execute_every_n_frame=-1
 	})
 
-	--dofile_once("mods/foolish_flame/files/scripts/bounty_rewards.lua") RewardsTest(300)
+	--dofile_once("mods/foolish_flame/files/scripts/bounty_rewards.lua") RewardsTest(5000)
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)

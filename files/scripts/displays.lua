@@ -56,10 +56,31 @@ heat_displays = {
         sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/ukko_hot.png",
         func_unlocked = function() return true end, -- always unlocked
     },
-    --[[{
+    {
+        id = "nuke",
+        name = "$ff_display_nuke",
+        name_t = "Nuke",
+        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/nuke.png",
+        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/nuke_hot.png",
+        func_unlocked = function() return true end, -- always unlocked
+    },
+    {
+        id = "gurbert",
+        name = "$ff_display_gurbert",
+        name_t = "Gurbert",
+        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert.png",
+        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert_hot.png",
+        func_unlocked = function() 
+            if HasFlagPersistent("ff_gurbert_spells_unlocked") then
+                return true
+            end
+            return false
+        end,
+    },
+    {
         id = "special",
         name = "$ff_display_special",
-        name_t = "Gilded",
+        name_t = "Gilded (animated)",
         sprite = "mods/foolish_flame/files/ui_gfx/heat_display/gilded/1.png",
         func_unlocked = function() 
             if HasFlagPersistent("ff_laser_unlocked") then
@@ -82,21 +103,9 @@ heat_displays = {
                 path .. "5.png",
                 path .. "6.png",
                 path .. "7.png",
+                path .. "8.png",
             }
             return sprites[math.floor((frame / frames_per) % #sprites) + 1]
-        end,
-    },]]
-    {
-        id = "gurbert",
-        name = "$ff_display_gurbert",
-        name_t = "Gurbert",
-        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert.png",
-        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/gurbert_hot.png",
-        func_unlocked = function() 
-            if HasFlagPersistent("ff_gurbert_spells_unlocked") then
-                return true
-            end
-            return false
         end,
     },
     {
