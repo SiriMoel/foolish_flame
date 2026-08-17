@@ -328,6 +328,28 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "BEAM",
+		name = "$action_ff_beam",
+		description = "$actiondesc_ff_beam",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/beam.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/beam/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.5,0.6,0.6,0.6",
+		price = 150,
+		mana = 34,
+		ai_never_uses = SOULS_PRECAUTION,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 12
+			if RemoveHeat2(1.2) or reflecting then
+				c.spread_degrees = c.spread_degrees - 12.0
+				c.damage_critical_chance = c.damage_critical_chance + 2
+				add_projectile("mods/foolish_flame/files/entities/projectiles/beam/projectile.xml")
+				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/beam/hitfx.xml,"
+			end
+		end,
+	},
+	{
 		id = "AXTINGUISHER", 
 		name = "$action_ff_axtinguisher",
 		description = "$actiondesc_ff_axtinguisher",

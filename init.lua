@@ -97,6 +97,17 @@ function OnModPostInit()
 	]])))
 	ModTextFileSetContent(boss_pit_path, tostring(xml))
 
+	local nolla_path = "data/entities/misc/nolla.xml"
+	local xml = nxml.parse(ModTextFileGetContent(nolla_path))
+	xml:add_child(nxml.parse(([[
+    	<LuaComponent
+        	execute_on_added="1"
+        	remove_after_executed="1"
+        	script_source_file="mods/foolish_flame/files/scripts/nolla.lua" 
+		></LuaComponent>
+	]])))
+	ModTextFileSetContent(nolla_path, tostring(xml))
+
 	local projectiles_to_modify = {
 		"data/entities/projectiles/deck/grenade_large.xml",
 		"data/entities/projectiles/deck/lance_holy.xml",		
@@ -208,6 +219,12 @@ function OnPlayerSpawned(player)
 
 	if GameHasFlagRun("ff_init") then return end
 	GameAddFlagRun("ff_init")
+
+	local year, month, day = GameGetDateAndTimeLocal()
+    if month == 10 then
+        GamePrint("Spooky flame...")
+		GameAddFlagRun("ff_spooky")
+    end
 
 	if HasFlagPersistent("ff_died_with_willows_lighter") then
 		EntityLoad("mods/foolish_flame/files/entities/items/willows_lighter/item.xml", x + 6, y)

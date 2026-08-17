@@ -121,6 +121,23 @@ heat_displays = {
             return false
         end,
     },
+    {
+        id = "spooky",
+        name = "$ff_display_spooky",
+        name_t = "spooky",
+        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/spooky.png",
+        sprite_hot = "mods/foolish_flame/files/ui_gfx/heat_display/spooky_hot.png",
+        func_unlocked = function() 
+            --[[local year, month, day = GameGetDateAndTimeLocal()
+            if month == 10 then
+                return true
+            end]]
+            if GameHasFlagRun("ff_spooky") then
+                return true
+            end
+            return false
+        end,
+    },
 }
 
 function GetDisplays()

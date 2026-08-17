@@ -17,7 +17,7 @@ This heat display can take multiple appearances, which can be cycled using the [
 [FLARES IMAGE]?
 
 So far, this mod adds:
-[b]29[/b] spells
+[b]30[/b] spells
 [b]3[/b] perks
 [b]6[/b] items
 [b]1[/b] friend :)

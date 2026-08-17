@@ -8,4 +8,6 @@ local vel_x, vel_y = GameGetVelocityCompVelocity(root)
 
 local amt = math.abs(vel_x + vel_y) * 0.01
 
-AddHeat(amt)
+if not EntityHasTag(root, "ff_nollad") then
+    AddHeat(amt)
+end
