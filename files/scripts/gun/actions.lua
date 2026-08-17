@@ -156,7 +156,7 @@ local new_actions = {
 		action = function()
 			local a, h = RemoveHeat2(0.5)
 			if a or reflecting then
-				c.damage_projectile_add = c.damage_projectile_add + 0.1 + h / 130
+				c.damage_projectile_add = c.damage_projectile_add + 0.1 + h / 140
 				c.fire_rate_wait = c.fire_rate_wait + 2
 				c.extra_entities = c.extra_entities .. "data/entities/particles/tinyspark_yellow.xml,"
 			end
@@ -419,6 +419,30 @@ local new_actions = {
 				end
 				AddHeat(38, caster)
 			end
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "BURNING_UP", -- this one might be problematic for the mod's balance
+		name = "$action_ff_burning_up",
+		description = "$actiondesc_ff_burning_up",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/burning_up.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "5,6,10",
+		spawn_probability = "0.1,0.2,0.2",
+		price = 200,
+		mana = 89,
+		ai_never_uses = SOULS_PRECAUTION,
+		action = function(recursion_level, iteration)
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			current_reload_time = current_reload_time + 24
+			local iter = iteration or 1
+			if iter > 1 then
+				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/burning_up/entity_reduced.xml,"
+			else 
+				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/burning_up/entity.xml,"
+			end
+			draw_actions(1, true)
 		end,
 	},
 	{

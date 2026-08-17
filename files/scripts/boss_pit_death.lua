@@ -9,6 +9,8 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	local flag_status = HasFlagPersistent("ff_gurbert_spells_unlocked")
 
 	if not flag_status then
+		GamePrint("New heat display unlocked!")
+		
 		CreateItemActionEntity("FF_REMEMBER", x - 32, y)
 		CreateItemActionEntity("FF_RECALL", x + 32, y)
 		CreateItemActionEntity("FF_REMEMBER_ONE", x - 48, y)

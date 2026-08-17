@@ -6,8 +6,13 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 	local x, y = EntityGetTransform(this)
 
 	if EntityHasTag(entity_thats_responsible, "ff_extra_bounty_reward") then
-		BountyReward(x - 6, y)
-		BountyReward(x + 6, y)
+		SetRandomSeed(x + this, y)
+		if Random(1, 2) == 1 then
+			BountyReward(x - 6, y)
+			BountyReward(x + 6, y)
+		else
+			BountyReward(x, y)
+		end
 	else
 		BountyReward(x, y)
 	end

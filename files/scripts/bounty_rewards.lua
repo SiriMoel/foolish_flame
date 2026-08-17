@@ -41,6 +41,10 @@ bounty_rewards = {
         chance = 0.5, -- ?
         spawn_func = function(x, y)
             CreateItemActionEntity("FF_LASER", x, y - 6)
+            local flag_status = HasFlagPersistent("ff_laser_unlocked")
+            if not flag_status then
+                GamePrint("New heat display unlocked!")
+            end
             AddFlagPersistent("ff_laser_unlocked")
         end,
     },

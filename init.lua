@@ -35,7 +35,7 @@ local content = ModTextFileGetContent("data/scripts/gun/procedural/starting_wand
 content = content:gsub("\"SPITTER\"", "\"SPITTER\",\"FF_SPARKLE\"")
 ModTextFileSetContent("data/scripts/gun/procedural/starting_wand.lua", content)
 
--- in grahamth we trust (from souls, but from graham(th?) origininally) im 99% sure this is used with permission
+-- in grahamth we trust (from souls, but from graham(th?) originally)
 local function add_scene(table)
 	local biome_path = ModIsEnabled("noitavania") and "mods/noitavania/data/biome/_pixel_scenes.xml" or "data/biome/_pixel_scenes.xml"
 	local content = ModTextFileGetContent(biome_path)

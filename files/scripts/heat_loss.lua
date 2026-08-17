@@ -22,6 +22,11 @@ if heat > 0 then
                             amt = amt + 1 + math.ceil((heat - 200) / 5)
                             if heat > 300 then
                                 amt = amt * 1.6
+                                if amt > 600 then
+                                    for i=1,math.floor(amt / 600) do
+                                        amt = amt * 1.5
+                                    end
+                                end
                             end
                         end
                     end

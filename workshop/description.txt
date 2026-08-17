@@ -2,23 +2,22 @@
 
 A fire-themed content mod.
 
-Foolish Flame introduces a 'heat' mechanic, and content based around it.
-Heat is acquired from many sources (including by holding kiuaskivi), but mainly from the mod's spells & by being around enemies inflicted with Magic fire.
+Foolish Flame introduces a 'heat' mechanic, and content centered around it.
+Heat is acquired from many sources (including by holding kiuaskivi), but mainly from the mod's spells & by being around enemies inflicted with Magic Fire.
 
 What is Magic Fire? A new status effect that is inflicted by many of the mod's spells and has 10 temperature levels.
-The higher the temperature, the more heat is granted & the more powerful some of the mod's spells are against that enemy.
+The higher the temperature, the more heat is gained & the more powerful some of the mod's spells are against that enemy.
 
 Heat grants a passive damage boost and is also used as a currency of sorts for many of the mod's spells.
 The more heat you have, the higher the damage boost & the more powerful your spells become!
 
-How much heat you have is shown by a meter that appears above the player when you have any:
-[HEAT DISPLAY GIF]
-This heat display can take multiple appearances, which can be cycled using the [b][[/b] and [b]][/b] keys in-game.
+How much heat you have is shown by a meter that appears above the player.
+This heat display can take multiple appearances, which can be cycled using the [b][[/b] and [b]][/b] keys in game.
 
 [FLARES IMAGE]?
 
 So far, this mod adds:
-[b]28[/b] spells
+[b]29[/b] spells
 [b]3[/b] perks
 [b]6[/b] items
 [b]1[/b] friend :)
@@ -30,9 +29,7 @@ Foolish Flame has cross-mod interactions with a few other mods to add integratio
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3313573016]Souls[/url][/b],
 & [b][url=https://github.com/Copious-Modding-Industries/copis_things]Copi's Things[/url][/b].
 
-[FIRE IMAGE]
-
-I hope you enjoy <3
+[FIRE IMAGE]?
 
 Discord: https://discord.gg/FKaRA9HMUq
 Github: https://github.com/SiriMoel/foolish_flame
