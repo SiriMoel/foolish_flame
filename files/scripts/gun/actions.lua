@@ -132,7 +132,7 @@ local new_actions = {
 		spawn_level = "5,6",
 		spawn_probability = "0.3,0.4",
 		price = 160,
-		mana = 31,
+		mana = 21,
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/good_flare/projectile.xml")
@@ -151,13 +151,14 @@ local new_actions = {
 		spawn_level = "2,3,4,5,6",
 		spawn_probability = "0.6,0.8,0.8,0.9,0.8",
 		price = 100,
-		mana = 10,
+		mana = 15,
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
-			local a, h = RemoveHeat2(0.5)
+			local a, h = RemoveHeat2(0.8)
 			if a or reflecting then
-				c.damage_projectile_add = c.damage_projectile_add + 0.1 + h / 140
-				c.fire_rate_wait = c.fire_rate_wait + 2
+				c.damage_projectile_add = c.damage_projectile_add + 0.04 + h * 0.0024
+				c.fire_rate_wait = c.fire_rate_wait + 6
+				current_reload_time = current_reload_time - 3
 				c.extra_entities = c.extra_entities .. "data/entities/particles/tinyspark_yellow.xml,"
 			end
 			draw_actions(1, true)
@@ -226,20 +227,36 @@ local new_actions = {
 		description = "$actiondesc_ff_meltdown",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/meltdown.png",
 		type = ACTION_TYPE_MODIFIER,
-		spawn_level = "3,4,5,6",
-		spawn_probability = "0.2,0.3,0.4,0.5",
-		price = 100,
-		mana = 100,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.3,0.1",
+		price = 280,
+		mana = 190,
 		ai_never_uses = SOULS_PRECAUTION,
+		custom_xml_file="mods/foolish_flame/files/entities/misc/card_meltdown.xml",
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 30
 			local heat = GetHeat()
-			if heat > 0 then
-				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/meltdown/hitfx.xml,"
-				c.damage_projectile_add = c.damage_projectile_add + heat * 0.01
-				c.trail_material = c.trail_material .. "flame,"
-				c.trail_material_amount = c.trail_material_amount + math.min(heat / 120, 30)
-				RemoveHeat(heat)
+			if heat > 10 or reflecting then
+				if reflecting then heat = 100 end
+				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/meltdown/meltdown.xml,"
+				local amt = heat * 0.027
+				if reflecting then
+					c.damage_projectile_add = c.damage_projectile_add + amt
+				else
+					local holy = amt * 0.5
+					local holy_count = math.floor(holy / 0.4)
+					for i=1,holy_count do
+						c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/meltdown/add_holy_damage.xml,"
+					end
+					local proj = amt - holy_count * 0.4
+					c.damage_projectile_add = c.damage_projectile_add + proj
+				end
+				current_reload_time = current_reload_time + 24 + math.ceil(0.19 * heat)
+				--c.trail_material = c.trail_material .. "flame,"
+				--c.trail_material_amount = c.trail_material_amount + math.min(heat * 0.005, 60)
+				RemoveHeat(heat * 0.2)
+			else
+				current_reload_time = current_reload_time + 26
 			end
 			draw_actions(1, true)
 		end,
@@ -252,12 +269,12 @@ local new_actions = {
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "5,6",
 		spawn_probability = "0.2,0.2",
-		price = 140,
-		mana = 80,
+		price = 160,
+		mana = 110,
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 20
-			current_reload_time = current_reload_time + 10
+			c.fire_rate_wait = c.fire_rate_wait + 24
+			current_reload_time = current_reload_time + 12
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/hotter_flares/hitfx.xml,"
 			draw_actions(1, true)
 		end,
@@ -271,11 +288,11 @@ local new_actions = {
 		spawn_level = "5,6",
 		spawn_probability = "0.2,0.2",
 		price = 140,
-		mana = 80,
+		mana = 12,
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 20
-			current_reload_time = current_reload_time + 10
+			c.fire_rate_wait = c.fire_rate_wait + 6
+			current_reload_time = current_reload_time + 3
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/fire_duration/hitfx.xml,"
 			draw_actions(1, true)
 		end,

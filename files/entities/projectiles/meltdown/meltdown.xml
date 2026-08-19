@@ -5,4 +5,10 @@
         value_string="mods/foolish_flame/files/entities/projectiles/meltdown/hit_entity.xml"
     ></HitEffectComponent>
 
+	<LuaComponent
+		script_source_file="mods/foolish_flame/files/entities/projectiles/meltdown/meltdown.lua"
+		execute_on_added="1"
+		remove_after_executed="1"
+	></LuaComponent>
+  
 </Entity>

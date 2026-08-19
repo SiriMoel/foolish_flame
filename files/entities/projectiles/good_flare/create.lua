@@ -11,6 +11,9 @@ if comps ~= nil then
         ComponentObjectSetValue2(comp, "damage_by_type", "slice", 0)
         ComponentObjectSetValue2(comp, "damage_by_type", "ice", 0)
         ComponentObjectSetValue2(comp, "damage_by_type", "drill", 0)
+        ComponentObjectSetValue2(comp, "damage_by_type", "curse", 0)
+        ComponentObjectSetValue2(comp, "damage_by_type", "poison", 0)
+        ComponentObjectSetValue2(comp, "damage_by_type", "radioactive", 0)
         ComponentObjectSetValue2(comp, "config_explosion", "damage", 0)
 	end
 end
