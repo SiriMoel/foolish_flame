@@ -11,8 +11,8 @@ The higher the temperature, the more heat is gained & the more powerful some of 
 Heat grants a passive damage boost and is also used as a currency of sorts for many of the mod's spells.
 The more heat you have, the higher the damage boost & the more powerful your spells become!
 
-How much heat you have is shown by a meter that appears above the player.
-This heat display can take multiple appearances, which can be cycled using the [b][[/b] and [b]][/b] keys in game.
+How much heat you have is shown by a display that appears above the player.
+The heat gauge can take multiple appearances, which can be cycled using the [b][[/b] and [b]][/b] keys in game.
 
 [FLARES IMAGE]?
 

@@ -12,8 +12,8 @@
   <ProjectileComponent
     lob_min="0.5"
     lob_max="0.7"
-    speed_min="400"
-    speed_max="450"
+    speed_min="420"
+    speed_max="460"
     friction="1"
     direction_random_rad="0.01"
     on_death_explode="1"
@@ -34,6 +34,7 @@
 	knockback_force="2.3"
     physics_impulse_coeff="1500"
     on_collision_spawn_entity="1"
+	spawn_entity_is_projectile="1"
     spawn_entity="mods/foolish_flame/files/entities/projectiles/aoe_flare/explode.xml"
     >
     <damage_by_type
@@ -41,15 +42,15 @@
     ></damage_by_type>
     <config_explosion
       never_cache="1" 
-      camera_shake="4.5" 
+      camera_shake="0" 
       explosion_radius="35" 
       explosion_sprite="data/particles/explosion_008.xml" 
       explosion_sprite_lifetime="0" 
 	  ray_energy="200000"
-      create_cell_probability="100" 
+      create_cell_probability="5" 
       create_cell_material="fire" 
       hole_destroy_liquid="0" 
-      damage="0.2"
+      damage="0.12"
       hole_enabled="1" 
       hole_image="data/temp/explosion_hole.png" 
       particle_effect="1" 
@@ -59,16 +60,20 @@
       physics_throw_enabled="1" 
       shake_vegetation="0" 
 	  spark_material="spark_yellow"
-      sparks_count_min="20"
-	  sparks_count_max="40"
+      sparks_count_min="8"
+	  sparks_count_max="16"
 	  sparks_enabled="1"
-      light_fade_time="0.8" 
+      light_fade_time="0.5" 
       stains_enabled="1" 
       stains_image="data/temp/explosion_stain.png" 
 	  audio_event_name="explosions/fire"
 	  >
     </config_explosion>
   </ProjectileComponent>
+
+	<!--<LuaComponent
+		script_collision_trigger_hit="mods/foolish_flame/files/entities/projectiles/aoe_flare/collide."
+	></LuaComponent>-->
   
   <SpriteComponent 
     _enabled="1" 

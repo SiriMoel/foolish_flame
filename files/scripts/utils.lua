@@ -51,6 +51,48 @@ function RemoveHeat2(amt, player) -- you have alerted the cat
     end
 end
 
+function SpellGetHeat(entity)
+    if entity == 0 then return 0 end
+    if EntityHasTag("player_unit") then
+        local comp = EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "ff_heat")
+        if comp == nil then return 0 end
+        return ComponentGetValue2(comp, "value_float")
+    end
+    local x, y = EntityGetTransform(entity)
+    local amt = 60 + math.abs(y * 0.004)
+    return amt
+end
+
+function SpellAddHeat(amt, entity)
+    if entity == 0 then return end
+    if not EntityHasTag(entity, "player_unit") then return end
+    local comp = EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "ff_heat")
+    if comp == nil then return end
+    local effect_reduce_count = #EntityGetAllChildren(entity, "ff_effect_reduce_heat_gain") or 0 --GameGetGameEffectCount(player, "FF_REDUCE_HEAT_GAIN")
+    if effect_reduce_count > 0 then
+        amt = amt * (1 - math.min(0.1 * effect_reduce_count, 0.9))
+    end
+    ComponentSetValue2(comp, "value_float", ComponentGetValue2(comp, "value_float") + amt)
+end
+
+function SpellRemoveHeat(amt, entity)
+    if entity == 0 then return false, 0 end
+    if EntityHasTag("player_unit") then
+        local comp = EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "ff_heat")
+        if comp == nil then return false, 0 end
+        local heat = ComponentGetValue2(comp, "value_float") - amt
+        ComponentSetValue2(comp, "value_float", math.max(heat, 0))
+        if heat >= 0 then
+            return true, heat + amt
+        else
+            return false, 0
+        end
+    end
+    local x, y = EntityGetTransform(entity)
+    local heat = 60 + math.abs(y * 0.004)
+    return true, math.max(amt, heat)
+end
+
 function InflictMagicFire(target, temp, duration, tmax)
     temp = temp or 1
     duration = duration or 360
@@ -102,7 +144,7 @@ function InflictMagicFire(target, temp, duration, tmax)
 
         local duration_mods = EntityGetAllChildren(target, "ff_fire_duration") or {}
         if duration ~= -1 then
-            duration = duration + 120 * #duration_mods
+            duration = duration + 180 * #duration_mods
         end
 
         ComponentSetValue2(comp_eff, "frames", ((duration == -1 --[[or frames == -1]]) and -1) or math.max(frames, duration))

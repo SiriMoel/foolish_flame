@@ -23,6 +23,14 @@ function mod_setting_image_ff( mod_id, gui, in_main_menu, im_id, setting )
 	end
 end
 
+function mod_setting_image_small(mod_id, gui, in_main_menu, im_id, setting)
+	GuiImage(gui, im_id, mod_setting_group_x_offset, 0, setting.image_filename, 1, 0.5, 0)
+
+	if is_visible_string(setting.ui_description) then
+		GuiTooltip(gui, setting.ui_description, "")
+	end
+end
+
 function mod_setting_change_callback( mod_id, gui, in_main_menu, setting, old_value, new_value  )
 	if setting.id == "heat_display" then
         setting.values = GetDisplays()
@@ -32,6 +40,10 @@ end
 local mod_id = "foolish_flame"
 mod_settings_version = 1
 mod_settings = {
+	{
+        image_filename = "mods/foolish_flame/title.png",
+        ui_fn = mod_setting_image_small,
+    },
     --[[{
         id = "heat_display_image",
 		image_filename = "mods/foolish_flame/files/ui_gfx/heat_display/flame.png",
@@ -46,6 +58,57 @@ mod_settings = {
 		scope = MOD_SETTING_SCOPE_RUNTIME,
 		change_fn = mod_setting_change_callback,
 	},]]
+	{
+        id = "hide_heat_display", -- NYI
+        ui_name = "Hide heat gauge",
+        ui_description = "Should the heat gauge be hidden?",
+        value_default = false,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+    },
+	{
+        id = "flare_wand_spawn_chance", -- NYI
+        ui_name = "Wand of Magic Fire chance",
+        ui_description = "What should be the chance for the Wand of Destruction to be replaced?",
+        value_default = 60,
+        value_min = 0,
+        value_max = 100,
+        value_display_multiplier = 1,
+        value_display_formatting = " $0% chance",
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+    },
+	{
+        id = "heat_loss_mult", -- NYI
+        ui_name = "Heat loss multiplier",
+        ui_description = "Passive heat decay should be multiplied by...",
+        value_default = 1,
+        value_min = 0,
+        value_max = 4,
+        value_display_multiplier = 1,
+        value_display_formatting = " x$0",
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+    },
+	{
+        id = "bounty_chance_mult", -- NYI
+        ui_name = "Bounty enemy chance multiplier",
+        ui_description = "Bounty enemy spawn chance should be multiplied by...",
+        value_default = 1,
+        value_min = 0,
+        value_max = 4,
+        value_display_multiplier = 1,
+        value_display_formatting = " x$0",
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+    },
+	{
+        id = "brimstone_heat", -- NYI
+        ui_name = "Kiuaskivi heat amount",
+        ui_description = "How much heat should kiuaskivi grant?",
+        value_default = 4,
+        value_min = 0,
+        value_max = 16,
+        value_display_multiplier = 1,
+        value_display_formatting = " $0 heat per second",
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+    },
 }
 
 function ModSettingsUpdate( init_scope )

@@ -217,13 +217,18 @@ end
 function OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
 
+	local spooky = false
+	local year, month, day = GameGetDateAndTimeLocal()
+    if month == 10 then
+		spooky = true
+		GameAddFlagRun("ff_spooky")
+	end
+
 	if GameHasFlagRun("ff_init") then return end
 	GameAddFlagRun("ff_init")
 
-	local year, month, day = GameGetDateAndTimeLocal()
-    if month == 10 then
+	if spooky then
         GamePrint("Spooky flame...")
-		GameAddFlagRun("ff_spooky")
     end
 
 	if HasFlagPersistent("ff_died_with_willows_lighter") then

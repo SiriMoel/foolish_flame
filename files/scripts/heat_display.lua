@@ -30,7 +30,7 @@ if button_left_down or button_right_down then
         if changed then
             GlobalsSetValue("ff_heat_display", tostring(num))
             GlobalsSetValue("ff_display_frame", tostring(frame))
-            GamePrint("Now using \"" .. GameTextGetTranslatedOrNot(available_displays[num].name) .. "\" heat display.")
+            GamePrint("Now using \"" .. GameTextGetTranslatedOrNot(available_displays[num].name) .. "\" heat gauge.")
         end
     end
 end

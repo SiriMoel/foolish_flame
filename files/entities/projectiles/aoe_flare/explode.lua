@@ -2,6 +2,15 @@ local this = GetUpdatedEntityID()
 
 local x, y = EntityGetTransform(this)
 
+--[[local parent = EntityGetRootEntity(this)
+GamePrint(EntityGetName(parent))
+local comp = EntityGetFirstComponentIncludingDisabled(this, "ProjectileComponent")
+if comp ~= nil then
+    local shooter = ComponentGetValue2(comp, "mEntityThatShot")
+    if shooter == 0 then shooter = "no" end
+    if EntityHasTag(shooter, "projectile_player") then GamePrint("hi") end
+end]]
+
 local targets = EntityGetInRadiusWithTag(x, y, 46, "homing_target")
 
 if #targets > 0 then

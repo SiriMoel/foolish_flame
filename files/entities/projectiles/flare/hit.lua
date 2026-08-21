@@ -14,19 +14,19 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
     GamePlaySound("data/audio/Desktop/projectiles.bank", "player_projectiles/critical_hit/create", x, y)
     --GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_hit", x, y)
 
-    local temp_dmg = 0
+    local damage = 0.2
 
     local comp_temp = EntityGetFirstComponentIncludingDisabled(e[1], "VariableStorageComponent", "fire_temp")
     if comp_temp ~= nil then
         local temp = ComponentGetValue2(comp_temp, "value_int")
-        temp_dmg = 0.04 * temp + 0.002 * GetHeat()
+        damage = 0.02 * temp + 0.004 * GetHeat()
 
         heat_amt = heat_amt + 3 + temp * 0.5
     else
         --GamePrint("FF - couldn't find temp component :(")
     end
 
-    EntityInflictDamage(root, 0.4 + temp_dmg, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 1, 1, EntityGetWithTag("player_unit")[1], nil, nil, 40)
+    EntityInflictDamage(root, damage, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 1, 1, EntityGetWithTag("player_unit")[1], nil, nil, 40)
 end
 
 AddHeat(heat_amt)
