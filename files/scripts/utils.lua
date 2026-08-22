@@ -53,7 +53,7 @@ end
 
 function SpellGetHeat(entity)
     if entity == 0 then return 0 end
-    if EntityHasTag("player_unit") then
+    if EntityHasTag(entity, "player_unit") then
         local comp = EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "ff_heat")
         if comp == nil then return 0 end
         return ComponentGetValue2(comp, "value_float")
@@ -77,7 +77,7 @@ end
 
 function SpellRemoveHeat(amt, entity)
     if entity == 0 then return false, 0 end
-    if EntityHasTag("player_unit") then
+    if EntityHasTag(entity, "player_unit") then
         local comp = EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "ff_heat")
         if comp == nil then return false, 0 end
         local heat = ComponentGetValue2(comp, "value_float") - amt
