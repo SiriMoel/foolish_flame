@@ -547,6 +547,81 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "IREBALL",
+		name = "$action_ffireball",
+		description = "$actiondesc_ffireball",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/ffireball.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/ffireball/projectile.xml"},
+		spawn_requires_flag = "ff_laser_unlocked",
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "10",
+		spawn_probability = "0.1",
+		price = 180,
+		mana = 40,
+		--ai_never_uses = SOULS_PRECAUTION,
+		action = function()
+			if reflecting then add_projectile("mods/foolish_flame/files/entities/projectiles/ffireball/projectile.xml") return end
+			local caster = GetUpdatedEntityID()
+			local over = false
+			local revs_over = 0
+			if SpellGetHeat(caster) <= 0 then
+				if FF_Revs > 0 then
+					over = true
+				end
+				FF_Revs = 0 
+			end
+			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent")
+			if controls_component ~= nil and not over then
+				LastShootingStart = LastShootingStart or 0
+				FF_Revs = FF_Revs or 0
+				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire")
+				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire")
+				if not shooting_now then
+					if FF_Revs > 0 then
+						over = true
+						revs_over = FF_Revs
+					end
+					FF_Revs = 0
+				else
+					if LastShootingStart ~= shooting_start then
+						if FF_Revs > 0 then
+							over = true
+							revs_over = FF_Revs
+						end
+					elseif SpellRemoveHeat(1 + FF_Revs, caster) then
+						FF_Revs = FF_Revs + 1
+						c.fire_rate_wait = c.fire_rate_wait - 30
+						current_reload_time = current_reload_time - 30
+					else
+						if FF_Revs > 0 then
+							over = true
+							revs_over = FF_Revs
+						end
+						FF_Revs = 0
+					end
+				end
+				LastShootingStart = shooting_start
+			end
+			if over then
+				local heat_used = revs_over * (1 + revs_over)
+				--GamePrint(heat_used)
+				local count = math.ceil(heat_used/10)
+				for i=1,count do
+					c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/ffireball/buff.xml,"
+				end
+				add_projectile("mods/foolish_flame/files/entities/projectiles/ffireball/projectile.xml")
+				c.speed_multiplier = c.speed_multiplier * (1 - 0.025 * math.min(count, 20))
+				if c.speed_multiplier >= 20 then
+					c.speed_multiplier = math.min(c.speed_multiplier, 20)
+				elseif c.speed_multiplier < 0 then
+					c.speed_multiplier = 0
+				end
+				c.fire_rate_wait = c.fire_rate_wait + 30
+				current_reload_time = current_reload_time + 30 
+			end
+		end,
+	},
+	{
 		id = "LASER",
 		name = "$action_ff_laser",
 		description = "$actiondesc_ff_laser",

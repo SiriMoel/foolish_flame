@@ -1,0 +1,9 @@
+<Entity>
+
+    <LuaComponent
+        execute_on_added="1"
+        remove_after_executed="1"
+        script_source_file="mods/foolish_flame/files/entities/projectiles/ffireball/buff.lua"
+    ></LuaComponent>
+
+</Entity>
