@@ -39,7 +39,10 @@ if heat > 0 then
         amt = amt * 0.5
     end
 
-    amt = amt / 2 -- ran 15 times per second, instead of 30
+    amt = amt * 0.5 -- ran 15 times per second, instead of 30
+
+    local mult = tonumber(GlobalsGetValue("ff_heat_loss_mult", "1")) or 1
+    amt = amt * mult
 
     RemoveHeat(amt, player)
 end

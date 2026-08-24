@@ -236,7 +236,10 @@ function OnPlayerSpawned(player)
 		RemoveFlagPersistent("ff_died_with_willows_lighter")
 	end
 
-	--GlobalsSetValue("ff_heat_display", tostring(ModSettingGet("foolish_flame.heat_display")))
+	GlobalsSetValue("ff_show_heat_gauge", tostring(ModSettingGet("foolish_flame.show_heat_gauge")))
+	GlobalsSetValue("ff_flare_wand_spawn_chance", tostring(ModSettingGet("foolish_flame.flare_wand_spawn_chance")))
+	GlobalsSetValue("ff_heat_loss_mult", tostring(ModSettingGet("foolish_flame.heat_loss_mult")))
+	GlobalsSetValue("ff_brimstone_heat", tostring(ModSettingGet("foolish_flame.brimstone_heat")))
 
 	EntityAddComponent2(player, "VariableStorageComponent", {
 		_tags="ff_heat",
@@ -250,7 +253,8 @@ function OnPlayerSpawned(player)
 	})
 
 	EntityAddComponent2(player, "LuaComponent", {
-		script_source_file="mods/foolish_flame/files/scripts/heat_display.lua",
+		_tags="ff_gauge",
+		script_source_file="mods/foolish_flame/files/scripts/heat_gauge.lua",
 		execute_every_n_frame=1
 	})
 
@@ -268,7 +272,21 @@ function OnPlayerSpawned(player)
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)
-    --[[if is_paused then
-		GlobalsSetValue("ff_heat_display", tostring(ModSettingGet("foolish_flame.heat_display")))
-	end]]
+    if is_paused then
+		local show_heat_gauge = ModSettingGet("foolish_flame.show_heat_gauge") or false
+		GlobalsSetValue("ff_show_heat_gauge", tostring(show_heat_gauge))
+		--[[local player = EntityGetWithTag("player_unit")[1]
+		if player ~= nil then
+			local comp_gauge = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_gauge")
+			if comp_gauge ~= nil then
+				EntitySetComponentIsEnabled(player, comp_gauge, not hide_heat_gauge)
+			end
+		end]]
+		local flare_wand_spawn_chance = ModSettingGet("foolish_flame.flare_wand_spawn_chance") or 60
+		GlobalsSetValue("ff_flare_wand_spawn_chance", tostring(flare_wand_spawn_chance))
+		local heat_loss_mult = ModSettingGet("foolish_flame.heat_loss_mult") or 1
+		GlobalsSetValue("ff_heat_loss_mult", tostring(heat_loss_mult))
+		local brimstone_heat = ModSettingGet("foolish_flame.brimstone_heat") or 4
+		GlobalsSetValue("ff_brimstone_heat", tostring(brimstone_heat))
+	end
 end

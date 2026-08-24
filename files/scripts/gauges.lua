@@ -1,4 +1,33 @@
-heat_displays = {
+--[[
+
+adding more heat gauges (other mods): ???
+
+-- OnModPostInit? no clue if necessary
+if ModIsEnabled("foolish_flame") then
+    ModLuaFileAppend("mods/foolish_flame/files/scripts/gauges.lua", "path_to_mod_gauges_file.lua")
+end
+
+...
+
+local gauges_to_add = {
+    {
+        id = "id",
+        name = "translation_key?",
+        name_t = "translated_text",
+        sprite = "sprite.png",
+        sprite_hot = "sprite_hot.png",
+        func_unlocked = function() return true end,
+        --custom_logic = function(heat) return "sprite_path.png" end, -- sprite_hot is ignored if this isnt nil
+    },
+}
+
+for i,gauge in ipairs(gauges_to_add) do
+    table.insert(heat_gauges, gauge)
+end
+
+]]
+
+heat_gauges = {
     {
         id = "flame",
         name = "$ff_display_flame",
@@ -140,11 +169,11 @@ heat_displays = {
     },
 }
 
-function GetDisplays()
+function GetGauges()
     local t = {}
     local tr = {}
-    for i=1,#heat_displays do
-        local d = heat_displays[i]
+    for i=1,#heat_gauges do
+        local d = heat_gauges[i]
         if d.func_unlocked() then
             table.insert(t, {tostring(i), d.name_t--[[GameTextGetTranslatedOrNot(d.name)]]})
             table.insert(tr, d)

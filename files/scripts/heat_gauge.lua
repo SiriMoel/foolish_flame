@@ -1,7 +1,9 @@
-dofile_once("mods/foolish_flame/files/scripts/utils.lua")
-dofile_once("mods/foolish_flame/files/scripts/displays.lua")
+if not (GlobalsGetValue("ff_show_heat_gauge", "true") == "true") then return end
 
-local _,available_displays = GetDisplays()
+dofile_once("mods/foolish_flame/files/scripts/utils.lua")
+dofile_once("mods/foolish_flame/files/scripts/gauges.lua")
+
+local _,available_displays = GetGauges()
 
 local button_left_down = InputIsKeyDown(47)
 local button_right_down = InputIsKeyDown(48)
@@ -45,7 +47,7 @@ if heat > 0 or (frame ~= nil and (frame < frame_last + 60)) then
 
     local frames = 1
 
-    local display = available_displays[tonumber(GlobalsGetValue("ff_heat_display", "1"))] or heat_displays[1]
+    local display = available_displays[tonumber(GlobalsGetValue("ff_heat_display", "1"))] or heat_gauges[1]
     --GamePrint(#heat_displays)
 
     local sprite = display.sprite
