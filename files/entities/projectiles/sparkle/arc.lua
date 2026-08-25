@@ -10,7 +10,7 @@ SetRandomSeed( GameGetFrameNum(), pos_x + pos_y + entity_id )
 edit_component( entity_id, "VelocityComponent", function(comp,vars)
 	local vel_x,vel_y = ComponentGetValueVector2( comp, "mVelocity")
 	
-	local scale = math.max( math.abs( vel_x ), math.abs( vel_y ) ) * 0.1
+	local scale = math.max( math.abs( vel_x ), math.abs( vel_y ) ) * 0.04
 	local random_adjustment = Random( 0 - scale, scale )
 
 	vel_x = vel_x + random_adjustment

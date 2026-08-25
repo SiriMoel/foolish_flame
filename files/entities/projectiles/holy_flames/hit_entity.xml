@@ -1,0 +1,11 @@
+<Entity tags="ff_holy_flames">
+
+    <InheritTransformComponent
+		_enabled="1"
+    ></InheritTransformComponent>
+
+    <LifetimeComponent
+        lifetime="600"
+    ></LifetimeComponent>
+
+</Entity>

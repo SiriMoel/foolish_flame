@@ -35,9 +35,9 @@ local ff_to_add = {
         xml = "spawner.xml",
     },
     {
-        path = "mods/foolish_flame/files/entities/items/heart_lighter/item.xml",
-        name = "Heart Lighter",
-        xml = "item.xml",
+        path = "mods/foolish_flame/files/entities/buildings/teleport_bounty/teleport_bounty.xml",
+        name = "Bounty Portal",
+        xml = "teleport_bounty.xml",
     },
 }
 

@@ -278,7 +278,7 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/hotter_flares.png",
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "5,6",
-		spawn_probability = "0.1,0.1",
+		spawn_probability = "0.2,0.1",
 		price = 160,
 		mana = 110,
 		ai_never_uses = SOULS_PRECAUTION,
@@ -295,15 +295,32 @@ local new_actions = {
 		description = "$actiondesc_ff_fire_duration",
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/fire_duration.png",
 		type = ACTION_TYPE_MODIFIER,
-		spawn_level = "4,5,6",
-		spawn_probability = "0.2,0.2,0.1",
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.2,0.2,0.2,0.1",
 		price = 140,
 		mana = 12,
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 6
-			current_reload_time = current_reload_time + 3
+			c.fire_rate_wait = c.fire_rate_wait + 3
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/fire_duration/hitfx.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "HOLY_FLAMES",
+		name = "$action_ff_holy_flames",
+		description = "$actiondesc_ff_holy_flames",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/holy_flames.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.2,0.4,0.3,0.1",
+		price = 140,
+		mana = 35,
+		ai_never_uses = SOULS_PRECAUTION,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 9
+			current_reload_time = current_reload_time + 12
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/holy_flames/hitfx.xml,"
 			draw_actions(1, true)
 		end,
 	},

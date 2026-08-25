@@ -101,6 +101,20 @@ bounty_rewards = {
             EntityLoad("mods/foolish_flame/files/entities/items/heart_lighter/item.xml", x, y - 4)
         end,
     },
+    --[[{
+        id = "portal_start",
+        chance = 0.5,
+        spawn_func = function(x, y)
+            EntityLoad("data/entities/buildings/teleport_start.xml", x, y - 8)
+        end,
+    },]]
+    {
+        id = "portal_top",
+        chance = 0.6,
+        spawn_func = function(x, y)
+            EntityLoad("mods/foolish_flame/files/entities/buildings/teleport_bounty/teleport_bounty.xml", x, y - 8)
+        end,
+    },
 }
 
 function BountyReward(x, y)

@@ -56,7 +56,7 @@ local function add_scene(table)
 	ModTextFileSetContent(biome_path, content)
 end
 local scenes = {
-    --{0, 0, "mods/foolish_flame/files/structures/bounty_bunker/spawner.xml", false},
+    {2850, 17425, "mods/foolish_flame/files/structures/bounty_bunker/spawner.xml", false},
 }
 add_scene(scenes)
 
