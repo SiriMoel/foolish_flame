@@ -43,6 +43,7 @@
 	<ItemComponent
 		_tags="enabled_in_world"
     	is_pickable="1"
+		is_equipable_forced="1"
 		ui_sprite="mods/foolish_flame/files/entities/items/willows_lighter/sprite.png"
         item_name="$item_ff_willows_lighter"
         ui_description="$itemdesc_ff_willows_lighter"

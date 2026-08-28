@@ -109,14 +109,12 @@ function mod_setting_enum_ff(mod_id, gui, in_main_menu, im_id, setting)
 	mod_setting_tooltip( mod_id, gui, in_main_menu, setting )
 end
 
-function mod_setting_image_ff(mod_id, gui, in_main_menu, im_id, setting)
+--[[function mod_setting_image_ff(mod_id, gui, in_main_menu, im_id, setting)
 	if setting.id == "heat_display_image" then
 		local display = heat_displays[tonumber(ModSettingGetNextValue("foolish_flame.heat_display"))]
 
 		GuiImage(gui, im_id, mod_setting_group_x_offset, 0, display.sprite, 1, 1, 0)
-		--[[if not in_main_menu then
-			GuiImage(gui, im_id, mod_setting_group_x_offset, -34, "mods/foolish_flame/files/ui_gfx/heat_display/generated/21.png", 1, 1, 0)
-		end]]
+		--if not in_main_menu then GuiImage(gui, im_id, mod_setting_group_x_offset, -34, "mods/foolish_flame/files/ui_gfx/heat_display/generated/21.png", 1, 1, 0) end
 
 		if not display.custom_logic then
 			GuiImage(gui, im_id, mod_setting_group_x_offset + 24, -34, display.sprite_hot, 1, 1, 0)
@@ -129,7 +127,7 @@ function mod_setting_image_ff(mod_id, gui, in_main_menu, im_id, setting)
 	if is_visible_string(setting.ui_description) then
 		GuiTooltip(gui, setting.ui_description, "")
 	end
-end
+end]]
 
 function mod_setting_image_small(mod_id, gui, in_main_menu, im_id, setting)
 	GuiImage(gui, im_id, mod_setting_group_x_offset, 0, setting.image_filename, 1, 0.5, 0)
@@ -175,20 +173,21 @@ mod_settings = {
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
     },
-	--[[{
-        id = "bounty_chance_mult", -- NYI
-        ui_name = "Bounty enemy chance multiplier",
-        ui_description = "Bounty enemy spawn chance should be multiplied by...",
-        value_default = 1,
-        values = { {0.5, "x0.5"}, {1, "x1"}, {2, "x2"}, {3, "x3"}},
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-    },]]
 	{
         id = "brimstone_heat",
         ui_name = "heat from Kiuaskivi per second",
         ui_description = "How much heat should kiuaskivi grant?",
         value_default = "4",
         values = {{"0", "0"}, {"2", "2"}, {"4", "4"}, {"8", "8"}, {"12", "12"}, {"16", "16"}},
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+        ui_fn = mod_setting_enum_ff,
+    },
+	{
+        id = "bounty_chance_mult",
+        ui_name = "Hell bounty chance multiplier",
+        ui_description = "???",
+        value_default = "1",
+        values = {{"0", "x0"}, {"0.3", "x0.3"}, {"0.5", "x0.5"}, {"0.7", "x0.7"}, {"1", "x1"}, {"1.5", "x1.5"}, {"2", "x2"}},
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
     },

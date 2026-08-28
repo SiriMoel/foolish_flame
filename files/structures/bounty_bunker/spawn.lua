@@ -8,7 +8,7 @@ local bg_path = path .. "bg.png"
 
 LoadPixelScene(main_path, visual_path, x, y, bg_path, true)
 
--- spawn info tablet? thing
+EntityLoad("mods/foolish_flame/files/entities/items/bounty_tablet.xml", x + 80, y + 80)
 
 EntityLoad("mods/foolish_flame/files/entities/items/lighter/item.xml", x + 200, y + 105)
 

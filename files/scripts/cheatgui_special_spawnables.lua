@@ -1,7 +1,7 @@
 local ff_to_add = {
     {
         path = "mods/foolish_flame/files/entities/items/willows_lighter/item.xml",
-        name = "Willow's Lighter",
+        name = "Fool's Lighter",
         xml = "item.xml",
     },
     {
@@ -16,7 +16,7 @@ local ff_to_add = {
     },
     {
         path = "mods/foolish_flame/files/entities/items/sword/item.xml",
-        name = "foolish flame sword",
+        name = "Fire Twig",
         xml = "item.xml",
     },
     {
@@ -38,6 +38,11 @@ local ff_to_add = {
         path = "mods/foolish_flame/files/entities/buildings/teleport_bounty/teleport_bounty.xml",
         name = "Bounty Portal",
         xml = "teleport_bounty.xml",
+    },
+    {
+        path = "mods/foolish_flame/files/entities/items/bounty_tablet.xml",
+        name = "Bounty Tablet",
+        xml = "bounty_tablet.xml",
     },
 }
 

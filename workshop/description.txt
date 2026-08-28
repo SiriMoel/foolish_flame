@@ -3,7 +3,7 @@
 A fire-themed content mod.
 
 Foolish Flame introduces a 'heat' mechanic, and content centered around it.
-Heat is acquired from many sources (including by holding kiuaskivi), but mainly from the mod's spells & by being around enemies inflicted with Magic Fire.
+Heat is acquired from many sources (including by holding kiuaskivi), but mainly from the mod's spells & by being around enemies afflicted with Magic Fire.
 
 What is Magic Fire? A new status effect that is inflicted by many of the mod's spells and has 10 temperature levels.
 The higher the temperature, the more heat is gained & the more powerful some of the mod's spells are against that enemy.

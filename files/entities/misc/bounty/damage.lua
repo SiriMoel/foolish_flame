@@ -1,7 +1,7 @@
 function shot(proj)
     local entity = GetUpdatedEntityID()
     local x, y = EntityGetTransform(entity)
-    local mult = 1.2 + (y-20000)/50000
+    local mult = 1 + (y-20000)/48000
     local comps = EntityGetComponent(proj, "ProjectileComponent")
 	if comps ~= nil then
     	for i,comp in ipairs(comps) do

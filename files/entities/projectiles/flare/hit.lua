@@ -26,7 +26,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
         --GamePrint("FF - couldn't find temp component :(")
     end
 
-    EntityInflictDamage(root, damage, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 1, 1, EntityGetWithTag("player_unit")[1], nil, nil, 40)
+    EntityInflictDamage(root, damage, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 1, 1, EntityGetWithTag("player_unit")[1], nil, nil, 0)
 end
 
 AddHeat(heat_amt)

@@ -3,7 +3,7 @@ dofile_once("data/scripts/perks/perk.lua")
 bounty_rewards = {
     {
         id = "nothing",
-        chance = 2.2, -- should there even be a chance to get nothing?
+        chance = 0.6, -- should there even be a chance to get nothing?
         spawn_func = function(x, y)
             -- this is "air"? so... nothing...
         end,

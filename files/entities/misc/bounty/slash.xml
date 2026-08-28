@@ -28,8 +28,9 @@
     hit_particle_force_multiplier="0.25"
     >
     <damage_by_type
-        fire="8"
-        holy="6"
+        melee="3"
+        fire="6"
+        holy="5"
         curse="4"
     ></damage_by_type>
   </ProjectileComponent>

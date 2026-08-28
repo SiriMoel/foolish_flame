@@ -55,6 +55,7 @@
 			play_hover_animation="1"
             play_spinning_animation="0"
             always_use_item_name_in_ui="1"
+			is_equipable_forced="1"
             preferred_inventory="QUICK"
 			>
         </ItemComponent>

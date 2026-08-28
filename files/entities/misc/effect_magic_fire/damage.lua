@@ -10,7 +10,7 @@ if comp_temp ~= nil then
     if temp > 0 then
         local x, y = EntityGetTransform(this)
 
-        local p = EntityGetInRadiusWithTag(x, y, 140, "player_unit") or {}
+        local p = EntityGetInRadiusWithTag(x, y, 150, "player_unit") or {}
         if #p > 0 then
             AddHeat(0.5 + temp * 0.25, p[1])
         end
