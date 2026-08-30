@@ -13,7 +13,8 @@ if #targets > 0 then
                 local action_id = ComponentGetValue2(comp_action, "action_id")
                 CreateItemActionEntity(action_id, x, y-6)
                 GamePrint("Magic!")
-                --GameCreateSpriteForXFrames("data/particles/creepy.xml", x, y, true, 0, 0, 28) -- this doesn't work
+                GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/orb_dark/create", x, y)
+                EntityLoad("mods/foolish_flame/files/entities/items/taq_pol/particles_entity.xml", x, y-6)
                 EntityKill(this)
                 break
             end

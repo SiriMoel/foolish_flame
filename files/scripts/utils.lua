@@ -209,7 +209,7 @@ function MakeBountyEnemy(entity, attack_count)
         ComponentSetValue2(comp, "max_hp", max_hp * hp_mult)
     end
 
-    local shield_temp = math.min(math.max(math.floor(5 + (y - 20000)/5000), 1), 9)
+    local shield_temp = math.min(math.max(math.floor(5 + (y - 20000)/8000), 1), 9)
     EntityAddComponent2(entity, "VariableStorageComponent", {
         _tags="ff_bounty_shield_temp",
 		name="ff_bounty_shield_temp",

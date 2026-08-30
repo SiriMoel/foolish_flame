@@ -231,6 +231,9 @@ function OnPlayerSpawned(player)
         GamePrint("Spooky flame...")
     end
 
+	local gauge = ModSettingGet("foolish_flame.heat_gauge") or 1
+	GlobalsSetValue("ff_heat_display", tostring(gauge))
+
 	if HasFlagPersistent("ff_died_with_willows_lighter") then
 		EntityLoad("mods/foolish_flame/files/entities/items/willows_lighter/item.xml", x + 6, y)
 		RemoveFlagPersistent("ff_died_with_willows_lighter")

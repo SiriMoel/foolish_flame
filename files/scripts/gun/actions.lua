@@ -145,24 +145,21 @@ local new_actions = {
 		end,
 	},
 	{
-		id = "HOT_IRON",
-		name = "$action_ff_hot_iron",
-		description = "$actiondesc_ff_hot_iron",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/hot_iron.png",
-		type = ACTION_TYPE_MODIFIER,
-		spawn_level = "2,3,4,5,6",
-		spawn_probability = "0.6,0.7,0.8,0.8,0.8",
-		price = 100,
-		mana = 12,
+		id = "ENGINE",
+		name = "$action_ff_engine",
+		description = "$actiondesc_ff_engine",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/engine.png",
+		type = ACTION_TYPE_MODIFIER, -- should it be utility like blood magic?
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.5,0.6,0.7,0.7",
+		price = 250,
+		mana = 0,
 		--ai_never_uses = SOULS_PRECAUTION,
 		action = function()
-			local a, h = SpellRemoveHeat(0.8, GetUpdatedEntityID())
-			if a or reflecting then
-				if reflecting then h = REFLECTING_HEAT_AMT end
-				c.damage_projectile_add = c.damage_projectile_add + 0.04 + h * 0.0024
-				c.fire_rate_wait = c.fire_rate_wait + 6
-				current_reload_time = current_reload_time - 3
-				c.extra_entities = c.extra_entities .. "data/entities/particles/tinyspark_yellow.xml,"
+			if SpellRemoveHeat(1.2, GetUpdatedEntityID()) or reflecting then
+				mana = mana + 60
+				c.fire_rate_wait = c.fire_rate_wait - 18
+				current_reload_time = current_reload_time - 28
 			end
 			draw_actions(1, true)
 		end,
@@ -200,32 +197,57 @@ local new_actions = {
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "1,2,3,4,5",
 		spawn_probability = "0.5,0.8,0.9,0.9,0.8",
-		price = 110,
-		mana = 5,
+		price = 120,
+		mana = 4,
 		--ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			if SpellGetHeat(GetUpdatedEntityID()) > 0 or reflecting then
-				c.damage_projectile_add = c.damage_projectile_add + 0.4
+				c.damage_projectile_add = c.damage_projectile_add + 0.32
 			end
 			draw_actions(1, true)
 		end,
 	},
 	{
-		id = "ENGINE",
-		name = "$action_ff_engine",
-		description = "$actiondesc_ff_engine",
-		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/engine.png",
-		type = ACTION_TYPE_MODIFIER, -- should it be utility like blood magic?
-		spawn_level = "3,4,5,6",
-		spawn_probability = "0.5,0.6,0.7,0.7",
-		price = 250,
-		mana = 0,
+		id = "HOT_IRON",
+		name = "$action_ff_hot_iron",
+		description = "$actiondesc_ff_hot_iron",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/hot_iron.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.6,0.7,0.8,0.8,0.8",
+		price = 100,
+		mana = 12,
 		--ai_never_uses = SOULS_PRECAUTION,
 		action = function()
-			if SpellRemoveHeat(1.2, GetUpdatedEntityID()) or reflecting then
-				mana = mana + 60
-				c.fire_rate_wait = c.fire_rate_wait - 18
-				current_reload_time = current_reload_time - 28
+			local a, h = SpellRemoveHeat(1.5, GetUpdatedEntityID())
+			if a or reflecting then
+				if reflecting then h = REFLECTING_HEAT_AMT end
+				h = math.min(h, 220)
+				c.damage_projectile_add = c.damage_projectile_add + 0.04 + h * 0.0024
+				c.fire_rate_wait = c.fire_rate_wait + 6
+				current_reload_time = current_reload_time - 3
+			end
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "DAMAGE_FORGE",
+		name = "$action_ff_damage_forge",
+		description = "$actiondesc_ff_damage_forge",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/damage_forge.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.4,0.6,0.7,0.6",
+		price = 150,
+		mana = 22,
+		--ai_never_uses = SOULS_PRECAUTION,
+		action = function()
+			local a, h = SpellRemoveHeat(4, GetUpdatedEntityID())
+			if a or reflecting then
+				if reflecting then h = REFLECTING_HEAT_AMT end
+				c.damage_projectile_add = c.damage_projectile_add + 0.08 + h * 0.0043
+				c.fire_rate_wait = c.fire_rate_wait + 6
+				current_reload_time = current_reload_time + 6
 			end
 			draw_actions(1, true)
 		end,
@@ -239,7 +261,7 @@ local new_actions = {
 		spawn_level = "4,5,6,10",
 		spawn_probability = "0.2,0.3,0.3,0.1",
 		price = 280,
-		mana = 190,
+		mana = 100,
 		--ai_never_uses = SOULS_PRECAUTION,
 		custom_xml_file="mods/foolish_flame/files/entities/misc/card_meltdown.xml",
 		action = function()
@@ -249,7 +271,7 @@ local new_actions = {
 			if heat > 10 or reflecting then
 				if reflecting then heat = REFLECTING_HEAT_AMT end
 				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/meltdown/meltdown.xml,"
-				local amt = heat * 0.027
+				local amt = heat * 0.029
 				if reflecting then
 					c.damage_projectile_add = c.damage_projectile_add + amt
 				else
@@ -261,12 +283,10 @@ local new_actions = {
 					local proj = amt - holy_count * 0.4
 					c.damage_projectile_add = c.damage_projectile_add + proj
 				end
-				current_reload_time = current_reload_time + 24 + math.ceil(0.19 * heat)
-				--c.trail_material = c.trail_material .. "flame,"
-				--c.trail_material_amount = c.trail_material_amount + math.min(heat * 0.005, 60)
-				SpellRemoveHeat(heat * 0.2, caster)
+				current_reload_time = current_reload_time + 24 + math.ceil(0.13 * heat)
+				SpellRemoveHeat(heat * 0.08, caster)
 			else
-				current_reload_time = current_reload_time + 26
+				current_reload_time = current_reload_time + 24
 			end
 			draw_actions(1, true)
 		end,
@@ -427,11 +447,12 @@ local new_actions = {
 		--ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 20
+			current_reload_time = current_reload_time + 20
 			local caster = GetUpdatedEntityID()
 			local heat = SpellGetHeat(caster)
-			if heat > 20 or reflecting then
+			if heat > 10 or reflecting then
 				if reflecting then heat = REFLECTING_HEAT_AMT end
-				local amt = 20 + (heat - 20) * 0.16
+				local amt = 10 + (heat - 10) * 0.09
 				c.damage_healing_add = c.damage_healing_add - amt * 0.02
 				SpellRemoveHeat(amt, caster)
 				add_projectile("mods/foolish_flame/files/entities/projectiles/phoenix_field/proj.xml")
@@ -445,12 +466,12 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/radiator.png",
 		type = ACTION_TYPE_UTILITY,
 		spawn_level = "4,5,6",
-		spawn_probability = "0.5,0.5,0.5",
+		spawn_probability = "0.4,0.5,0.5",
 		price = 200,
-		mana = 500,
+		mana = 400,
 		max_uses = 40,
 		--never_unlimited = true,
-		ai_never_uses = SOULS_PRECAUTION,
+		ai_never_uses = true,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 30
 			current_reload_time = current_reload_time + 20
@@ -524,7 +545,7 @@ local new_actions = {
 		price = 120,
 		mana = 12,
 		--ai_never_uses = SOULS_PRECAUTION,
-		custom_xml_file="mods/foolish_flame/files/entities/misc/card_thermodynamics/card.xml",
+		custom_xml_file = "mods/foolish_flame/files/entities/misc/card_thermodynamics/card.xml",
 		action = function()
 			current_reload_time = current_reload_time + 2
 			draw_actions(1, true)
@@ -582,39 +603,39 @@ local new_actions = {
 			local over = false
 			local revs_over = 0
 			if SpellGetHeat(caster) <= 0 then
-				if FF_Revs > 0 then
+				if FFIREBALL_Revs > 0 then
 					over = true
 				end
-				FF_Revs = 0 
+				FFIREBALL_Revs = 0 
 			end
 			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent")
 			if controls_component ~= nil and not over then
 				LastShootingStart = LastShootingStart or 0
-				FF_Revs = FF_Revs or 0
+				FFIREBALL_Revs = FFIREBALL_Revs or 0
 				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire")
 				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire")
 				if not shooting_now then
-					if FF_Revs > 0 then
+					if FFIREBALL_Revs > 0 then
 						over = true
-						revs_over = FF_Revs
+						revs_over = FFIREBALL_Revs
 					end
-					FF_Revs = 0
+					FFIREBALL_Revs = 0
 				else
 					if LastShootingStart ~= shooting_start then
-						if FF_Revs > 0 then
+						if FFIREBALL_Revs > 0 then
 							over = true
-							revs_over = FF_Revs
+							revs_over = FFIREBALL_Revs
 						end
-					elseif SpellRemoveHeat(1 + FF_Revs, caster) then
-						FF_Revs = FF_Revs + 1
+					elseif SpellRemoveHeat(1 + FFIREBALL_Revs, caster) then
+						FFIREBALL_Revs = FFIREBALL_Revs + 1
 						c.fire_rate_wait = c.fire_rate_wait - 30
 						current_reload_time = current_reload_time - 30
 					else
-						if FF_Revs > 0 then
+						if FFIREBALL_Revs > 0 then
 							over = true
-							revs_over = FF_Revs
+							revs_over = FFIREBALL_Revs
 						end
-						FF_Revs = 0
+						FFIREBALL_Revs = 0
 					end
 				end
 				LastShootingStart = shooting_start
@@ -658,31 +679,31 @@ local new_actions = {
 			current_reload_time = current_reload_time + 3
 			if reflecting then add_projectile("mods/foolish_flame/files/entities/projectiles/laser/projectile.xml") return end
 			local caster = GetUpdatedEntityID()
-			if SpellGetHeat(caster) <= 0 then FF_Revs = 0 return end
+			if SpellGetHeat(caster) <= 0 then FF_LASER_Revs = 0 return end
 			add_projectile("mods/foolish_flame/files/entities/projectiles/laser/projectile.xml")
 			-- i think this Revs thing is from copith originally
 			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent")
 			if controls_component ~= nil then
 				LastShootingStart = LastShootingStart or 0
-				FF_Revs = FF_Revs or 0
+				FF_LASER_Revs = FF_LASER_Revs or 0
 				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire")
 				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire")
 				if not shooting_now then
-					FF_Revs = 0
+					FF_LASER_Revs = 0
 				else
 					if LastShootingStart ~= shooting_start then
-						FF_Revs = 0
+						FF_LASER_Revs = 0
 					else
-						FF_Revs = FF_Revs + 1
+						FF_LASER_Revs = FF_LASER_Revs + 1
 					end
-					if SpellRemoveHeat(0.1 + 0.1 * math.min(FF_Revs * 0.5, 30), caster) then
-						c.fire_rate_wait = c.fire_rate_wait - math.min(4 * FF_Revs, 120)
-						current_reload_time = current_reload_time - math.min(3 * FF_Revs, 60)
-						c.spread_degrees = c.spread_degrees - math.min(0.5 * FF_Revs, 60)
+					if SpellRemoveHeat(0.1 + 0.1 * math.min(FF_LASER_Revs * 0.5, 30), caster) then
+						c.fire_rate_wait = c.fire_rate_wait - math.min(4 * FF_LASER_Revs, 120)
+						current_reload_time = current_reload_time - math.min(3 * FF_LASER_Revs, 60)
+						c.spread_degrees = c.spread_degrees - math.min(0.5 * FF_LASER_Revs, 60)
 						c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/laser/hitfx.xml,"
 					else
-						current_reload_time = current_reload_time + math.min(3 * FF_Revs, 100) + 6
-						FF_Revs = 0
+						current_reload_time = current_reload_time + math.min(3 * FF_LASER_Revs, 100) + 6
+						FF_LASER_Revs = 0
 					end
 				end
 				LastShootingStart = shooting_start

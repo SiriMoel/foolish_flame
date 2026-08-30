@@ -12,7 +12,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
     local x, y = EntityGetTransform(root)
 
     GamePlaySound("data/audio/Desktop/projectiles.bank", "player_projectiles/critical_hit/create", x, y)
-    --GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_hit", x, y)
+    EntityLoad("mods/foolish_flame/files/entities/projectiles/flare/particles_entity.xml", x, y)
 
     local damage = 0.2
 
@@ -21,9 +21,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
         local temp = ComponentGetValue2(comp_temp, "value_int")
         damage = 0.02 * temp + 0.004 * GetHeat()
 
-        heat_amt = heat_amt + 3 + temp * 0.5
-    else
-        --GamePrint("FF - couldn't find temp component :(")
+        heat_amt = heat_amt + 2 + temp * 0.5
     end
 
     EntityInflictDamage(root, damage, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 1, 1, EntityGetWithTag("player_unit")[1], nil, nil, 0)

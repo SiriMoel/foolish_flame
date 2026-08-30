@@ -147,6 +147,12 @@ local mod_id = "foolish_flame"
 mod_settings_version = 1
 mod_settings = {
 	{
+		id = "heat_gauge",
+		ui_name = "Heat gauge",
+		value_default = 1,
+		hidden = true,
+	},
+	{
         id = "show_heat_gauge",
         ui_name = "Render heat gauge?",
         ui_description = "Should the heat gauge be hidden?",

@@ -39,7 +39,7 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
         local comp_dmg = EntityGetFirstComponentIncludingDisabled(this, "DamageModelComponent")
         if comp_dmg ~= nil then
             local max_hp = ComponentGetValue2(comp_dmg, "max_hp")
-            damage = math.min(damage, max_hp * 0.15)
+            damage = math.min(damage, max_hp * 0.09)
         end
     end
 
