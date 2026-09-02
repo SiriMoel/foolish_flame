@@ -1,0 +1,13 @@
+<Entity>
+
+    <InheritTransformComponent
+		_enabled="1"
+    ></InheritTransformComponent>
+
+    <LuaComponent
+        script_source_file="mods/foolish_flame/files/entities/projectiles/flash_flare/hit.lua"
+        execute_every_n_frame="2"
+        execute_on_added="0"
+    ></LuaComponent>
+
+</Entity>

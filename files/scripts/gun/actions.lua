@@ -59,7 +59,6 @@ local new_actions = {
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 3
-			c.screenshake = c.screenshake + 0.5
 			c.spread_degrees = c.spread_degrees - 1.0
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/flare/hitfx.xml,"
 			add_projectile_trigger_hit_world("mods/foolish_flame/files/entities/projectiles/flare/projectile.xml", 1)
@@ -80,7 +79,6 @@ local new_actions = {
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/heat_flare/projectile.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 2
-			c.screenshake = c.screenshake + 0.5
 			c.spread_degrees = c.spread_degrees + 1.0
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/heat_flare/hitfx.xml,"
 		end,
@@ -95,12 +93,11 @@ local new_actions = {
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.3,0.6,0.7,0.6",
 		price = 110,
-		mana = 60,
+		mana = 50,
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/aoe_flare/projectile.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 8
-			c.screenshake = c.screenshake + 0.5
 			c.spread_degrees = c.spread_degrees + 3.0
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/aoe_flare/hitfx.xml,"
 		end,
@@ -131,17 +128,42 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/good_flare.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/good_flare/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "5,6",
-		spawn_probability = "0.3,0.4",
+		spawn_level = "4,5,6",
+		spawn_probability = "0.1,0.3,0.4",
 		price = 160,
-		mana = 21,
+		mana = 11,
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/good_flare/projectile.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 6
+			c.fire_rate_wait = c.fire_rate_wait - 12
+			if c.fire_rate_wait > 0 then
+				c.fire_rate_wait = math.floor(c.fire_rate_wait * 0.5)
+			end
+			current_reload_time = current_reload_time - 6
 			c.spread_degrees = c.spread_degrees - 3.0
-			c.damage_projectile_add = c.damage_projectile_add - 0.15
+			c.damage_projectile_add = c.damage_projectile_add - 0.16
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/good_flare/hitfx.xml,"
+		end,
+	},
+	{
+		id = "FLASH_FLARE",
+		name = "$action_ff_flash_flare",
+		description = "$actiondesc_ff_flash_flare",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/flash_flare.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/flash_flare/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "4,5,6",
+		spawn_probability = "0.1,0.3,0.4",
+		price = 160,
+		mana = 60,
+		ai_never_uses = SOULS_PRECAUTION,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 18
+			current_reload_time = current_reload_time + 12
+			c.spread_degrees = c.spread_degrees - 3.0
+			c.damage_projectile_add = c.damage_projectile_add + 0.041
+			add_projectile("mods/foolish_flame/files/entities/projectiles/flash_flare/projectile.xml")
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/flash_flare/hitfx.xml,"
 		end,
 	},
 	{
@@ -351,16 +373,17 @@ local new_actions = {
 		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/bunsen.png",
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml",3},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "2,3,4,5,6",
-		spawn_probability = "0.6,0.6,0.7,0.7,0.7",
+		spawn_level = "2,3,4,5",
+		spawn_probability = "0.6,0.6,0.7,0.6",
 		price = 130,
-		mana = 16,
+		mana = 8,
 		--ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			if SpellRemoveHeat(0.8, GetUpdatedEntityID()) or reflecting then
-				c.fire_rate_wait = c.fire_rate_wait - 8
+				c.fire_rate_wait = c.fire_rate_wait - 24
+				current_reload_time = current_reload_time - 24
 				c.spread_degrees = c.spread_degrees - 4.0
-				c.damage_critical_chance = c.damage_critical_chance + 10
+				c.damage_critical_chance = c.damage_critical_chance + 5
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
 				add_projectile("mods/foolish_flame/files/entities/projectiles/bunsen/projectile.xml")
@@ -376,15 +399,15 @@ local new_actions = {
 		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/needle/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "2,3,4,5,6",
-		spawn_probability = "0.6,0.6,0.7,0.7,0.7",
+		spawn_probability = "0.5,0.6,0.7,0.7,0.6",
 		price = 110,
-		mana = 22,
+		mana = 12,
 		--ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.spread_degrees = c.spread_degrees + 3.0
-			if SpellRemoveHeat(0.8, GetUpdatedEntityID()) or reflecting then
+			if SpellRemoveHeat(1.5, GetUpdatedEntityID()) or reflecting then
 				current_reload_time = current_reload_time - 12
-				c.damage_critical_chance = c.damage_critical_chance + 5
+				c.damage_critical_chance = c.damage_critical_chance + 7
 				add_projectile("mods/foolish_flame/files/entities/projectiles/needle/projectile.xml")
 				c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/needle/hitfx.xml,"
 				c.fire_rate_wait = -2
@@ -401,11 +424,11 @@ local new_actions = {
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.5,0.6,0.6,0.6",
 		price = 150,
-		mana = 34,
+		mana = 15,
 		--ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 12
-			if SpellRemoveHeat(1.2, GetUpdatedEntityID()) or reflecting then
+			if SpellRemoveHeat(2.5, GetUpdatedEntityID()) or reflecting then
 				c.spread_degrees = c.spread_degrees - 12.0
 				c.damage_critical_chance = c.damage_critical_chance + 2
 				add_projectile("mods/foolish_flame/files/entities/projectiles/beam/projectile.xml")
@@ -595,7 +618,7 @@ local new_actions = {
 		spawn_level = "10",
 		spawn_probability = "0.1",
 		price = 180,
-		mana = 40,
+		mana = 15,
 		--ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			if reflecting then add_projectile("mods/foolish_flame/files/entities/projectiles/ffireball/projectile.xml") return end
@@ -670,7 +693,7 @@ local new_actions = {
 		spawn_level = "10",
 		spawn_probability = "0.1",
 		price = 300,
-		mana = 30,
+		mana = 10,
 		--ai_never_uses = SOULS_PRECAUTION,
 		custom_xml_file="mods/foolish_flame/files/entities/misc/card_laser.xml",
 		action = function()

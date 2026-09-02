@@ -18,7 +18,7 @@ The heat gauge can take multiple appearances, which can be cycled using the [b][
 [img]spells.png[/img]
 
 So far, this mod adds:
-[b]33[/b] spells
+[b]34[/b] spells
 [b]3[/b] perks
 [b]6[/b] items
 [b]1[/b] friend :)

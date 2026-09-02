@@ -21,7 +21,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
         local temp = ComponentGetValue2(comp_temp, "value_int")
         damage = 0.02 * temp + 0.004 * GetHeat()
 
-        heat_amt = heat_amt + 2 + temp * 0.5
+        heat_amt = heat_amt + 1 + temp * 0.5
     end
 
     EntityInflictDamage(root, damage, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 1, 1, EntityGetWithTag("player_unit")[1], nil, nil, 0)

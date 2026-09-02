@@ -161,21 +161,21 @@ mod_settings = {
         ui_fn = mod_setting_bool_ff,
         value_type = "boolean",
     },
+	{
+        id = "heat_damage_mult",
+        ui_name = "Heat damage boost multiplier",
+        ui_description = "The passive damage boost should be multiplied by...",
+        value_default = "1",
+        values = {{"0", "x0"}, {"0.3", "x0.3"}, {"0.5", "x0.5"}, {"0.7", "x0.7"}, {"1", "x1"}, {"1.5", "x1.5"}, {"2", "x2"}},
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+        ui_fn = mod_setting_enum_ff,
+    },
     {
         id = "heat_loss_mult",
         ui_name = "Heat loss multiplier",
         ui_description = "Passive heat decay should be multiplied by...",
         value_default = "1",
-        values = {{"0.5", "x0.5"}, {"1", "x1"}, {"2", "x2"}, {"3", "x3"}},
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-        ui_fn = mod_setting_enum_ff,
-    },
-	{
-        id = "flare_wand_spawn_chance",
-        ui_name = "Wand of Magic Fire chance",
-        ui_description = "The chance of something being replaced...",
-        value_default = "60",
-        values = {{"0", "0%"}, {"20", "20%"}, {"40", "40%"}, {"60", "60%"}, {"80", "80%"}, {"100", "100%"}},
+        values = {{"0.5", "x0.5"}, {"1", "x1"}, {"1.5", "x1.5"}, {"2", "x2"}},
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
     },
@@ -185,6 +185,15 @@ mod_settings = {
         ui_description = "How much heat should kiuaskivi grant?",
         value_default = "4",
         values = {{"0", "0"}, {"2", "2"}, {"4", "4"}, {"8", "8"}, {"12", "12"}, {"16", "16"}},
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+        ui_fn = mod_setting_enum_ff,
+    },
+	{
+        id = "flare_wand_spawn_chance",
+        ui_name = "Wand of Magic Fire chance",
+        ui_description = "The chance of something being replaced...",
+        value_default = "60",
+        values = {{"0", "0%"}, {"20", "20%"}, {"40", "40%"}, {"60", "60%"}, {"80", "80%"}, {"100", "100%"}},
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
     },
@@ -218,5 +227,5 @@ function ModSettingsGui(gui, in_main_menu)
 
     GuiColorSetForNextWidget(gui, 1, 1, 1, 1)]]
 
-	mod_settings_gui( mod_id, mod_settings, gui, in_main_menu )
+	mod_settings_gui(mod_id, mod_settings, gui, in_main_menu)
 end

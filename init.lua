@@ -244,6 +244,7 @@ function OnPlayerSpawned(player)
 	GlobalsSetValue("ff_heat_loss_mult", tostring(ModSettingGet("foolish_flame.heat_loss_mult")))
 	GlobalsSetValue("ff_brimstone_heat", tostring(ModSettingGet("foolish_flame.brimstone_heat")))
 	GlobalsSetValue("ff_bounty_chance_mult", tostring(ModSettingGet("foolish_flame.bounty_chance_mult")))
+	GlobalsSetValue("ff_heat_damage_mult", tostring(ModSettingGet("foolish_flame.heat_damage_mult")))
 
 	EntityAddComponent2(player, "VariableStorageComponent", {
 		_tags="ff_heat",
@@ -294,5 +295,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 		GlobalsSetValue("ff_brimstone_heat", tostring(brimstone_heat))
 		local bounty_chance_mult = ModSettingGet("foolish_flame.bounty_chance_mult") or 1
 		GlobalsSetValue("ff_bounty_chance_mult", tostring(bounty_chance_mult))
+		local heat_damage_mult = ModSettingGet("foolish_flame.heat_damage_mult") or 1
+		GlobalsSetValue("ff_heat_damage_mult", tostring(heat_damage_mult))
 	end
 end

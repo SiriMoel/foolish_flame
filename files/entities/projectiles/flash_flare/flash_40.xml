@@ -1,0 +1,18 @@
+<Entity>
+
+    <InheritTransformComponent
+		_enabled="1"
+    ></InheritTransformComponent>
+
+    <VariableStorageComponent
+        _tags="ff_flash_amt"
+        name="ff_flash_amt"
+        value_float="40"
+    ></VariableStorageComponent>
+
+    <LuaComponent
+        script_source_file="mods/foolish_flame/files/entities/projectiles/flash_flare/flash.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+</Entity>

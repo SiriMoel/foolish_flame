@@ -32,7 +32,7 @@
     shoot_light_flash_g="60"
     shoot_light_flash_b="100"
     shoot_light_flash_radius="72" 
-	knockback_force="2.3"
+	  knockback_force="1.2"
     physics_impulse_coeff="1500"
     >
     <damage_by_type

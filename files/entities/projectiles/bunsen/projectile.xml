@@ -21,11 +21,11 @@
     on_lifetime_out_explode="0"
     explosion_dont_damage_shooter="1"
     on_collision_die="0"
-    lifetime="40"
-    damage="0.03"
+    lifetime="45"
+    damage="0.0"
     velocity_sets_scale="1"
     lifetime_randomness="4"
-    ragdoll_force_multiplier="0.04"
+    ragdoll_force_multiplier="0.01"
     hit_particle_force_multiplier="0.1"
     penetrate_entities="1"
 	  muzzle_flash_file="data/entities/particles/muzzle_flashes/muzzle_flash_launcher.xml"
@@ -33,7 +33,7 @@
     shoot_light_flash_g="60"
     shoot_light_flash_b="100"
     shoot_light_flash_radius="72" 
-	  knockback_force="2.3"
+	  knockback_force="0.1"
     physics_impulse_coeff="1500"
     >
     <damage_by_type

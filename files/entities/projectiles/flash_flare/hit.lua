@@ -12,12 +12,12 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
     local comp_temp = EntityGetFirstComponentIncludingDisabled(e[1], "VariableStorageComponent", "fire_temp")
     if comp_temp ~= nil then
         local temp = ComponentGetValue2(comp_temp, "value_int")
-        heat_amt = heat_amt + 1 + temp * 0.8
+        heat_amt = heat_amt + temp * 0.6
     end    
 end
 
 AddHeat(heat_amt)
 
-InflictMagicFire(root, 5, 600, 10)
+InflictMagicFire(root, 2, 360, 8)
 
 EntityKill(this)

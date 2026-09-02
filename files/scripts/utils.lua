@@ -88,7 +88,7 @@ function SpellRemoveHeat(amt, entity)
             return false, 0
         end
     end
-    local x, y = EntityGetTransform(entity)
+    local x, y = EntityGetTransform(entity) or 0, 0
     local heat = 60 + math.abs(y * 0.004)
     return true, math.max(amt, heat)
 end
@@ -184,8 +184,8 @@ function InflictMagicFire(target, temp, duration, tmax)
                 ComponentSetValue2(comp_2, "emitted_material_name", mat_2)
             end
 
-            GameCreateCosmeticParticle(mat_1, x, y, 35, 10, -40, nil, 5, 15, true, false, true, true, 0, 80)
-            GameCreateCosmeticParticle(mat_2, x, y, 60, 20, -60, nil, 5, 20, true, false, true, true, 0, 80)
+            GameCreateCosmeticParticle(mat_1, x, y, 15, 10, -40, nil, 5, 15, true, false, true, true, 0, 80)
+            GameCreateCosmeticParticle(mat_2, x, y, 25, 20, -60, nil, 5, 20, true, false, true, true, 0, 80)
 
         end
 
