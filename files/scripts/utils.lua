@@ -184,13 +184,24 @@ function InflictMagicFire(target, temp, duration, tmax)
                 ComponentSetValue2(comp_2, "emitted_material_name", mat_2)
             end
 
-            GameCreateCosmeticParticle(mat_1, x, y, 15, 10, -40, nil, 5, 15, true, false, true, true, 0, 80)
-            GameCreateCosmeticParticle(mat_2, x, y, 25, 20, -60, nil, 5, 20, true, false, true, true, 0, 80)
-
+            GameCreateCosmeticParticle(mat_1, x, y, 10, 10, -40, nil, 5, 15, true, false, true, true, 0, 80)
+            GameCreateCosmeticParticle(mat_2, x, y, 20, 20, -60, nil, 5, 20, true, false, true, true, 0, 80)
         end
 
         ComponentSetValue2(comp_temp, "value_int", temp_now)
     end
+end
+
+function MagicFireMakeItExpire(effect, target)
+    local root = target or EntityGetRootEntity(effect)
+    local holy_flames = EntityGetAllChildren(root, "ff_holy_flames") or {}
+    if #holy_flames > 0 then
+        for i=1,#holy_flames do
+            EntityKill(holy_flames[i])
+        end
+    end
+    EntitySetComponentsWithTagEnabled(effect, "ff_expire", false)
+    EntityKill(effect)
 end
 
 function MakeBountyEnemy(entity, attack_count)

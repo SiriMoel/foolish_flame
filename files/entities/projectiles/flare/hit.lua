@@ -1,3 +1,14 @@
+-- wouldn't it be so cool if we had an on-hit callback?
+-- wouldn't it be so cool if we had an on-hit callback?
+-- wouldn't it be so cool if we had an on-hit callback?
+-- wouldn't it be so cool if we had an on-hit callback?
+-- wouldn't it be so cool if we had an on-hit callback?
+-- wouldn't it be so cool if we had an on-hit callback?
+-- wouldn't it be so cool if we had an on-hit callback?
+-- wouldn't it be so cool if we had an on-hit callback?
+-- wouldn't it be so cool if we had an on-hit callback?
+-- wouldn't it be so cool if we had an on-hit callback?
+
 dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 
 local this = GetUpdatedEntityID()

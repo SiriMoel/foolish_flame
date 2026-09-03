@@ -5,7 +5,13 @@
     ></InheritTransformComponent>
 
     <LifetimeComponent
-        lifetime="600"
+        lifetime="900"
     ></LifetimeComponent>
+
+    <LuaComponent
+        script_source_file="mods/foolish_flame/files/entities/projectiles/holy_flames/check.lua"
+        execute_every_n_frame="2"
+        remove_after_executed="1"
+    ></LuaComponent>
 
 </Entity>

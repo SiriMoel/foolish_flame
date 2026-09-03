@@ -13,27 +13,28 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
 
     GamePlaySound("data/audio/Desktop/projectiles.bank", "player_projectiles/critical_hit/create", x, y)
 
-    local temp_dmg = 0
+    local damage = 0.2
 
     local comp_temp = EntityGetFirstComponentIncludingDisabled(e[1], "VariableStorageComponent", "fire_temp")
     if comp_temp ~= nil then
         local temp = ComponentGetValue2(comp_temp, "value_int")
-        temp_dmg = 0.24 + 0.2 * temp + 0.004 * GetHeat(player)
+        damage = damage + 0.36 * temp
 
-        if temp >= 10 then
-            temp_dmg = temp_dmg * 1.4
+        local holy_flames = EntityGetAllChildren(root, "ff_holy_flames") or {}
+        if #holy_flames > 0 then
+            damage = damage + 4 * 0.04 * #holy_flames * temp
         end
 
-        AddHeat(8 + temp * 2, player)
+        if temp >= 10 then
+            damage = damage * 1.4
+        end
+
+        AddHeat(3 + temp * 3, player)
     end
 
+    EntityInflictDamage(root, damage, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 4, 4, player, nil, nil, 40)
 
-    EntityInflictDamage(root, temp_dmg, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 4, 4, player, nil, nil, 40)
-
-    EntityKill(e[1])
-
-else
-    --InflictMagicFire(root, 3, 20)
+    MagicFireMakeItExpire(e[1], root)
 end
 
 EntityKill(this)

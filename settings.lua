@@ -181,7 +181,7 @@ mod_settings = {
     },
 	{
         id = "brimstone_heat",
-        ui_name = "heat from Kiuaskivi per second",
+        ui_name = "Heat from Kiuaskivi per second",
         ui_description = "How much heat should kiuaskivi grant?",
         value_default = "4",
         values = {{"0", "0"}, {"2", "2"}, {"4", "4"}, {"8", "8"}, {"12", "12"}, {"16", "16"}},

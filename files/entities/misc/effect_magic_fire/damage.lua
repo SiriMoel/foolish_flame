@@ -19,11 +19,6 @@ if comp_temp ~= nil then
         if #holy_flames > 0 then
             local damage = 0
             damage = damage + 0.04 * #holy_flames * temp
-            local dmc = EntityGetFirstComponent(root, "DamageModelComponent")
-            if dmc ~= nil then
-                local max_hp = ComponentGetValue2(dmc, "max_hp")
-                damage = damage + math.min(max_hp, 10) * 0.002 * #holy_flames * temp * 0.5
-            end
             EntityInflictDamage(root, damage, "DAMAGE_HOLY", "", "BLOOD_EXPLOSION", 2, 2, 0, nil, nil, 20)
         end
     end

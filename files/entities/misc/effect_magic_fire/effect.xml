@@ -24,6 +24,14 @@
         execute_every_n_frame="15"
     ></LuaComponent>
 
+    <LuaComponent
+        _tags="ff_expire"
+        script_source_file="mods/foolish_flame/files/entities/misc/effect_magic_fire/expire.lua"
+        execute_every_n_frame="-1"
+        execute_on_added="0"
+        execute_on_removed="1"
+    ></LuaComponent>
+
 
     <!-- vfx -->
 

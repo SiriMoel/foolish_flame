@@ -25,6 +25,8 @@ if comps ~= nil then
 	end
 end
 
+-- wouldn't it be so cool if we had an on-hit callback?
+
 if amt > 0 then
     local count = math.ceil(amt * 100) / 100
     local steps = {{1000000}, {400000}, {40000}, {4000}, {400}, {40}, {4}, {0.4,"04"}, {0.04,"004"}}
