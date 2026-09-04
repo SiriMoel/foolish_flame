@@ -58,7 +58,7 @@ function SpellGetHeat(entity)
         if comp == nil then return 0 end
         return ComponentGetValue2(comp, "value_float")
     end
-    local x, y = EntityGetTransform(entity)
+    local x, y = EntityGetTransform(entity) or 0, 0
     local amt = 60 + math.abs(y * 0.004)
     return amt
 end

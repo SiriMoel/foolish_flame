@@ -1,4 +1,4 @@
-[img]https://imgur.com/d62BikH.png[/img]
+[img]https://imgur.com/rOtgDoF.png[/img]
 
 A fire-themed content mod.
 
@@ -13,7 +13,7 @@ Magic Fire is a new status effect that is inflicted by many of the mod's spells 
 The higher the temperature, the more heat is gained & the more powerful some of the mod's spells are against that enemy.
 
 How much heat you have is shown by a display that appears above the player.
-The heat gauge can take multiple appearances, which can be cycled using the [b][[/b] and [b]][/b] keys in game.
+The heat gauge can take multiple appearances, which can be cycled using the [ and ] keys in game.
 
 [img]https://imgur.com/W6t5wok.png[/img]
 
@@ -25,10 +25,7 @@ So far, this mod adds:
 [b]1[/b] structure...
 
 Foolish Flame has cross-mod interactions with a few other mods to add integration with this mod's mechanics:
-[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3032128572]Apotheosis[/url][/b],
-[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2840072000]Graham's Things[/url][/b],
-[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3313573016]Souls[/url][/b],
-& [b][url=https://github.com/Copious-Modding-Industries/copis_things]Copi's Things[/url][/b].
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3032128572]Apotheosis[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2840072000]Graham's Things[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3313573016]Souls[/url][/b], and [b][url=https://github.com/Copious-Modding-Industries/copis_things]Copi's Things[/url][/b].
 
 [img]https://imgur.com/6v9DzZv.png[/img]
 
