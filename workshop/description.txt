@@ -1,4 +1,4 @@
-[img]title.png[/img]
+[img]https://imgur.com/d62BikH.png[/img]
 
 A fire-themed content mod.
 
@@ -15,7 +15,7 @@ The higher the temperature, the more heat is gained & the more powerful some of 
 How much heat you have is shown by a display that appears above the player.
 The heat gauge can take multiple appearances, which can be cycled using the [b][[/b] and [b]][/b] keys in game.
 
-[img]spells.png[/img]
+[img]https://imgur.com/W6t5wok.png[/img]
 
 So far, this mod adds:
 [b]34[/b] spells
@@ -30,9 +30,7 @@ Foolish Flame has cross-mod interactions with a few other mods to add integratio
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3313573016]Souls[/url][/b],
 & [b][url=https://github.com/Copious-Modding-Industries/copis_things]Copi's Things[/url][/b].
 
-[img]magic_fire.png[/img]
+[img]https://imgur.com/6v9DzZv.png[/img]
 
 Discord: https://discord.gg/FKaRA9HMUq
 Github: https://github.com/SiriMoel/foolish_flame
-
-[img]gurbert.png[/img]

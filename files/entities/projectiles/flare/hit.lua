@@ -22,7 +22,6 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
 
     local x, y = EntityGetTransform(root)
 
-    GamePlaySound("data/audio/Desktop/projectiles.bank", "player_projectiles/critical_hit/create", x, y)
     EntityLoad("mods/foolish_flame/files/entities/projectiles/flare/particles_entity.xml", x, y)
 
     local damage = 0.2

@@ -184,6 +184,12 @@ function InflictMagicFire(target, temp, duration, tmax)
                 ComponentSetValue2(comp_2, "emitted_material_name", mat_2)
             end
 
+            local comp_spec = EntityGetFirstComponentIncludingDisabled(effect, "SpriteParticleEmitterComponent")
+            if comp_spec ~= nil then
+                local particles_path = "mods/foolish_flame/files/entities/misc/effect_magic_fire/particles/" .. temp_now .. ".xml"
+                ComponentSetValue2(comp_spec, "sprite_file", particles_path)
+            end
+
             GameCreateCosmeticParticle(mat_1, x, y, 10, 10, -40, nil, 5, 15, true, false, true, true, 0, 80)
             GameCreateCosmeticParticle(mat_2, x, y, 20, 20, -60, nil, 5, 20, true, false, true, true, 0, 80)
         end

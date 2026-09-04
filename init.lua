@@ -2,7 +2,7 @@ dofile_once("mods/foolish_flame/files/scripts/utils.lua")
 
 local nxml = dofile_once("mods/foolish_flame/lib/nxml.lua")
 
--- create heat display sprites ... if changing steps, remember to update heat_display.lua
+-- create heat display sprites ... if changing steps, remember to update heat_gauge.lua
 local steps_x = 8 -- 1, 2, 4, 8
 local steps_y = 20
 local template, w, h = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/heat_display/full.png", 20, 34)
@@ -30,12 +30,11 @@ ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/foolish_flame/files/scripts/g
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/foolish_flame/files/scripts/perk_list.lua")
 --ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/foolish_flame/files/scripts/status_list.lua")
 
--- in grahamth we trust (i didn't know how to do this)
 local content = ModTextFileGetContent("data/scripts/gun/procedural/starting_wand.lua")
 content = content:gsub("\"SPITTER\"", "\"SPITTER\",\"FF_SPARKLE\"")
 ModTextFileSetContent("data/scripts/gun/procedural/starting_wand.lua", content)
 
--- in grahamth we trust (from souls, but from graham(th?) originally)
+-- in grahamth we trust
 local function add_scene(table)
 	local biome_path = ModIsEnabled("noitavania") and "mods/noitavania/data/biome/_pixel_scenes.xml" or "data/biome/_pixel_scenes.xml"
 	local content = ModTextFileGetContent(biome_path)
@@ -198,9 +197,9 @@ function OnModPostInit()
 		table.insert(modify_bounty_enemies, "data/entities/animals/the_end/wizard_firemage_greater.xml")
 		table.insert(modify_bounty_enemies, "data/entities/animals/the_end/gazer_greater.xml")
 	end
-	if ModIsEnabled("souls") then -- if i must
+	--[[if ModIsEnabled("souls") then -- this would be a pain to fight
 		table.insert(modify_bounty_enemies, "data/entities/animals/the_end/moldos_soul_angry.xml")
-	end
+	end]]
 	for i,v in ipairs(modify_bounty_enemies) do
 		local xml = nxml.parse(ModTextFileGetContent(v))
 		xml:add_child(nxml.parse(([[
@@ -280,13 +279,6 @@ function OnPausedChanged(is_paused, is_inventory_pause)
     if is_paused then
 		local show_heat_gauge = ModSettingGet("foolish_flame.show_heat_gauge") or false
 		GlobalsSetValue("ff_show_heat_gauge", tostring(show_heat_gauge))
-		--[[local player = EntityGetWithTag("player_unit")[1]
-		if player ~= nil then
-			local comp_gauge = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_gauge")
-			if comp_gauge ~= nil then
-				EntitySetComponentIsEnabled(player, comp_gauge, not hide_heat_gauge)
-			end
-		end]]
 		local flare_wand_spawn_chance = ModSettingGet("foolish_flame.flare_wand_spawn_chance") or 60
 		GlobalsSetValue("ff_flare_wand_spawn_chance", tostring(flare_wand_spawn_chance))
 		local heat_loss_mult = ModSettingGet("foolish_flame.heat_loss_mult") or 1
