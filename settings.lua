@@ -7,6 +7,10 @@ function mod_setting_bool_ff(mod_id, gui, in_main_menu, im_id, setting)
 
 	local text = GameTextGet(value and "$ff_setting_on" or "$ff_setting_off")
 
+	if in_main_menu then
+		text = value and "ON!" or "Off"
+	end
+
     if value then
         GuiColorSetForNextWidget(gui, 1.0, 0.9, 0.7, 1.0)
     else
@@ -33,37 +37,6 @@ function mod_setting_bool_ff(mod_id, gui, in_main_menu, im_id, setting)
 
 	mod_setting_tooltip( mod_id, gui, in_main_menu, setting )
 end
-
---[[function mod_setting_number_ff(mod_id, gui, in_main_menu, im_id, setting)
-	local value = ModSettingGetNextValue( mod_setting_get_id(mod_id,setting) )
-	if type(value) ~= "number" then value = setting.value_default or 0.0 end
-
-	if setting.value_min == nil or setting.value_max == nil or setting.value_default == nil then
-		GuiText( setting.ui_name .. " - not all required values are defined in setting definition" )
-		return
-	end
-
-    local r, g, b = 1, 1, 1
-    local m = setting.value_min / setting.value_max
-    r = 0.7 + 0.3 * m
-    g = 0.6 + 0.3 * m
-    b = 0.4 + 0.3 * m
-    GuiColorSetForNextWidget(gui, r, g, b, 1)
-
-	local value_new = GuiSlider(gui, im_id, mod_setting_group_x_offset, 0, "", value, setting.value_min, setting.value_max, setting.value_default, setting.value_display_multiplier or 1, setting.value_display_formatting or "", 40)
-	if value ~= value_new then
-		ModSettingSetNextValue( mod_setting_get_id(mod_id,setting), value_new, false )
-		mod_setting_handle_change_callback( mod_id, gui, in_main_menu, setting, value, value_new )
-	end
-
-    GuiColorSetForNextWidget(gui, 0.6, 0.6, 0.6, 1)
-
-    GuiText(gui, mod_setting_group_x_offset + 44, -10, setting.ui_name, 1, "", true)
-
-    GuiColorSetForNextWidget(gui, 1, 1, 1, 1)
-
-	mod_setting_tooltip( mod_id, gui, in_main_menu, setting )
-end]]
 
 function mod_setting_enum_ff(mod_id, gui, in_main_menu, im_id, setting)
 	local value = ModSettingGetNextValue( mod_setting_get_id(mod_id,setting) )
