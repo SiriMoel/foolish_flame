@@ -49,23 +49,33 @@ if heat > 0 or (frame ~= nil and (frame < frame_last + 60)) then
     local frames = 1
 
     local display = available_displays[tonumber(GlobalsGetValue("ff_heat_display", "1"))] or heat_gauges[1]
-    --GamePrint(#heat_displays)
 
-    local sprite = display.sprite
+    local draw_order = display.draw_order or {"SPRITE", "STEP"}
 
-    if display.custom_logic ~= nil then
-        sprite = display.custom_logic(heat)
-    else
-        if heat >= 400 and display.sprite_hot ~= nil then
-            sprite = display.sprite_hot
-        end
-    end
+    local sprites = {
+        SPRITE = display.sprite,
+        STEP = "mods/foolish_flame/files/ui_gfx/heat_display/generated/0.png",
+    }
 
-    GameCreateSpriteForXFrames(sprite, draw_x, draw_y, true, 0, 0, frames, 0)
-    
     local step_count = 8 * 20 - 1
-
     local step = math.min(math.floor((heat / 300) * step_count), step_count)
 
-    GameCreateSpriteForXFrames("mods/foolish_flame/files/ui_gfx/heat_display/generated/" .. step .. ".png", draw_x, draw_y, true, 0, 0, frames, 0)
+    if display.custom_logic ~= nil then
+        sprites = display.custom_logic(heat)
+        sprites["STEP"] = sprites["STEP"] or "mods/foolish_flame/files/ui_gfx/heat_display/generated/" .. step .. ".png"
+    else
+        if heat >= 400 and display.sprite_hot ~= nil then
+            sprites["SPRITE"] = display.sprite_hot
+        else
+            sprites["SPRITE"] = display.sprite
+        end
+        sprites["STEP"] = "mods/foolish_flame/files/ui_gfx/heat_display/generated/" .. step .. ".png"
+    end
+
+    for i,v in ipairs(draw_order) do
+        local sprite = sprites[v]
+        if sprite ~= nil then
+            GameCreateSpriteForXFrames(sprite, draw_x, draw_y, true, 0, 0, frames, 0)
+        end
+    end
 end

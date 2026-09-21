@@ -17,6 +17,15 @@ function GetHeat(player)
     return ComponentGetValue2(comp, "value_float")
 end
 
+function FramesSinceLastHeated(player)
+    player = player or EntityGetWithTag("player_unit")[1]
+    if player == nil then return 0 end
+    local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_frame_last_heated")
+    if comp == nil then return 0 end
+    local frame = GameGetFrameNum() - ComponentGetValue2(comp, "value_int")
+    return frame
+end
+
 function AddHeat(amt, player)
     player = player or EntityGetWithTag("player_unit")[1]
     if player == nil then return end
@@ -27,6 +36,10 @@ function AddHeat(amt, player)
         amt = amt * (1 - math.min(0.1 * effect_reduce_count, 0.9))
     end
     ComponentSetValue2(comp, "value_float", ComponentGetValue2(comp, "value_float") + amt)
+    local comp_frame = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "ff_frame_last_heated")
+    if comp_frame ~= nil then
+        ComponentSetValue2(comp_frame, "value_int", GameGetFrameNum())
+    end
 end
 
 function RemoveHeat(amt, player)
@@ -73,6 +86,10 @@ function SpellAddHeat(amt, entity)
         amt = amt * (1 - math.min(0.1 * effect_reduce_count, 0.9))
     end
     ComponentSetValue2(comp, "value_float", ComponentGetValue2(comp, "value_float") + amt)
+    local comp_frame = EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "ff_frame_last_heated")
+    if comp_frame ~= nil then
+        ComponentSetValue2(comp_frame, "value_int", GameGetFrameNum())
+    end
 end
 
 function SpellRemoveHeat(amt, entity)

@@ -1,0 +1,17 @@
+<Materials>
+
+    <Reaction probability="0.5"
+		input_cell1="lava" input_cell2="lava"
+		output_cell1="lava" output_cell2="lava"
+		entity="mods/foolish_flame/files/entities/misc/lava_heater/under.xml"
+		>
+	</Reaction>
+
+    <Reaction probability="1"
+		input_cell1="lava" input_cell2="air"
+		output_cell1="lava" output_cell2="air"
+		entity="mods/foolish_flame/files/entities/misc/lava_heater/surface.xml"
+		>
+	</Reaction>
+
+</Materials>

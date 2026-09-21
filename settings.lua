@@ -111,9 +111,9 @@ function mod_setting_image_small(mod_id, gui, in_main_menu, im_id, setting)
 end
 
 function mod_setting_change_callback(mod_id, gui, in_main_menu, setting, old_value, new_value)
-	if setting.id == "heat_display" then
+	--[[if setting.id == "heat_display" then
         setting.values = GetDisplays()
-    end
+    end]]
 end
 
 local mod_id = "foolish_flame"
@@ -143,7 +143,7 @@ mod_settings = {
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
     },
-    {
+    --[[{
         id = "heat_loss_mult",
         ui_name = "Heat loss multiplier",
         ui_description = "Passive heat decay should be multiplied by...",
@@ -151,8 +151,8 @@ mod_settings = {
         values = {{"0.5", "x0.5"}, {"1", "x1"}, {"1.5", "x1.5"}, {"2", "x2"}},
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
-    },
-	{
+    },]]
+	--[[{
         id = "brimstone_heat",
         ui_name = "Heat from Kiuaskivi per second",
         ui_description = "How much heat should kiuaskivi grant?",
@@ -160,7 +160,7 @@ mod_settings = {
         values = {{"0", "0"}, {"2", "2"}, {"4", "4"}, {"8", "8"}, {"12", "12"}, {"16", "16"}},
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
-    },
+    },]]
 	{
         id = "flare_wand_spawn_chance",
         ui_name = "Wand of Magic Fire chance",

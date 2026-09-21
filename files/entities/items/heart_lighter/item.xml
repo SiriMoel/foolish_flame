@@ -100,6 +100,13 @@
 		z_index="-1.5" >
 	</SpriteComponent>
 
+	<VariableStorageComponent
+		_tags="ff_lighter,ff_inventory_heater"
+		_enabled="0"
+		name="ff_inventory_heater"
+		value_float="4"
+	></VariableStorageComponent>
+
 	<LuaComponent
 		_tags="ff_lighter"
 		_enabled="0"

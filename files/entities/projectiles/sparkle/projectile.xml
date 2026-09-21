@@ -12,8 +12,8 @@
   <ProjectileComponent
     lob_min="0.5"
     lob_max="0.7"
-    speed_min="240"
-    speed_max="340"
+    speed_min="280"
+    speed_max="360"
     friction="1"
     direction_random_rad="0.01"
     on_death_explode="0"

@@ -22,8 +22,8 @@ local new_actions = {
 		mana = 14,
 		--ai_never_uses = SOULS_PRECAUTION,
 		action = function()
-			c.spread_degrees = c.spread_degrees + 4.0
-			c.fire_rate_wait = c.fire_rate_wait - 2 --?
+			c.spread_degrees = c.spread_degrees + 3.0
+			c.fire_rate_wait = c.fire_rate_wait - 2
 			add_projectile("mods/foolish_flame/files/entities/projectiles/sparkle/projectile.xml")
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/sparkle/hitfx.xml,"
 		end,

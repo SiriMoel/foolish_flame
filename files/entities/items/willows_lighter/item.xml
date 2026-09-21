@@ -100,12 +100,19 @@
 		z_index="-1.5" >
 	</SpriteComponent>
 
-	<LuaComponent
+	<VariableStorageComponent
+		_tags="ff_lighter,ff_inventory_heater"
+		_enabled="0"
+		name="ff_inventory_heater"
+		value_float="8"
+	></VariableStorageComponent>
+
+	<!--<LuaComponent
 		_tags="ff_lighter"
 		_enabled="0"
 		script_source_file="mods/foolish_flame/files/entities/items/willows_lighter/lighter.lua"
 		execute_every_n_frame="15"
-	></LuaComponent>
+	></LuaComponent>-->
 
 	<LuaComponent
 		_tags="ff_lighter"

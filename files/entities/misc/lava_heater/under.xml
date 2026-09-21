@@ -1,0 +1,7 @@
+<Entity tags="ff_lava">
+
+    <LifetimeComponent
+        lifetime="20"
+    ></LifetimeComponent>
+
+</Entity>

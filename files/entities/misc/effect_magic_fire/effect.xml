@@ -32,6 +32,11 @@
         execute_on_removed="1"
     ></LuaComponent>
 
+    <LuaComponent
+		script_damage_received="mods/foolish_flame/files/entities/misc/effect_magic_fire/damage_handler.lua"
+		execute_every_n_frame="-1"
+	></LuaComponent>
+
 
     <!-- vfx -->
 

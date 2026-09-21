@@ -58,7 +58,7 @@ heat_gauges = {
                 path .. "6.png",
                 path .. "7.png",
             }
-            return sprites[math.floor((frame / frames_per) % #sprites) + 1]
+            return {SPRITE = sprites[math.floor((frame / frames_per) % #sprites) + 1]}
         end,
     },
     {
@@ -134,7 +134,7 @@ heat_gauges = {
                 path .. "7.png",
                 path .. "8.png",
             }
-            return sprites[math.floor((frame / frames_per) % #sprites) + 1]
+            return {SPRITE = sprites[math.floor((frame / frames_per) % #sprites) + 1]}
         end,
     },
     {
