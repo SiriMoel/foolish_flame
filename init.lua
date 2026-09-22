@@ -66,12 +66,23 @@ add_scene(scenes)
 -- translations
 local translations = ModTextFileGetContent("data/translations/common.csv")
 if translations ~= nil then
-    while translations:find("\r\n\r\n") do
-        translations = translations:gsub("\r\n\r\n","\r\n")
-    end
-    local new_translations = ModTextFileGetContent(table.concat({"mods/foolish_flame/files/translations.csv"}))
-    translations = translations .. new_translations
-    ModTextFileSetContent("data/translations/common.csv", translations)
+	local translations_files = {
+		"mods/foolish_flame/files/translations/spells.csv",
+		"mods/foolish_flame/files/translations/perks.csv",
+		"mods/foolish_flame/files/translations/items.csv",
+		"mods/foolish_flame/files/translations/other.csv",
+	}
+	if ModSettingGet("foolish_flame.advanced_spell_descs") == true then
+		translations_files[1] = "mods/foolish_flame/files/translations/spells_adv.csv"
+	end
+	for _,v in ipairs(translations_files) do
+		while translations:find("\r\n\r\n") do
+        	translations = translations:gsub("\r\n\r\n","\r\n")
+    	end
+    	local new_translations = ModTextFileGetContent(table.concat({v}))
+    	translations = translations .. new_translations
+	end
+	ModTextFileSetContent("data/translations/common.csv", translations)
 end
 
 function OnModPostInit()
@@ -107,7 +118,7 @@ function OnPlayerSpawned(player)
 
 	GlobalsSetValue("ff_show_heat_gauge", tostring(ModSettingGet("foolish_flame.show_heat_gauge")))
 	GlobalsSetValue("ff_flare_wand_spawn_chance", tostring(ModSettingGet("foolish_flame.flare_wand_spawn_chance")))
-	--GlobalsSetValue("ff_heat_loss_mult", tostring(ModSettingGet("foolish_flame.heat_loss_mult")))
+	GlobalsSetValue("ff_heat_loss_mult", tostring(ModSettingGet("foolish_flame.heat_loss_mult")))
 	--GlobalsSetValue("ff_brimstone_heat", tostring(ModSettingGet("foolish_flame.brimstone_heat")))
 	GlobalsSetValue("ff_bounty_chance_mult", tostring(ModSettingGet("foolish_flame.bounty_chance_mult")))
 	GlobalsSetValue("ff_heat_damage_mult", tostring(ModSettingGet("foolish_flame.heat_damage_mult")))
@@ -159,8 +170,8 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 		GlobalsSetValue("ff_show_heat_gauge", tostring(show_heat_gauge))
 		local flare_wand_spawn_chance = ModSettingGet("foolish_flame.flare_wand_spawn_chance") or 60
 		GlobalsSetValue("ff_flare_wand_spawn_chance", tostring(flare_wand_spawn_chance))
-		--local heat_loss_mult = ModSettingGet("foolish_flame.heat_loss_mult") or 1
-		--GlobalsSetValue("ff_heat_loss_mult", tostring(heat_loss_mult))
+		local heat_loss_mult = ModSettingGet("foolish_flame.heat_loss_mult") or 1
+		GlobalsSetValue("ff_heat_loss_mult", tostring(heat_loss_mult))
 		--local brimstone_heat = ModSettingGet("foolish_flame.brimstone_heat") or 4
 		--GlobalsSetValue("ff_brimstone_heat", tostring(brimstone_heat))
 		local bounty_chance_mult = ModSettingGet("foolish_flame.bounty_chance_mult") or 1

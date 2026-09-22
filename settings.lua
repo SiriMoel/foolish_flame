@@ -82,26 +82,6 @@ function mod_setting_enum_ff(mod_id, gui, in_main_menu, im_id, setting)
 	mod_setting_tooltip( mod_id, gui, in_main_menu, setting )
 end
 
---[[function mod_setting_image_ff(mod_id, gui, in_main_menu, im_id, setting)
-	if setting.id == "heat_display_image" then
-		local display = heat_displays[tonumber(ModSettingGetNextValue("foolish_flame.heat_display"))]
-
-		GuiImage(gui, im_id, mod_setting_group_x_offset, 0, display.sprite, 1, 1, 0)
-		--if not in_main_menu then GuiImage(gui, im_id, mod_setting_group_x_offset, -34, "mods/foolish_flame/files/ui_gfx/heat_display/generated/21.png", 1, 1, 0) end
-
-		if not display.custom_logic then
-			GuiImage(gui, im_id, mod_setting_group_x_offset + 24, -34, display.sprite_hot, 1, 1, 0)
-			GuiImage(gui, im_id, mod_setting_group_x_offset + 24, -34, "mods/foolish_flame/files/ui_gfx/heat_display/full.png", 1, 1, 0)
-		end
-	else
-		GuiImage(gui, im_id, mod_setting_group_x_offset, 0, setting.image_filename, 1, 1, 0)
-	end
-
-	if is_visible_string(setting.ui_description) then
-		GuiTooltip(gui, setting.ui_description, "")
-	end
-end]]
-
 function mod_setting_image_small(mod_id, gui, in_main_menu, im_id, setting)
 	GuiImage(gui, im_id, mod_setting_group_x_offset, 0, setting.image_filename, 1, 0.5, 0)
 
@@ -143,7 +123,7 @@ mod_settings = {
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
     },
-    --[[{
+    {
         id = "heat_loss_mult",
         ui_name = "Heat loss multiplier",
         ui_description = "Passive heat decay should be multiplied by...",
@@ -151,7 +131,7 @@ mod_settings = {
         values = {{"0.5", "x0.5"}, {"1", "x1"}, {"1.5", "x1.5"}, {"2", "x2"}},
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
-    },]]
+    },
 	--[[{
         id = "brimstone_heat",
         ui_name = "Heat from Kiuaskivi per second",
@@ -179,6 +159,15 @@ mod_settings = {
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_enum_ff,
     },
+	{
+        id = "advanced_spell_descs",
+        ui_name = "Advanced spell descriptions",
+        ui_description = "Should spell descriptions have additional heat & magic fire information? Magic fire info is displayed as [temperature,duration,max temp.]",
+        value_default = false,
+        scope = MOD_SETTING_SCOPE_RUNTIME_RESTART,
+        ui_fn = mod_setting_bool_ff,
+        value_type = "boolean",
+    },
 }
 
 function ModSettingsUpdate(init_scope)
@@ -191,14 +180,5 @@ function ModSettingsGuiCount()
 end
 
 function ModSettingsGui(gui, in_main_menu)
-
-    --[[GuiImage(gui, 1, 0, 0, "mods/foolish_flame/title.png", 1, 0.5)
-
-    GuiColorSetForNextWidget(gui, 0.5, 0.5, 0.5, 1)
-
-    GuiText(gui, 0, 0, "hello", 1, "", true)
-
-    GuiColorSetForNextWidget(gui, 1, 1, 1, 1)]]
-
 	mod_settings_gui(mod_id, mod_settings, gui, in_main_menu)
 end

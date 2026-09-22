@@ -79,9 +79,9 @@ end
 if heat <= 150 then
     local biome = BiomeMapGetName()
     if biome == "$biome_rainforest" then
-        amt_gain = amt_gain + 5
+        amt_gain = amt_gain + 2
     elseif biome == "$biome_dragoncave" then
-        amt_gain = amt_gain + 8
+        amt_gain = amt_gain + 4
     end
 
     local inv_items = GameGetAllInventoryItems(player) or {}
@@ -97,7 +97,6 @@ if heat <= 150 then
         end
     end
 end
-
 
 amt_gain = amt_gain / times_per_second
 
