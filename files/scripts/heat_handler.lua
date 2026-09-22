@@ -34,7 +34,7 @@ if #magic_fires > 0 then
             if hit > 0 then
                 hit = hit * (1 - (temp / 11))
             end
-            amt_gain = amt_gain + (8 + temp * 2) * (1 - dist/200) * (1-hit)
+            amt_gain = amt_gain + (6 + temp * 2) * (1 - dist/200) * (1-hit)
         end
     end
 end
@@ -71,7 +71,7 @@ if heat <= 100 then
             local firemage = firemages[i]
             local fx, fy = EntityGetTransform(firemage)
             local dist = math.sqrt((x-fx)^2 + (y-fy)^2)
-            amt_gain = amt_gain + 4 * (1 - dist/160)
+            amt_gain = amt_gain + 3 * (1 - dist/160)
         end
     end
 end
@@ -104,14 +104,14 @@ amt_gain = amt_gain / times_per_second
 -- LOSING HEAT
 
 if heat > 0 then
-    if frames > 60 then
-        amt_loss = amt_loss + 20 * math.min((frames - 60) / 480, 1)
+    if frames > 30 then
+        amt_loss = amt_loss + 20 * math.min((frames - 30) / 480, 1)
     else
-        amt_loss = amt_loss + 1
+        amt_loss = amt_loss + 2
     end
 
-    if heat > 200 then
-        amt_loss = amt_loss + math.max((heat - 200) / 5, 1)
+    if heat > 300 then
+        amt_loss = amt_loss + math.max((heat - 300) / 5, 1)
     end
 
     if EntityHasTag(player, "ff_slow_heat_loss") then

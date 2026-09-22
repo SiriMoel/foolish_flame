@@ -1,4 +1,5 @@
 NEW
+- Contagion Flare spell
 - Reworked passive heat loss to ramp up over time while heat isn't being gained
 - Being around lava grants heat
 - Passive heat gain while in the Underground Jungle
@@ -13,6 +14,9 @@ CHANGED/FIXED
 - FFIREBALL spell magic fire duration fix
 - Mod settings now appear properly in main menu
 - Increased heat gain from suns
+- Removed Flash Flare spell recharge time penalty and increased its cast delay
+- Increased Lumen Flare spell cast delay and reduced its mana cost
+- Increased Holy Flames spell spawn_probability
 
 INTERNAL
 - Updated heat gauge sprites system

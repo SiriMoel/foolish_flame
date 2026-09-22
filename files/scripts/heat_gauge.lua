@@ -54,7 +54,7 @@ if heat > 0 or (frame ~= nil and (frame < frame_last + 60)) then
 
     local sprites = {
         SPRITE = display.sprite,
-        STEP = "mods/foolish_flame/files/ui_gfx/heat_display/generated/0.png",
+        STEP = nil,
     }
 
     local step_count = 8 * 20 - 1
@@ -62,13 +62,15 @@ if heat > 0 or (frame ~= nil and (frame < frame_last + 60)) then
 
     if display.custom_logic ~= nil then
         sprites = display.custom_logic(heat)
-        sprites["STEP"] = sprites["STEP"] or "mods/foolish_flame/files/ui_gfx/heat_display/generated/" .. step .. ".png"
     else
         if heat >= 400 and display.sprite_hot ~= nil then
             sprites["SPRITE"] = display.sprite_hot
         else
             sprites["SPRITE"] = display.sprite
         end
+    end
+
+    if sprites["STEP"] == nil then
         sprites["STEP"] = "mods/foolish_flame/files/ui_gfx/heat_display/generated/" .. step .. ".png"
     end
 

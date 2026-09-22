@@ -100,11 +100,11 @@ local new_actions = {
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.3,0.6,0.7,0.6",
 		price = 110,
-		mana = 50,
+		mana = 40,
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
 			add_projectile("mods/foolish_flame/files/entities/projectiles/aoe_flare/projectile.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 8
+			c.fire_rate_wait = c.fire_rate_wait + 12
 			c.spread_degrees = c.spread_degrees + 3.0
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/aoe_flare/hitfx.xml,"
 		end,
@@ -127,6 +127,26 @@ local new_actions = {
 			c.fire_rate_wait = c.fire_rate_wait + 6
 			c.spread_degrees = c.spread_degrees - 3.0
 			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/bullet_flare/hitfx.xml,"
+		end,
+	},
+	{
+		id = "CONTAGION_FLARE",
+		name = "$action_ff_contagion_flare",
+		description = "$actiondesc_ff_contagion_flare",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/contagion_flare.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/contagion_flare/projectile.xml"},
+		related_extra_entities = {"mods/foolish_flame/files/entities/projectiles/contagion_flare/hitfx.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.1,0.3,0.4,0.4",
+		price = 140,
+		mana = 60,
+		ai_never_uses = SOULS_PRECAUTION,
+		action = function()
+			add_projectile("mods/foolish_flame/files/entities/projectiles/contagion_flare/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 24
+			c.spread_degrees = c.spread_degrees + 1.0
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/contagion_flare/hitfx.xml,"
 		end,
 	},
 	{
@@ -168,8 +188,7 @@ local new_actions = {
 		mana = 60,
 		ai_never_uses = SOULS_PRECAUTION,
 		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 18
-			current_reload_time = current_reload_time + 12
+			c.fire_rate_wait = c.fire_rate_wait + 24
 			c.spread_degrees = c.spread_degrees - 3.0
 			c.damage_projectile_add = c.damage_projectile_add + 0.041
 			add_projectile("mods/foolish_flame/files/entities/projectiles/flash_flare/projectile.xml")
@@ -369,7 +388,7 @@ local new_actions = {
 		related_extra_entities = {"mods/foolish_flame/files/entities/projectiles/holy_flames/hitfx.xml"},
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "3,4,5,6",
-		spawn_probability = "0.2,0.4,0.3,0.1",
+		spawn_probability = "0.3,0.4,0.4,0.3",
 		price = 140,
 		mana = 35,
 		ai_never_uses = SOULS_PRECAUTION,
