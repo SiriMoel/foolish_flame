@@ -57,7 +57,7 @@ if heat > 0 or (frame ~= nil and (frame < frame_last + 60)) then
         STEP = nil,
     }
 
-    local step_count = 8 * 20 - 1
+    local step_count = 93
     local step = math.min(math.floor((heat / 300) * step_count), step_count)
 
     if display.custom_logic ~= nil then

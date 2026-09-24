@@ -4,27 +4,9 @@ local nxml = dofile_once("mods/foolish_flame/lib/nxml.lua")
 
 ModMaterialsFileAdd("mods/foolish_flame/files/materials.xml")
 
--- create heat display sprites ... if changing steps, remember to update heat_gauge.lua
-local steps_x = 8 -- 1, 2, 4, 8
-local steps_y = 20
-local template, w, h = ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/heat_display/full.png", 20, 34)
-local step_upto = 0
-for step_y=1,steps_y do
-	for step_x=1,steps_x do
-		local image =  ModImageMakeEditable("mods/foolish_flame/files/ui_gfx/heat_display/generated/" .. step_upto ..".png", 20, 34)
-		local final_y = h - 5 - (step_y - 1)
-		for y=h,final_y,-1 do
-			local final_x = w - 1
-			if y == final_y then
-				final_x = w - 8 - 8 + step_x * (8 / steps_x)
-			end
-			for x=0,final_x do
-				ModImageSetPixel(image, x, y, ModImageGetPixel(template, x, y))
-			end
-		end
-		step_upto = step_upto + 1
-	end
-end
+-- create heat gauge step sprites
+dofile_once("mods/foolish_flame/files/scripts/gaugemaker.lua")
+GenerateGaugeSteps("flame", "mods/foolish_flame/files/ui_gfx/heat_display/generated", "mods/foolish_flame/files/ui_gfx/heat_display/full.png")
 
 -- appends
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/scripts/gun/actions.lua")
