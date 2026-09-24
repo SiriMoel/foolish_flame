@@ -1,4 +1,4 @@
-<Entity name="$projectile_default">
+<Entity name="$projectile_default" tags="projectile_player" >
 
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
@@ -12,8 +12,8 @@
   <ProjectileComponent
     lob_min="0.5"
     lob_max="0.7"
-    speed_min="500"
-    speed_max="550"
+    speed_min="600"
+    speed_max="650"
     friction="1"
     direction_random_rad="0.01"
     on_death_explode="1"
@@ -21,8 +21,8 @@
     on_lifetime_out_explode="1"
     explosion_dont_damage_shooter="1"
     on_collision_die="1"
-    lifetime="90"
-    damage="3"
+    lifetime="50"
+    damage="0.2"
     velocity_sets_scale="1"
     lifetime_randomness="4"
     ragdoll_force_multiplier="0.04"
@@ -32,12 +32,11 @@
     shoot_light_flash_g="60"
     shoot_light_flash_b="100"
     shoot_light_flash_radius="72" 
-	knockback_force="2.3"
+	  knockback_force="1.2"
     physics_impulse_coeff="1500"
     >
     <damage_by_type
-      fire="2"
-      holy="1.8"
+      fire="0.12"
     ></damage_by_type>
     <config_explosion
     never_cache="1" 
@@ -65,9 +64,9 @@
     material_sparks_count_max="2"
     material_sparks_count_min="0" 
     light_enabled="1" 
-    light_r="140"
-    light_g="60"
-    light_b="90"
+    light_r="90"
+    light_g="90"
+    light_b="150"
     stains_enabled="1"
     stains_radius="3"
     >
@@ -77,7 +76,7 @@
   <SpriteComponent 
     _enabled="1" 
     alpha="1" 
-    image_file="mods/foolish_flame/files/entities/projectiles/flare/sprite.xml"
+    image_file="mods/foolish_flame/files/entities/projectiles/reclaimer_flare/sprite.xml"
     next_rect_animation=""
     rect_animation="" 
     additive="1"
@@ -88,10 +87,10 @@
 		emitted_material_name="spark"
 		offset.x="0"
 		offset.y="0"
-		x_pos_offset_min="-1"
-		x_pos_offset_max="1"
-		y_pos_offset_min="-1"
-		y_pos_offset_max="1"
+		x_pos_offset_min="-2"
+		x_pos_offset_max="2"
+		y_pos_offset_min="-2"
+		y_pos_offset_max="2"
 		x_vel_min="0"
 		x_vel_max="0"
 		y_vel_min="0"
@@ -115,6 +114,38 @@
 		is_emitting="1"
     >
 	</ParticleEmitterComponent>
+
+  <ParticleEmitterComponent 
+		emitted_material_name="spark_blue_dark"
+		offset.x="0"
+		offset.y="0"
+		x_pos_offset_min="-1.2"
+		x_pos_offset_max="1.2"
+		y_pos_offset_min="-1.2"
+		y_pos_offset_max="1.2"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		gravity.y="0.0"
+		count_min="1"
+		count_max="4"
+		lifetime_min="0.7"
+		lifetime_max="0.9"
+		is_trail="1"
+		trail_gap="1.0"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		airflow_force="0.5"
+		airflow_time="0.001"
+		airflow_scale="0.0833"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		create_real_particles="0"
+		is_emitting="1"
+    >
+	</ParticleEmitterComponent>
 	
   <AudioComponent
       file="data/audio/Desktop/projectiles.bank"
@@ -123,15 +154,15 @@
   
   <LightComponent 
     radius="40" 
-  	r="140"
-  	g="60"
-  	b="100"
+  	r="90"
+  	g="90"
+  	b="150"
     >
   </LightComponent>
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/foolish_flame/files/entities/misc/bounty/flare_projectile.xml"
+		value_string="mods/foolish_flame/files/entities/projectiles/reclaimer_flare/projectile.xml"
 		>
 	</VariableStorageComponent>
 

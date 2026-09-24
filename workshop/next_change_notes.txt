@@ -1,5 +1,7 @@
 NEW
+- Reclaimer Flare spell
 - Contagion Flare spell
+- Fiery Reclamation perk
 - Reworked passive heat loss to ramp up over time while heat isn't being gained
 - Being around lava grants heat
 - Passive heat gain while in the Underground Jungle
@@ -10,6 +12,7 @@ NEW
 CHANGED/FIXED
 - Reduced base heat loss (but increases with ramp up)
 - Heat gained from being near magic fire enemies scales with proximity and is reduced by walls
+- Reduced passive heat damage buff by 20%
 - Magic Sparkle spell tweaks
 - FFIREBALL spell magic fire duration fix
 - Mod settings now appear properly in main menu
@@ -17,8 +20,10 @@ CHANGED/FIXED
 - Removed Flash Flare spell recharge time penalty and increased its cast delay
 - Increased Lumen Flare spell cast delay and reduced its mana cost
 - Increased Holy Flames spell spawn_probability
+- Tweaked heat gain from flare spell hits
+- Reduced hell bounty flare projectile damage
 
 INTERNAL
 - Updated heat gauge sprites system
 - Passive heat gain/loss is now handled by 1 file
-- Updated nxml
+- Updated nxml (rip 2022 nxml)

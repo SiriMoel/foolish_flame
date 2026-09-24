@@ -130,6 +130,26 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "RECLAIMER_FLARE",
+		name = "$action_ff_reclaimer_flare",
+		description = "$actiondesc_ff_reclaimer_flare",
+		sprite = "mods/foolish_flame/files/ui_gfx/gun_actions/reclaimer_flare.png",
+		related_projectiles	= {"mods/foolish_flame/files/entities/projectiles/reclaimer_flare/projectile.xml"},
+		related_extra_entities = {"mods/foolish_flame/files/entities/projectiles/reclaimer_flare/hitfx.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.1,0.3,0.4,0.4",
+		price = 130,
+		mana = 30,
+		ai_never_uses = SOULS_PRECAUTION,
+		action = function()
+			add_projectile("mods/foolish_flame/files/entities/projectiles/reclaimer_flare/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 12
+			c.spread_degrees = c.spread_degrees - 1.0
+			c.extra_entities = c.extra_entities .. "mods/foolish_flame/files/entities/projectiles/reclaimer_flare/hitfx.xml,"
+		end,
+	},
+	{
 		id = "CONTAGION_FLARE",
 		name = "$action_ff_contagion_flare",
 		description = "$actiondesc_ff_contagion_flare",

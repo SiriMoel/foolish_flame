@@ -12,7 +12,7 @@ if #e > 0 and not EntityHasTag(root, "player_unit") then
     local comp_temp = EntityGetFirstComponentIncludingDisabled(e[1], "VariableStorageComponent", "fire_temp")
     if comp_temp ~= nil then
         local temp = ComponentGetValue2(comp_temp, "value_int")
-        heat_amt = heat_amt + temp * 0.6
+        heat_amt = heat_amt + temp * 0.5
     end    
 end
 

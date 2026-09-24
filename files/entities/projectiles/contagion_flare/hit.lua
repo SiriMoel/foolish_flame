@@ -13,6 +13,7 @@ if not EntityHasTag(root, "player_unit") then
             local holy_flames = EntityGetAllChildren(root, "ff_holy_flames") or {}
             local targets = EntityGetInRadiusWithTag(x, y, 56, "homing_target") or {}
             if #targets > 0 then
+                local heated = false
                 for i=1,#targets do
                     local target = targets[i]
                     if target ~= root and not EntityHasTag(target, "player_unit") then
@@ -27,6 +28,10 @@ if not EntityHasTag(root, "player_unit") then
                                 local flame = EntityLoad("mods/foolish_flame/files/entities/projectiles/holy_flames/hit_entity.xml", tx, ty)
                                 EntityAddChild(target, flame)
                             end
+                        end
+                        if not heated then
+                            AddHeat(2 + temp * 0.4)
+                            heated = true
                         end
                     end
                 end

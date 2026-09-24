@@ -49,9 +49,8 @@ if #suns > 0 then
     end
 end
 
-
 if heat <= 100 then
-    local lavas = EntityGetInRadiusWithTag(x, y, 80, "ff_lava") or {}
+    local lavas = EntityGetInRadiusWithTag(x, y, 120, "ff_lava") or {}
     if #lavas > 0 then
         for i=1,#lavas do
             local lava = lavas[i]
@@ -59,9 +58,9 @@ if heat <= 100 then
             local dist = math.sqrt((x-fx)^2 + (y-fy)^2)
             local hit = 0
             if RaytraceSurfaces(fx, fy, x, y) then 
-                hit = hit + 0.6
+                hit = hit + 0.5
             end
-            amt_gain = amt_gain + 1 * (1 - dist/80) * (1-hit)
+            amt_gain = amt_gain + 2 * (1 - dist/120) * (1-hit)
         end
     end
 
@@ -79,9 +78,9 @@ end
 if heat <= 150 then
     local biome = BiomeMapGetName()
     if biome == "$biome_rainforest" then
-        amt_gain = amt_gain + 2
-    elseif biome == "$biome_dragoncave" then
         amt_gain = amt_gain + 4
+    elseif biome == "$biome_dragoncave" then
+        amt_gain = amt_gain + 6
     end
 
     local inv_items = GameGetAllInventoryItems(player) or {}
@@ -104,14 +103,16 @@ amt_gain = amt_gain / times_per_second
 -- LOSING HEAT
 
 if heat > 0 then
+    amt_loss = amt_loss + 2
+
     if frames > 30 then
-        amt_loss = amt_loss + 20 * math.min((frames - 30) / 480, 1)
-    else
-        amt_loss = amt_loss + 2
+        amt_loss = amt_loss + 23 * math.min((frames - 30) / 600, 1)
     end
 
     if heat > 300 then
-        amt_loss = amt_loss + math.max((heat - 300) / 5, 1)
+        amt_loss = amt_loss + math.max((heat - 300) / 5, 2)
+    else
+        amt_loss = amt_loss + math.floor(heat / 100)
     end
 
     if EntityHasTag(player, "ff_slow_heat_loss") then

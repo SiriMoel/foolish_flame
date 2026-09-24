@@ -7,7 +7,7 @@ Foolish Flame introduces a 'heat' mechanic, and content centered around it.
 Heat grants a passive damage boost and is also used as a currency of sorts for many of the mod's spells.
 The more heat you have, the higher the damage boost & the more powerful your spells become!
 
-Heat is acquired from many sources (including by holding kiuaskivi), but mainly from the mod's spells and by being around enemies afflicted with Magic Fire.
+Heat is acquired from many sources, but primarily from the mod's spells and by being around enemies afflicted with Magic Fire.
 
 Magic Fire is a new status effect that is inflicted by many of the mod's spells and has 10 temperature levels.
 The higher the temperature, the more heat is gained & the more powerful some of the mod's spells are against that enemy.
@@ -18,8 +18,8 @@ The heat gauge can take multiple appearances, which can be cycled using the [ an
 [img]https://imgur.com/W6t5wok.png[/img]
 
 So far, this mod adds:
-[b]35[/b] spells
-[b]3[/b] perks
+[b]36[/b] spells
+[b]4[/b] perks
 [b]6[/b] items
 [b]1[/b] friend :)
 [b]1[/b] structure...
