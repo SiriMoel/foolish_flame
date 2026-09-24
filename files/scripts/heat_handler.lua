@@ -16,7 +16,7 @@ local x, y = EntityGetTransform(player)
 
 -- GAINING HEAT
 
-local magic_fires = EntityGetInRadiusWithTag(x, y, 200, "ff_magic_fire_effect") or {}
+local magic_fires = EntityGetInRadiusWithTag(x, y, 180, "ff_magic_fire_effect") or {}
 if #magic_fires > 0 then
     for i=1,#magic_fires do
         local fire = magic_fires[i]
@@ -34,7 +34,7 @@ if #magic_fires > 0 then
             if hit > 0 then
                 hit = hit * (1 - (temp / 11))
             end
-            amt_gain = amt_gain + (6 + temp * 2) * (1 - dist/200) * (1-hit)
+            amt_gain = amt_gain + (6 + temp * 2) * (1 - dist/180) * (1-hit)
         end
     end
 end
@@ -50,7 +50,7 @@ if #suns > 0 then
 end
 
 if heat <= 100 then
-    local lavas = EntityGetInRadiusWithTag(x, y, 120, "ff_lava") or {}
+    local lavas = EntityGetInRadiusWithTag(x, y, 100, "ff_lava") or {}
     if #lavas > 0 then
         for i=1,#lavas do
             local lava = lavas[i]
@@ -60,17 +60,17 @@ if heat <= 100 then
             if RaytraceSurfaces(fx, fy, x, y) then 
                 hit = hit + 0.5
             end
-            amt_gain = amt_gain + 2 * (1 - dist/120) * (1-hit)
+            amt_gain = amt_gain + 3 * (1 - dist/100) * (1-hit)
         end
     end
 
-    local firemages = EntityGetInRadiusWithTag(x, y, 160, "firemage") or {}
+    local firemages = EntityGetInRadiusWithTag(x, y, 90, "firemage") or {}
     if #firemages > 0 then
         for i=1,#firemages do
             local firemage = firemages[i]
             local fx, fy = EntityGetTransform(firemage)
             local dist = math.sqrt((x-fx)^2 + (y-fy)^2)
-            amt_gain = amt_gain + 3 * (1 - dist/160)
+            amt_gain = amt_gain + 6 * (1 - dist/90)
         end
     end
 end
@@ -103,14 +103,14 @@ amt_gain = amt_gain / times_per_second
 -- LOSING HEAT
 
 if heat > 0 then
-    amt_loss = amt_loss + 2
+    amt_loss = amt_loss + 1
 
-    if frames > 30 then
-        amt_loss = amt_loss + 23 * math.min((frames - 30) / 600, 1)
+    if frames > 60 then
+        amt_loss = amt_loss + 20 * math.min((frames - 60) / 600, 1)
     end
 
     if heat > 300 then
-        amt_loss = amt_loss + math.max((heat - 300) / 5, 2)
+        amt_loss = amt_loss + math.max((heat - 300) / 4, 2)
     else
         amt_loss = amt_loss + math.floor(heat / 100)
     end

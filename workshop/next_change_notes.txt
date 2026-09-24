@@ -19,11 +19,16 @@ CHANGED/FIXED
 - Increased heat gain from suns
 - Removed Flash Flare spell recharge time penalty and increased its cast delay
 - Increased Lumen Flare spell cast delay and reduced its mana cost
-- Increased Holy Flames spell spawn_probability
+- Increased Holy Flames spell spawn probability
 - Tweaked heat gain from flare spell hits
 - Reduced hell bounty flare projectile damage
+- Slightly reduced Friendly Flame spell heat gain
+- Increased the chance for Taq Pol to drop from hell bounties
 
 INTERNAL
 - Updated heat gauge sprites system
-- Passive heat gain/loss is now handled by 1 file
+- Passive heat gain/loss is now mostly handled by 1 file
 - Updated nxml (rip 2022 nxml)
+
+Balancing passive heat loss has been a bit of a pain, so if you have any feedback or thoughts feel free to let me know (either in the discord or in the comments here).
+I hope you enjoy!

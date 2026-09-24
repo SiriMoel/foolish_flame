@@ -162,7 +162,7 @@ mod_settings = {
 	{
         id = "advanced_spell_descs",
         ui_name = "Advanced spell descriptions",
-        ui_description = "Should spell descriptions have additional heat & magic fire information? Magic fire info is displayed as [temperature,duration,max temp.]",
+        ui_description = "Should spell descriptions have additional heat & magic fire information?\nMagic fire info is displayed as [temperature,duration,max temp.]",
         value_default = false,
         scope = MOD_SETTING_SCOPE_RUNTIME_RESTART,
         ui_fn = mod_setting_bool_ff,

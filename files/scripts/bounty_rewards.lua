@@ -50,7 +50,7 @@ bounty_rewards = {
     },
     {
         id = "taq_pol",
-        chance = 2.5,
+        chance = 2.8,
         spawn_func = function(x, y)
             EntityLoad("mods/foolish_flame/files/entities/items/taq_pol/item.xml", x, y - 4)
         end,
