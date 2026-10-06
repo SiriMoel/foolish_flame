@@ -24,7 +24,7 @@ So far, this mod adds:
 [b]1[/b] friend :)
 [b]1[/b] structure...
 
-Foolish Flame has cross-mod interactions with a few other mods to add integration with this mod's mechanics: [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3032128572]Apotheosis[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2840072000]Graham's Things[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3313573016]Souls[/url][/b], and [b][url=https://github.com/Copious-Modding-Industries/copis_things]Copi's Things[/url][/b].
+Foolish Flame has cross-mod interactions with a few other mods to add integration with this mod's mechanics: [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3032128572]Apotheosis[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2840072000]Graham's Things[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3313573016]Souls[/url][/b], [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3807666895]Stab![/url][/b], and [b][url=https://github.com/Copious-Modding-Industries/copis_things]Copi's Things[/url][/b].
 
 
 Discord: https://discord.gg/FKaRA9HMUq

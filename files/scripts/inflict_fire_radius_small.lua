@@ -12,7 +12,7 @@ if EntityHasTag(root, "player_unit") then
 
     if #targets > 0 then
         for i=1,#targets do
-            InflictMagicFire(target[i], 1, nil, 2) -- for free!
+            InflictMagicFire(targets[i], 1, nil, 2) -- for free!
         end
     end
 end

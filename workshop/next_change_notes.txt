@@ -3,6 +3,7 @@ NEW
 
 CHANGED/FIXED
 - Improved gauge heat displaying visuals
+- Fixed Torch spell not applying magic fire to nearby enemies properly
 
 INTERNAL
 - gaugemaker.lua for generating gauge sprites
