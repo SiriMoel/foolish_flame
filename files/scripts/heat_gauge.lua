@@ -5,8 +5,11 @@ dofile_once("mods/foolish_flame/files/scripts/gauges.lua")
 
 local _,available_displays = GetGauges()
 
-local button_left_down = InputIsKeyDown(47)
-local button_right_down = InputIsKeyDown(48)
+local key_prev = tonumber(GlobalsGetValue("foolish_flame.gauge_previous_key", "47"))
+local key_next = tonumber(GlobalsGetValue("foolish_flame.gauge_next_key", "48"))
+
+local button_left_down = InputIsKeyDown(key_prev)
+local button_right_down = InputIsKeyDown(key_next)
 local frame_last
 local frame
 local changed = false

@@ -8,6 +8,12 @@ ModMaterialsFileAdd("mods/foolish_flame/files/materials.xml")
 dofile_once("mods/foolish_flame/files/scripts/gaugemaker.lua")
 GenerateGaugeSteps("flame", "mods/foolish_flame/files/ui_gfx/heat_display/generated", "mods/foolish_flame/files/ui_gfx/heat_display/full.png")
 
+-- tank gauge step sprites
+GenerateGaugeSteps("tank_1", "mods/foolish_flame/files/ui_gfx/heat_display/tank/generated/1", "mods/foolish_flame/files/ui_gfx/heat_display/tank/full_1.png")
+GenerateGaugeSteps("tank_2", "mods/foolish_flame/files/ui_gfx/heat_display/tank/generated/2", "mods/foolish_flame/files/ui_gfx/heat_display/tank/full_2.png")
+GenerateGaugeSteps("tank_1_hot", "mods/foolish_flame/files/ui_gfx/heat_display/tank/generated/1_hot", "mods/foolish_flame/files/ui_gfx/heat_display/tank/full_1_hot.png")
+GenerateGaugeSteps("tank_2_hot", "mods/foolish_flame/files/ui_gfx/heat_display/tank/generated/2_hot", "mods/foolish_flame/files/ui_gfx/heat_display/tank/full_2_hot.png")
+
 -- appends
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/foolish_flame/files/scripts/gun/actions.lua")
 ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/foolish_flame/files/scripts/gun/gun_append.lua")
@@ -105,6 +111,9 @@ function OnPlayerSpawned(player)
 	GlobalsSetValue("ff_bounty_chance_mult", tostring(ModSettingGet("foolish_flame.bounty_chance_mult")))
 	GlobalsSetValue("ff_heat_damage_mult", tostring(ModSettingGet("foolish_flame.heat_damage_mult")))
 
+	GlobalsSetValue("foolish_flame.gauge_previous_key", tostring(ModSettingGet("foolish_flame.gauge_previous_key")))
+	GlobalsSetValue("foolish_flame.gauge_next_key", tostring(ModSettingGet("souls.gauge_next_key")))
+
 	EntityAddComponent2(player, "VariableStorageComponent", {
 		_tags="ff_heat",
 		name="ff_heat",
@@ -160,5 +169,8 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 		GlobalsSetValue("ff_bounty_chance_mult", tostring(bounty_chance_mult))
 		local heat_damage_mult = ModSettingGet("foolish_flame.heat_damage_mult") or 1
 		GlobalsSetValue("ff_heat_damage_mult", tostring(heat_damage_mult))
+
+		GlobalsSetValue("foolish_flame.gauge_previous_key", tostring(ModSettingGet("foolish_flame.gauge_previous_key")))
+		GlobalsSetValue("foolish_flame.gauge_next_key", tostring(ModSettingGet("souls.gauge_next_key")))
 	end
 end

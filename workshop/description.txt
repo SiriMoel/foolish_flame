@@ -13,7 +13,7 @@ Magic Fire is a new status effect that is inflicted by many of the mod's spells 
 The higher the temperature, the more heat is gained & the more powerful some of the mod's spells are against that enemy.
 
 How much heat you have is shown by a display that appears above the player.
-The heat gauge can take multiple appearances, which can be cycled using the [ and ] keys in game.
+The heat gauge has [b]11[/b] different appearances, which can be cycled using the [ and ] keys in game (these can be changed in the mod settings).
 
 [img]https://imgur.com/W6t5wok.png[/img]
 

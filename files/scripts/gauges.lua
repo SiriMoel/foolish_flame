@@ -37,6 +37,31 @@ heat_gauges = {
         func_unlocked = function() return true end, -- always unlocked
     },
     {
+        id = "tank",
+        name = "$ff_display_tank",
+        name_t = "Tank",
+        sprite = "mods/foolish_flame/files/ui_gfx/heat_display/tank/sprite.png",
+        draw_order = {
+            "SPRITE", "STEP", "OVERLAY"
+        },
+        func_unlocked = function() return true end,
+        custom_logic = function(heat)
+            local step_count = 115
+            local step = math.min(math.floor((heat / 300) * step_count), step_count)
+            local frame = GameGetFrameNum()
+            local step_path = "mods/foolish_flame/files/ui_gfx/heat_display/tank/generated/" .. (math.floor((frame / 12) % 2 + 1))
+            if heat >= 400 then
+                step_path = step_path .. "_hot"
+            end
+            local sprites = {
+               SPRITE = "mods/foolish_flame/files/ui_gfx/heat_display/tank/sprite.png",
+               STEP =  step_path .. "/" .. step .. ".png",
+               OVERLAY = "mods/foolish_flame/files/ui_gfx/heat_display/tank/overlay.png",
+            }
+            return sprites
+        end,
+    },
+    {
         id = "flame_animated",
         name = "$ff_display_flame_animated",
         name_t = "Flame (animated)",

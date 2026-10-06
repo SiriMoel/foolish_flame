@@ -1,5 +1,6 @@
 NEW
-- ???
+- Settings to bind the keys to cycle heat gauges
+- Heat Gauge: Tank
 
 CHANGED/FIXED
 - Improved gauge heat displaying visuals
@@ -7,3 +8,4 @@ CHANGED/FIXED
 
 INTERNAL
 - gaugemaker.lua for generating gauge sprites
+- Other heat gauge changes

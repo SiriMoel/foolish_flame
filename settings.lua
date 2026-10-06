@@ -1,5 +1,6 @@
 dofile("data/scripts/lib/mod_settings.lua")
 dofile("mods/foolish_flame/files/scripts/gauges.lua")
+dofile_once("mods/foolish_flame/files/scripts/keys.lua")
 
 function mod_setting_bool_ff(mod_id, gui, in_main_menu, im_id, setting)
 	local value = ModSettingGetNextValue( mod_setting_get_id(mod_id,setting) )
@@ -90,6 +91,60 @@ function mod_setting_image_small(mod_id, gui, in_main_menu, im_id, setting)
 	end
 end
 
+function mod_setting_ff_key_magic(mod_id, gui, in_main_menu, im_id, setting)
+	local value = ModSettingGetNextValue(mod_setting_get_id(mod_id, setting))
+	if type(value) ~= "boolean" then value = setting.value_default or false end
+
+    local key_now = ModSettingGetNextValue(setting.key_setting)
+
+    local key_string = (skeys[key_now] ~= nil) and ("[" .. skeys[key_now] .. "]") or "???"
+
+    local text = value and "!!! " or key_string
+
+    if value then
+        GuiColorSetForNextWidget(gui, 0.6, 0.7, 1.0, 1.0)
+    else
+        GuiColorSetForNextWidget(gui, 1.0, 0.9, 0.7, 1.0)
+    end
+
+	GuiText(gui, mod_setting_group_x_offset, 0, text, 1, "", true)
+
+    GuiColorSetForNextWidget(gui, 0.6, 0.6, 0.6, 1.0)
+
+    local text_offset = math.max(GuiGetTextDimensions(gui, text) + 4, 24)
+
+    local clicked, right_clicked = GuiButton(gui, im_id, mod_setting_group_x_offset + text_offset, -11, setting.ui_name)
+
+    GuiColorSetForNextWidget(gui, 1, 1, 1, 1)
+
+    local set_key
+
+    if value then
+        for key = 4, 103 do
+            if skeys[key] ~= nil and InputIsKeyDown(key) then
+                set_key = key
+                break
+            end
+        end
+        if set_key ~= nil then
+            ModSettingSetNextValue(setting.key_setting, set_key, false)
+            ModSettingSetNextValue(mod_setting_get_id(mod_id, setting), false, false)
+        end
+    end
+
+    if clicked then
+		ModSettingSetNextValue(mod_setting_get_id(mod_id, setting), not value, false)
+		mod_setting_handle_change_callback(mod_id, gui, in_main_menu, setting, value, not value)
+	end
+    if right_clicked then
+        ModSettingSetNextValue(setting.key_setting, setting.key_setting_default, false)
+        ModSettingSetNextValue(mod_setting_get_id(mod_id, setting), false, false)
+        mod_setting_handle_change_callback(mod_id, gui, in_main_menu, setting, false, setting.value_default)
+    end
+
+	mod_setting_tooltip(mod_id, gui, in_main_menu, setting)
+end
+
 function mod_setting_change_callback(mod_id, gui, in_main_menu, setting, old_value, new_value)
 	--[[if setting.id == "heat_display" then
         setting.values = GetDisplays()
@@ -105,14 +160,57 @@ mod_settings = {
 		value_default = 1,
 		hidden = true,
 	},
-	{
-        id = "show_heat_gauge",
-        ui_name = "Render heat gauge?",
-        ui_description = "Should the heat gauge be hidden?",
-        value_default = true,
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-        ui_fn = mod_setting_bool_ff,
-        value_type = "boolean",
+    {
+        category_id = "gauge_settings",
+        ui_name = "Heat Gauge settings",
+        ui_description = "",
+        foldable = true,
+        _folded = true,
+        settings = {
+            {
+                id = "show_heat_gauge",
+                ui_name = "Render heat gauge?",
+                ui_description = "Should the heat gauge be hidden?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_ff,
+                value_type = "boolean",
+            },
+            {
+		        id = "gauge_previous_key",
+		        ui_name = "FF Gui Key",
+		        value_default = 47,
+		        hidden = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+	        },
+            {
+                id = "set_gauge_previous",
+                ui_name = "Previous heat gauge keybind",
+                ui_description = "Click this and then press the desired key.",
+                value_default = false,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_ff_key_magic,
+                key_setting = "foolish_flame.gauge_previous_key",
+                key_setting_default = 47,
+            },
+            {
+		        id = "gauge_next_key",
+		        ui_name = "FF Gui Key",
+		        value_default = 48,
+		        hidden = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+	        },
+            {
+                id = "set_gauge_next",
+                ui_name = "Next heat gauge keybind",
+                ui_description = "Click this and then press the desired key.",
+                value_default = false,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_ff_key_magic,
+                key_setting = "foolish_flame.gauge_next_key",
+                key_setting_default = 48,
+            },
+        },
     },
 	{
         id = "heat_damage_mult",
