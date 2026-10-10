@@ -112,7 +112,7 @@ function OnPlayerSpawned(player)
 	GlobalsSetValue("ff_heat_damage_mult", tostring(ModSettingGet("foolish_flame.heat_damage_mult")))
 
 	GlobalsSetValue("foolish_flame.gauge_previous_key", tostring(ModSettingGet("foolish_flame.gauge_previous_key")))
-	GlobalsSetValue("foolish_flame.gauge_next_key", tostring(ModSettingGet("souls.gauge_next_key")))
+	GlobalsSetValue("foolish_flame.gauge_next_key", tostring(ModSettingGet("foolish_flame.gauge_next_key")))
 
 	EntityAddComponent2(player, "VariableStorageComponent", {
 		_tags="ff_heat",
@@ -171,6 +171,6 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 		GlobalsSetValue("ff_heat_damage_mult", tostring(heat_damage_mult))
 
 		GlobalsSetValue("foolish_flame.gauge_previous_key", tostring(ModSettingGet("foolish_flame.gauge_previous_key")))
-		GlobalsSetValue("foolish_flame.gauge_next_key", tostring(ModSettingGet("souls.gauge_next_key")))
+		GlobalsSetValue("foolish_flame.gauge_next_key", tostring(ModSettingGet("foolish_flame.gauge_next_key")))
 	end
 end

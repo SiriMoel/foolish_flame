@@ -1,5 +1,5 @@
 NEW
-- Settings to bind the keys to cycle heat gauges
+- Mod settings to bind the keys to cycle heat gauges
 - Heat Gauge: Tank
 
 CHANGED/FIXED
